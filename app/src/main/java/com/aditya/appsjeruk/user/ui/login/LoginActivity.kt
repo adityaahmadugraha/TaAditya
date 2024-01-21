@@ -6,12 +6,12 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.aditya.appsjeruk.admin.ActivityAdmin
 import com.aditya.appsjeruk.data.Resource
 import com.aditya.appsjeruk.data.local.UserLocal
@@ -43,7 +43,6 @@ class LoginActivity : AppCompatActivity() {
             intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun loginUser() {
@@ -56,25 +55,21 @@ class LoginActivity : AppCompatActivity() {
             .observe(this@LoginActivity) { result ->
                 when (result) {
                     is Resource.Loading -> {
-                        setInputLoading(true)
+                        binding.progressBar.visibility = View.VISIBLE
+
                         Log.d("LoginActivity", "Loading...")
                     }
 
                     is Resource.Success -> {
-                        setInputLoading(false)
-
-                        if (result.data.status == true) {
+                        binding.progressBar.visibility = View.GONE
+                        if (result.data.status) {
                             val userData = result.data.data
                             viewModel.saveUserLocal(
                                 UserLocal(
                                     userData.id,
-                                    userData?.name.toString(),
-                                    userData?.username.toString(),
-                                    userData?.roles.toString(),
-
-//                                    userData?.password.toString(),
-
-//                                    userData?.token.toString()
+                                    userData.name,
+                                    userData.username,
+                                    userData.roles,
                                 )
                             )
                             checkUserLogin()
@@ -85,11 +80,10 @@ class LoginActivity : AppCompatActivity() {
                                 "Unexpected response status: ${result.data.status}"
                             )
                         }
-
                     }
 
                     is Resource.Error -> {
-                        setInputLoading(false)
+                        binding.progressBar.visibility = View.GONE
                         Toast.makeText(this@LoginActivity, result.error, Toast.LENGTH_SHORT).show()
                         Log.e("LoginActivity", "Login error: ${result.error}")
                     }
@@ -98,17 +92,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun setInputLoading(condition: Boolean) {
-        binding.apply {
-            btnLogin.isEnabled = !condition
-            progressBar.isVisible = condition
-        }
-    }
-
     private fun checkUserLogin() {
         viewModel.getUser().observe(this@LoginActivity) { userData ->
             if
-
                     (userData.username.isNotEmpty() || userData.id.isNotEmpty()) {
 
                 if (userData.roles == "Admin") {
@@ -128,10 +114,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(this)
                     }
                 }
-
-
             }
-
 
         }
     }

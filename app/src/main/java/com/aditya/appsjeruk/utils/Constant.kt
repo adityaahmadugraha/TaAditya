@@ -30,21 +30,11 @@ object Constant {
     val USERNAME = stringPreferencesKey("username")
     val PASSWORD = stringPreferencesKey("password")
     val ROLES = stringPreferencesKey("roles")
-//    val KEY_ROLES = stringPreferencesKey("roles")
-//    val KEY_ALAMAT = stringPreferencesKey("alamat")
-//    val KEY_TOKEN = stringPreferencesKey("token")
-//
-//
-//    preferences[Constant.ID] = user.id
-//    preferences[Constant.NAME] = user.name
-//    preferences[Constant.USERNAME] = user.username
-//    preferences[Constant.PASSWORD] = user.password
-//    preferences[Constant.ROLES] = user.roles
+
 
 
     private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
-//    val UserLocal.getToken get() = "Bearer ${this.token}"
 
     fun uriToFile(selectedImg: Uri, context: Context): File {
         val contentResolver: ContentResolver = context.contentResolver

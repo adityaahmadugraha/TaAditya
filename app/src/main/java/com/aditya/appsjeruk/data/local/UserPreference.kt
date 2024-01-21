@@ -19,9 +19,6 @@ class UserPreference(context: Context) {
                 preferences[Constant.NAME] ?: "",
                 preferences[Constant.USERNAME] ?: "",
                 preferences[Constant.ROLES] ?:"",
-//                preferences[Constant.EMAIL] ?:"",
-//                preferences[Constant.ROLES] ?:"",
-
 
             )
             userLocal
@@ -34,7 +31,6 @@ class UserPreference(context: Context) {
             preferences[Constant.ID] = user.id
             preferences[Constant.NAME] = user.name
             preferences[Constant.USERNAME] = user.username
-//            preferences[Constant.PASSWORD] = user.password
             preferences[Constant.ROLES] = user.roles
 
         }
