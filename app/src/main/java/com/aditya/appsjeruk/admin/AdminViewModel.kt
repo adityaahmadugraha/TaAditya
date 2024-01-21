@@ -19,4 +19,6 @@ class AdminViewModel @Inject constructor(
     fun deleteUser() = viewModelScope.launch {
         repository.deleteUser()
     }
+
+    fun getItem() = repository.getItem().asLiveData()
 }

@@ -7,11 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditya.appsjeruk.R
-import com.aditya.appsjeruk.adapter.AdapterHistoryLaporan
-import com.aditya.appsjeruk.data.remote.response.ItemLaporaneResponse
 import com.aditya.appsjeruk.databinding.FragmentHistoryBinding
 import com.aditya.appsjeruk.user.ui.detailstatuslaporan.DetailStatusLaporanActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +18,7 @@ class HistoryFragment : Fragment() {
     private val viewModel: HistoryViewModel by viewModels()
     private val binding get() = _binding!!
 
-    private lateinit var mAdapter: AdapterHistoryLaporan
+//    private lateinit var mAdapter: AdapterHistoryLaporan
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,33 +32,33 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        setupRecyclerView()
+//        setupRecyclerView()
 //        getDataUser()
     }
 
 
 
 
-    private fun setupRecyclerView() {
-        mAdapter = AdapterHistoryLaporan {
-            goToDetailScreen(it)
-        }
-    }
+//    private fun setupRecyclerView() {
+//        mAdapter = AdapterHistoryLaporan {
+//            goToDetailScreen(it)
+//        }
+//    }
 
-    private fun goToDetailScreen(itemLaporaneResponse: ItemLaporaneResponse) {
-
-        val bundle = Bundle().apply {
-            putString(DetailStatusLaporanActivity.TAG_TIPE, itemLaporaneResponse.type)
-            putString(DetailStatusLaporanActivity.TAG_TANGGAL, itemLaporaneResponse.tanggal)
-            putString(DetailStatusLaporanActivity.TAG_LOKASI, itemLaporaneResponse.lokasi)
-
-
-        }
-        Intent(requireActivity(), DetailStatusLaporanActivity::class.java).apply {
-            putExtra(DetailStatusLaporanActivity.TAG_BUNDLE, bundle)
-            startActivity(this)
-        }
-    }
+//    private fun goToDetailScreen(itemLaporaneResponse: ItemLaporaneResponse) {
+//
+//        val bundle = Bundle().apply {
+//            putString(DetailStatusLaporanActivity.TAG_TIPE, itemLaporaneResponse.type)
+//            putString(DetailStatusLaporanActivity.TAG_TANGGAL, itemLaporaneResponse.tanggal)
+//            putString(DetailStatusLaporanActivity.TAG_LOKASI, itemLaporaneResponse.lokasi)
+//
+//
+//        }
+//        Intent(requireActivity(), DetailStatusLaporanActivity::class.java).apply {
+//            putExtra(DetailStatusLaporanActivity.TAG_BUNDLE, bundle)
+//            startActivity(this)
+//        }
+//    }
 
 
     override fun onDestroyView() {

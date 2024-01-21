@@ -18,6 +18,8 @@ class DataRepository @Inject constructor(
 
     suspend fun deleteUser() = localData.deleteUser()
 
+    fun getItem() = remoteData.getItem()
+
 
 
 

@@ -1,14 +1,15 @@
 package com.aditya.appsjeruk.admin
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.R
+import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.databinding.ActivityAdminBinding
 import com.aditya.appsjeruk.user.ui.login.LoginActivity
-import com.aditya.appsjeruk.user.ui.profile.ProfileViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +19,7 @@ class ActivityAdmin : AppCompatActivity() {
 
     private lateinit var binding: ActivityAdminBinding
     private val viewModel: AdminViewModel by viewModels()
+    private lateinit var mAdapter: AdapterGejala
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,6 +27,10 @@ class ActivityAdmin : AppCompatActivity() {
         setContentView(binding.root)
 
         getDataUser()
+        getData()
+        mAdapter = AdapterGejala()
+        setupRecyclerView()
+
 
 
 
@@ -36,6 +42,33 @@ class ActivityAdmin : AppCompatActivity() {
         }
     }
 
+    private fun setupRecyclerView() {
+        binding.rvPenyakit.apply {
+            adapter = mAdapter
+            layoutManager = LinearLayoutManager(this@ActivityAdmin)
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun getData() {
+
+        viewModel.getItem().observe(
+            this@ActivityAdmin
+        ) { result ->
+            when (result) {
+                is com.aditya.appsjeruk.data.Resource.Loading -> {}
+
+                is com.aditya.appsjeruk.data.Resource.Success -> {
+
+                    mAdapter.submitList(result.data)
+                }
+
+                is com.aditya.appsjeruk.data.Resource.Error -> {}
+
+                else -> {}
+            }
+        }
+    }
 
     private fun showAlertLogout() {
         MaterialAlertDialogBuilder(this)
