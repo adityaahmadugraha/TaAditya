@@ -33,27 +33,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/img_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_logout"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_menu"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_power"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/txt_profil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/poppinssembiold"
-                android:text="Profil"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_profil"
@@ -69,7 +57,7 @@
                 android:id="@+id/img_edit"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_add"
+                android:src="@drawable/img_camera"
                 app:layout_constraintBottom_toBottomOf="@+id/img_profil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.32"
@@ -82,7 +70,7 @@
                 android:id="@+id/tv_name_profil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppinssembiold"
                 android:text="Aditya Ahmad Nugraha"
                 android:textColor="@color/white"
@@ -95,7 +83,7 @@
                 android:id="@+id/tv_jabatan_profil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppinssembiold"
                 android:text="Mahasiswa"
                 android:textColor="@color/white"
@@ -115,7 +103,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="-60dp"
         android:layout_marginBottom="-100dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinssembiold"
-                    android:text="gemafajar@gmail.com"
+                    android:text="adityaahmadnugraha@gmail.com"
                     android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -303,18 +291,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/blue"
-        android:fontFamily="@font/poppinssembiold"
-        android:text="@string/keluar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
