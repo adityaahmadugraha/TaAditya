@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.aditya.appsatipadang'
+    namespace 'com.aditya.appsjeruk'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.aditya.appsatipadang"
+        applicationId "com.aditya.appsjeruk"
         minSdk 24
         targetSdk 34
         versionCode 1
