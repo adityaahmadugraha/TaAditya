@@ -45,8 +45,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-
-    //menampilkan data profil
     private fun getDataUser() {
         viewModel.getUser().observe(viewLifecycleOwner) { data ->
             binding?.tvNameProfil?.text = data.name
