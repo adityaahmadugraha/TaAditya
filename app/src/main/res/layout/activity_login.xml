@@ -25,7 +25,7 @@
         android:layout_width="210dp"
         android:layout_height="190dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/unnamed"
+        android:src="@drawable/icon_jeruk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_login" />
@@ -51,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppinssembiold"
-                android:textColor="@color/black"
                 android:text="@string/useraname"
+                android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,9 +71,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinssembiold"
-                    android:textSize="12sp"
                     android:hint="@string/masukan_username"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -81,10 +81,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/password"
-                android:textSize="10sp"
                 android:fontFamily="@font/poppinssembiold"
+                android:text="@string/password"
                 android:textColor="@color/black"
+                android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="@+id/ti_username"
                 app:layout_constraintTop_toBottomOf="@+id/ti_username" />
 
@@ -103,10 +103,10 @@
                     android:id="@+id/txt_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/masukan_password"
                     android:fontFamily="@font/poppinssembiold"
-                    android:textSize="12sp"
-                    android:inputType="textPassword" />
+                    android:hint="@string/masukan_password"
+                    android:inputType="textPassword"
+                    android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -115,10 +115,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Lupa Password?"
-                android:textSize="12sp"
                 android:fontFamily="@font/poppinsblack"
+                android:text="Lupa Password?"
                 android:textColor="@color/blue"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/ti_password"
                 app:layout_constraintTop_toBottomOf="@+id/ti_password" />
 

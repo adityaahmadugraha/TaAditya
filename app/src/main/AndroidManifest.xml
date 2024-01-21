@@ -24,7 +24,7 @@
     </queries>
 
     <application
-        android:name="com.aditya.appsjeruk.di.AtiPadang"
+        android:name=".di.AtiPadang"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -35,21 +35,20 @@
         android:theme="@style/Theme.AppsATIPadang"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <activity
-            android:name="com.aditya.appsjeruk.user.ui.detailstatuslaporan.DetailStatusLaporanActivity"
+            android:name=".admin.ActivityAdmin"
             android:exported="false" />
         <activity
-            android:name="com.aditya.appsjeruk.user.ui.pemberitahuan.ActivityPemberitahuan"
+            android:name=".user.ui.detailstatuslaporan.DetailStatusLaporanActivity"
             android:exported="false" />
         <activity
-            android:name="com.aditya.appsjeruk.user.ui.login.LoginActivity"
+            android:name=".user.ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.aditya.appsjeruk.user.MainActivity"
+            android:name=".user.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.aditya.appsjeruk.user.ui.splash.SplashActivity"
+            android:name=".user.ui.splash.SplashActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

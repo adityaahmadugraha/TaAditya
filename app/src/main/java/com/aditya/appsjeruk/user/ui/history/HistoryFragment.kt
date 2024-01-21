@@ -36,84 +36,17 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupButtonBackClicked()
+
         setupRecyclerView()
 //        getDataUser()
     }
 
-    private fun setupButtonBackClicked() {
-        binding.imgBackHistory.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_history_to_navigation_home)
-        }
-    }
 
-//    private fun getDataUser() {
-//
-//        viewModel.getUser().observe(viewLifecycleOwner) { userLocal ->
-//            viewModel.getListLaporan(userLocal.getToken).observe(viewLifecycleOwner) { result ->
-//                when (result) {
-//                    is Resource.Loading -> {
-//                        binding.progressBar.isVisible = true
-//                    }
-//
-//                    is Resource.Success -> {
-//                        binding.progressBar.isVisible = false
-//
-//                        Log.d(ContentValues.TAG, "listHistory::::::: ${result.data}")
-//
-//                        mAdapter.submitList(result.data.laporan)
-//                    }
-//
-//                    is Resource.Error -> {
-//                        binding.progressBar.isVisible = false
-//                        Toast.makeText(
-//                            requireActivity(),
-//                            result.error,
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                }
-//            }
-//
-//            viewModel.getListLaporanHarian(userLocal.getToken)
-//                .observe(viewLifecycleOwner) { result ->
-//                    when (result) {
-//                        is Resource.Loading -> {
-//                            binding.progressBar.isVisible = true
-//                        }
-//
-//                        is Resource.Success -> {
-//                            binding.progressBar.isVisible = false
-//
-//                            Log.d(ContentValues.TAG, "listHistory::::::: ${result.data}")
-//
-//                            val sortedData = result.data.laporan?.sortedByDescending { it.id }
-//
-//                            mAdapter.submitList(sortedData)
-//                        }
-//
-//                        is Resource.Error -> {
-//                            binding.progressBar.isVisible = false
-//                            Toast.makeText(
-//                                requireActivity(),
-//                                result.error,
-//                                Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
-//                    }
-//                }
-//
-//        }
-//    }
+
 
     private fun setupRecyclerView() {
         mAdapter = AdapterHistoryLaporan {
             goToDetailScreen(it)
-        }
-        binding.rvHistoryKemarin.apply {
-            adapter = mAdapter
-            layoutManager = LinearLayoutManager(requireActivity())
-            setHasFixedSize(true)
         }
     }
 

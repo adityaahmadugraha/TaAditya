@@ -1,37 +1,35 @@
 package com.aditya.appsjeruk.user.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditya.appsjeruk.adapter.AdapterLaporan
-import com.aditya.appsjeruk.data.remote.response.ItemLaporaneResponse
+import com.aditya.appsjeruk.R
+import com.aditya.appsjeruk.adapter.MenuAdapter
 import com.aditya.appsjeruk.databinding.FragmentHomeBinding
-import com.aditya.appsjeruk.user.ui.detailstatuslaporan.DetailStatusLaporanActivity
-import com.aditya.appsjeruk.user.ui.detailstatuslaporan.DetailStatusLaporanActivity.Companion.TAG_BUNDLE
-import com.aditya.appsjeruk.user.ui.detailstatuslaporan.DetailStatusLaporanActivity.Companion.TAG_STATUS
-import com.aditya.appsjeruk.user.ui.detailstatuslaporan.DetailStatusLaporanActivity.Companion.TAG_TANGGAL
-import com.aditya.appsjeruk.user.ui.detailstatuslaporan.DetailStatusLaporanActivity.Companion.TAG_TIPE
-import dagger.hilt.android.AndroidEntryPoint
+import com.google.android.material.tabs.TabLayoutMediator
 
-@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: HomeViewModel by viewModels()
 
-    private lateinit var mAdapter: AdapterLaporan
+    private val tabTitle = mutableMapOf(
+        "Gejala" to R.string.gejala,
+        "Penyakit" to R.string.penyakit
+
+    )
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,90 +37,27 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpTabLayoutWithViewPager()
 
-
-//        getDataUser()
-//        setupList()
     }
 
-//    private fun getDataUser() {
-//        viewModel.getUser().observe(viewLifecycleOwner) { userLocal ->
-//            binding.tvName.text = userLocal.name
-//
-//
-//            viewModel.getListLaporan(userLocal.getToken).observe(viewLifecycleOwner) { result ->
-//                Log.d(TAG, "getDataUser: ${userLocal.getToken}")
-//                when (result) {
-//                    is Resource.Loading -> {
-//                        binding.progressBar.isVisible = true
-//                    }
-//
-//                    is Resource.Success -> {
-//                        binding.progressBar.isVisible = false
-//
-//
-//                        Log.d(TAG, "listadapter::::::: ${result.data}")
-//
-//
-//                        val latestFiveData = if (result.data.laporan?.size!! > 5)
-//                            result.data.laporan?.let {
-//                                result.data.laporan.subList(
-//                                    result.data.laporan.size - 5,
-//                                    it.size
-//                                )
-//                            }
-//                        else
-//                            result.data.laporan
-//
-//                        mAdapter.submitListReversed(latestFiveData)
-//                        setupRecyclerView()
-//                    }
-//
-//                    is Resource.Error -> {
-//                        binding.progressBar.isVisible = false
-//                        Toast.makeText(
-//                            requireActivity(),
-//                            result.error,
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//
-//                }
-//            }
-//
-//        }
-//    }
+    private fun setUpTabLayoutWithViewPager() {
+        val titles = ArrayList(tabTitle.keys)
+        binding.viewPager.adapter = MenuAdapter(this)
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = titles[position]
+        }.attach()
 
+        titles.forEachIndexed { index, title ->
+            val tabView = LayoutInflater.from(context).inflate(R.layout.tab_title, null)
+            val textView = tabView.findViewById<TextView>(R.id.text1)
 
-//    private fun setupList() {
-//        mAdapter = AdapterLaporan {
-//            goToDetailScreen(it)
-//        }
-//    }
+            textView.text = title
 
-    private fun goToDetailScreen(itemLaporaneResponse: ItemLaporaneResponse) {
-
-        val bundle = Bundle().apply {
-
-
-            putString(TAG_TIPE, itemLaporaneResponse.type)
-            putString(TAG_TANGGAL, itemLaporaneResponse.tanggal)
-//            putString(TAG_LOKASI, itemLaporaneResponse.lokasi)
-            putString(TAG_STATUS, itemLaporaneResponse.status)
-
-
+            binding.tabLayout.getTabAt(index)?.customView = tabView
         }
-        Intent(requireActivity(), DetailStatusLaporanActivity::class.java).apply {
-            putExtra(TAG_BUNDLE, bundle)
-            startActivity(this)
-        }
+
+
     }
 
-    private fun setupRecyclerView() {
-        binding?.rvLaporanHome?.apply {
-            adapter = mAdapter
-            layoutManager = LinearLayoutManager(requireActivity())
-            setHasFixedSize(true)
-        }
-    }
 }
