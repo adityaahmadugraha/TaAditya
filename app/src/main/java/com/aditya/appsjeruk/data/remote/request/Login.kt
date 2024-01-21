@@ -10,5 +10,7 @@ data class UserData(
     val id: String,
     val name: String,
     val username: String,
-    val roles: String
+//    val password: String,
+    val roles: String,
+//    val email : String,
 )

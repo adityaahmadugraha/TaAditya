@@ -12,10 +12,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.aditya.appsjeruk.admin.ActivityAdmin
 import com.aditya.appsjeruk.data.Resource
 import com.aditya.appsjeruk.data.local.UserLocal
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.databinding.ActivityLoginBinding
+import com.aditya.appsjeruk.register.RegisterActivity
 import com.aditya.appsjeruk.user.MainActivity
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +37,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
             loginUser()
+        }
+
+        binding.tvRegister.setOnClickListener {
+            intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -64,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                                     userData?.name.toString(),
                                     userData?.username.toString(),
                                     userData?.roles.toString(),
+
 //                                    userData?.password.toString(),
 
 //                                    userData?.token.toString()
@@ -103,16 +111,15 @@ class LoginActivity : AppCompatActivity() {
 
                     (userData.username.isNotEmpty() || userData.id.isNotEmpty()) {
 
-//                if (userData.roles == "Admin") {
-//                    Toast.makeText(this@LoginActivity, "Anda Berhasil Login", Toast.LENGTH_SHORT)
-//                        .show()
-//                    Log.d("LOGINADMIN:::::", userData.token)
-//                    Intent(this@LoginActivity, HomeActivity::class.java).apply {
-//                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//                        startActivity(this)
-//                    }
-//                }
-                if (userData.roles == "Pelapor") {
+                if (userData.roles == "Admin") {
+                    Toast.makeText(this@LoginActivity, "Anda Berhasil Login", Toast.LENGTH_SHORT)
+                        .show()
+                    Log.d("LOGINADMIN:::::", userData.id)
+                    Intent(this@LoginActivity, ActivityAdmin::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(this)
+                    }
+                } else if (userData.roles == "Pengguna") {
                     Toast.makeText(this@LoginActivity, "Anda Berhasil Login", Toast.LENGTH_SHORT)
                         .show()
                     Log.d("LOGIN:::::", userData.id)

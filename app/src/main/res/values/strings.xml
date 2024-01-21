@@ -133,4 +133,8 @@
 
     <string name="gejala">Gejala</string>
     <string name="penyakit">Penyakit</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="more_than_character">More than 6 character</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="not_type_email">Wrong email format (@)</string>
 </resources>

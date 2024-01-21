@@ -18,11 +18,9 @@ class UserPreference(context: Context) {
                 preferences[Constant.ID] ?: "",
                 preferences[Constant.NAME] ?: "",
                 preferences[Constant.USERNAME] ?: "",
-//                preferences[Constant.PASSWORD] ?: "",
                 preferences[Constant.ROLES] ?:"",
-//                preferences[Constant.KEY_ROLES] ?: "",
-//                preferences[Constant.KEY_ALAMAT] ?: "",
-//                preferences[Constant.KEY_TOKEN] ?: ""
+//                preferences[Constant.EMAIL] ?:"",
+//                preferences[Constant.ROLES] ?:"",
 
 
             )
@@ -38,15 +36,7 @@ class UserPreference(context: Context) {
             preferences[Constant.USERNAME] = user.username
 //            preferences[Constant.PASSWORD] = user.password
             preferences[Constant.ROLES] = user.roles
-//            preferences[Constant.KEY_ROLES] = user.roles
-//            preferences[Constant.KEY_ALAMAT] = user.alamat
-//            preferences[Constant.KEY_TOKEN] = user.token
-//
-//            preferences[Constant.ID] ?: "",
-//            preferences[Constant.NAME] ?: "",
-//            preferences[Constant.USERNAME] ?: "",
-//            preferences[Constant.PASSWORD] ?: "",
-//            preferences[Constant.ROLES] ?:"",
+
         }
     }
 
