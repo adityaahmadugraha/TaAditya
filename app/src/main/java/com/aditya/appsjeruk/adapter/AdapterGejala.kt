@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
-import com.aditya.appsjeruk.databinding.ListBeritaBinding
+import com.aditya.appsjeruk.databinding.ListPenyakitBinding
 import com.bumptech.glide.Glide
 
 class AdapterGejala
@@ -20,7 +20,7 @@ class AdapterGejala
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ListBeritaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ListPenyakitBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -28,7 +28,7 @@ class AdapterGejala
         holder.bind(getItem(position))
     }
 
-    inner class ViewHolder(private val binding: ListBeritaBinding) :
+    inner class ViewHolder(private val binding: ListPenyakitBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: PenyakitResponse) {
             binding.apply {

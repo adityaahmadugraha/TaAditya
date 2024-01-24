@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.adapter.AdapterGejala
+import com.aditya.appsjeruk.admin.adddata.ActivityAddPenyakit
 import com.aditya.appsjeruk.databinding.ActivityAdminBinding
 import com.aditya.appsjeruk.user.ui.login.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -25,6 +25,12 @@ class ActivityAdmin : AppCompatActivity() {
 
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.cardSaranaAdmin.setOnClickListener {
+            intent = Intent(this@ActivityAdmin, ActivityAddPenyakit::class.java)
+            startActivity(intent)
+
+        }
 
         getDataUser()
         getData()
@@ -98,7 +104,7 @@ class ActivityAdmin : AppCompatActivity() {
 
     private fun getDataUser() {
         viewModel.getUser().observe(this@ActivityAdmin) { data ->
-            binding.tvNama?.text = data.name
+            binding.tvNama.text = data.name
 
 
         }

@@ -2,7 +2,8 @@
     <string name="app_name">Sistem Pakar</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_history">History</string>
+    <string name="title_history">Riwayat</string>
+    <string name="title_diagnosa">Diagnosa</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
     <string name="validasi_login">“Pemeliharaan sarana dan prasarana merupakan kewajiban seluruh civitas akademika Politeknik ATI Padang. Dengan ini pelopor menyatakan telah melakukan usaha perbaikan semaksimal mungkin dan belum berhasil sehingga membutuhkan tindak lanjut.”</string>

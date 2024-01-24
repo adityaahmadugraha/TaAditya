@@ -7,10 +7,14 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_diagnosa"
+        android:icon="@drawable/ic_add_black"
+        android:title="@string/title_diagnosa" />
+
+    <item
         android:id="@+id/navigation_history"
         android:icon="@drawable/ic_history"
         android:title="@string/title_history" />
-
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_profil"
