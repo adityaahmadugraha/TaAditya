@@ -142,8 +142,19 @@
             <ImageView
                 android:id="@+id/img_penyakit"
                 android:layout_width="match_parent"
+                android:adjustViewBounds="true"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_image" />
+
+            <ImageView
+                android:id="@+id/img_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_add_photo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
@@ -235,5 +246,16 @@
             android:textSize="12sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_kirim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Kirim"
+        app:layout_constraintEnd_toEndOf="@+id/il_pencegahan"
+        app:layout_constraintStart_toStartOf="@+id/il_pencegahan"
+        app:layout_constraintTop_toBottomOf="@+id/il_pencegahan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

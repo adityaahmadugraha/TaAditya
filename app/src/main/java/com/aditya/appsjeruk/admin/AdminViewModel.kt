@@ -7,6 +7,7 @@ import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
 import com.aditya.appsjeruk.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 
@@ -21,7 +22,9 @@ class AdminViewModel @Inject constructor(
         repository.deleteUser()
     }
 
-    fun insertData(addPenyakitRequest: AddPenyakitRequest) = repository.isertData(addPenyakitRequest).asLiveData()
+    fun insertData(
+        requestBody: RequestBody
+    ) = repository.isertData(requestBody).asLiveData()
 
 
     fun getItem() = repository.getItem().asLiveData()
