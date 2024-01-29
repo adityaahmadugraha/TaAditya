@@ -45,9 +45,6 @@
             android:name=".admin.ActivityAdmin"
             android:exported="false" />
         <activity
-            android:name=".user.ui.detailstatuslaporan.DetailStatusLaporanActivity"
-            android:exported="false" />
-        <activity
             android:name=".user.ui.login.LoginActivity"
             android:exported="false" />
         <activity

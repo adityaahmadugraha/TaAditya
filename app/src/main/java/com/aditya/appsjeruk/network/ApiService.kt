@@ -13,7 +13,7 @@ interface ApiService {
     suspend fun login(@Body request: LoginRequest): Login
 
 
-    @GET("get_data.php")
+    @GET("get_penyakit.php")
     suspend fun getItem(): List<PenyakitResponse>
 
 }

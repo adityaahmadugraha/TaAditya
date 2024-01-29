@@ -8,7 +8,7 @@ data class Login(
 
 data class UserData(
     val id: String,
-    val name: String,
+    val nama: String,
     val username: String,
 //    val password: String,
     val roles: String,

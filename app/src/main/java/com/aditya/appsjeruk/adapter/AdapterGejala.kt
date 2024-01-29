@@ -32,11 +32,12 @@ class AdapterGejala
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: PenyakitResponse) {
             binding.apply {
-                tvTitleBerita.text = data.type
+                tvNama.text = data.nama
+                tvDeskripsi.text = data.deskripsi
                 Glide.with(itemView.context)
                     .load(data.foto)
                     .error(R.color.blue)
-                    .into(imgBerita)
+                    .into(foto)
 //                itemView.setOnClickListener {
 //                    onItemClick(data)
 //                }

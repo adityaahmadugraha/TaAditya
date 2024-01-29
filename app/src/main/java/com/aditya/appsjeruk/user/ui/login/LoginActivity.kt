@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                             viewModel.saveUserLocal(
                                 UserLocal(
                                     userData.id,
-                                    userData.name,
+                                    userData.nama,
                                     userData.username,
                                     userData.roles,
                                 )
