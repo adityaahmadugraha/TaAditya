@@ -3,8 +3,8 @@ package com.aditya.appsjeruk.adapter
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.aditya.appsjeruk.user.ui.home.HomeFragment
-import com.aditya.appsjeruk.user.ui.home.fragment.FragmentGejala
-import com.aditya.appsjeruk.user.ui.home.fragment.FragmentPenyakit
+import com.aditya.appsjeruk.user.ui.home.fragment.gejala.FragmentGejala
+import com.aditya.appsjeruk.user.ui.home.fragment.penyakit.FragmentPenyakit
 
 class MenuAdapter(fragment: HomeFragment) : FragmentStateAdapter(fragment) {
 

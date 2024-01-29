@@ -1,4 +1,4 @@
-package com.aditya.appsjeruk.user.ui.home.fragment
+package com.aditya.appsjeruk.user.ui.home.fragment.penyakit
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,28 +7,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.admin.AdminViewModel
-import com.aditya.appsjeruk.databinding.FragmentGejalaBinding
-import com.aditya.appsjeruk.databinding.FragmentProfileBinding
-import com.aditya.appsjeruk.user.ui.profile.ProfileViewModel
+import com.aditya.appsjeruk.databinding.FragmentPenyakitBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class FragmentGejala : Fragment() {
+class FragmentPenyakit : Fragment() {
 
-    private var binding: FragmentGejalaBinding? = null
+    private var binding: FragmentPenyakitBinding? = null
     private val viewModel: AdminViewModel by viewModels()
     private lateinit var mAdapter: AdapterGejala
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentGejalaBinding.inflate(layoutInflater, container, false)
+        binding = FragmentPenyakitBinding.inflate(layoutInflater, container, false)
         return binding?.root
     }
 
@@ -68,7 +66,6 @@ class FragmentGejala : Fragment() {
             }
         }
     }
-
 
 
 }

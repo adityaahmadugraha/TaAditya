@@ -3,6 +3,7 @@ package com.aditya.appsjeruk.admin
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
 import com.aditya.appsjeruk.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,6 +20,9 @@ class AdminViewModel @Inject constructor(
     fun deleteUser() = viewModelScope.launch {
         repository.deleteUser()
     }
+
+    fun insertData(addPenyakitRequest: AddPenyakitRequest) = repository.isertData(addPenyakitRequest).asLiveData()
+
 
     fun getItem() = repository.getItem().asLiveData()
 }
