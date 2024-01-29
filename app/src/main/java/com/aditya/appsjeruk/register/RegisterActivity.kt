@@ -43,18 +43,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerUser() {
+        val roles = "Pengguna"
         val name = binding.etName.text.toString()
         val username = binding.etUsername.text.toString()
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
 
-        if (isAllFieldsFilled(name, username, email, password)) {
-            viewModel.registerUser(RegisterRequest(name, username, email, password))
+        if (isAllFieldsFilled(roles,name, username, email, password)) {
+            viewModel.registerUser(RegisterRequest(name, username, email, password, roles))
                 .observe(this@RegisterActivity) { result ->
                     when (result) {
                         is Resource.Loading -> {
                             Log.d("RegisterActivity", "Loading...")
-                            // Tambahkan logika atau tindakan yang ingin Anda lakukan saat pendaftaran sedang dilakukan
+
                         }
 
                         is Resource.Success -> {
