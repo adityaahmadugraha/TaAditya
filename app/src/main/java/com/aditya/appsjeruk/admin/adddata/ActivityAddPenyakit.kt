@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -16,6 +15,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -47,8 +47,8 @@ class ActivityAddPenyakit : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddPenyakitBinding
     private val viewModel: AdminViewModel by viewModels()
-    private var fotoKerusakan: File? = null
-    private var fotoKerusakanPath: String? = null
+    private var fotoFile: File? = null
+    private var fotoPath: String? = null
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
@@ -82,16 +82,17 @@ class ActivityAddPenyakit : AppCompatActivity() {
 
         binding = ActivityAddPenyakitBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//
-
 
         binding.btnKirim.setOnClickListener {
-//            insertData(requestBody)
-
             getUserInput()
         }
 
-                if (!allPermissionsGranted()) {
+        binding.icBack.setOnClickListener {
+            intent = Intent(this@ActivityAddPenyakit, ActivityAdmin::class.java)
+            startActivity(intent)
+        }
+
+        if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this,
                 REQUIRED_PERMISSIONS,
@@ -113,11 +114,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
             }
             bottomSheetDialog.show()
         }
-
-
     }
-
-
 
     private fun startGallery() {
         val intent = Intent()
@@ -133,7 +130,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                fotoKerusakan = uriToFile(uri, this@ActivityAddPenyakit)
+                fotoFile = uriToFile(uri, this@ActivityAddPenyakit)
                 binding.imgPenyakit.setImageURI(uri)
             }
         }
@@ -149,7 +146,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
                 BuildConfig.APPLICATION_ID,
                 it
             )
-            fotoKerusakanPath = it.absolutePath
+            fotoPath = it.absolutePath
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
             launcherIntentCamera.launch(intent)
         }
@@ -159,7 +156,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) {
         if (it.resultCode == RESULT_OK) {
-            val photoShooted = File(fotoKerusakanPath.toString())
+            val photoShooted = File(fotoPath.toString())
             val rotatedBitmap = Constant.getRotatedBitmap(photoShooted)
             lifecycleScope.launch(Dispatchers.IO) {
                 val uri = rotatedBitmap?.let { it1 ->
@@ -168,7 +165,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
                         this@ActivityAddPenyakit
                     )
                 }
-                fotoKerusakan = File(uri?.path.toString())
+                fotoFile = File(uri?.path.toString())
 
             }
             Glide.with(this@ActivityAddPenyakit)
@@ -186,8 +183,8 @@ class ActivityAddPenyakit : AppCompatActivity() {
             val kode = etKode.text.toString()
 
             if (validateInput(nama, deskripsi, pencegahan, type, kode)) {
-                if (fotoKerusakan != null) {
-                    val fileProfilePicture: File = reduceFileImage(fotoKerusakan as File)
+                if (fotoFile != null) {
+                    val fileProfilePicture: File = reduceFileImage(fotoFile as File)
 
                     val requestBody: RequestBody = MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
@@ -204,8 +201,6 @@ class ActivityAddPenyakit : AppCompatActivity() {
 
                     insertData(requestBody)
                 } else {
-                    // Handle jika fotoKerusakan null
-                    Log.e("MyApp", "Error: fotoKerusakan is null")
                     Toast.makeText(
                         this@ActivityAddPenyakit,
                         getString(R.string.pick_photo_first),
@@ -240,7 +235,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
             if (kode.isEmpty()) {
                 return ilKode.setInputError(getString(R.string.must_not_empty))
             }
-            if (fotoKerusakan == null) {
+            if (fotoFile == null) {
                 Toast.makeText(
                     this@ActivityAddPenyakit,
                     getString(R.string.pick_photo_first),
@@ -257,14 +252,9 @@ class ActivityAddPenyakit : AppCompatActivity() {
             binding.apply {
                 when (result) {
                     is Resource.Loading -> {
-                        Log.d("MyApp", "Inserting data - Loading...")
                     }
 
                     is Resource.Success -> {
-                        Log.d("MyApp", "Inserting data - Success")
-
-                        // Log the response from the server
-                        Log.d("MyApp", "Response: ${result.data}")
 
                         Intent(this@ActivityAddPenyakit, ActivityAdmin::class.java).apply {
                             startActivity(this)
@@ -272,11 +262,6 @@ class ActivityAddPenyakit : AppCompatActivity() {
                     }
 
                     is Resource.Error -> {
-                        Log.e("MyApp", "Inserting data - Error: ${result.error}")
-
-                        // Log the response from the server in case of an error
-//                        result.error?.printStackTrace()
-
                         Toast.makeText(
                             this@ActivityAddPenyakit, result.error,
                             Toast.LENGTH_SHORT
@@ -286,7 +271,6 @@ class ActivityAddPenyakit : AppCompatActivity() {
             }
         }
     }
-
 
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {

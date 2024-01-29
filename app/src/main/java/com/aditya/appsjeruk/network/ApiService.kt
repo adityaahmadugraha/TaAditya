@@ -20,7 +20,7 @@ interface ApiService {
     suspend fun getItem(): List<PenyakitResponse>
 
     @POST("create_penyakit.php")
-    suspend fun insertData(@Body body: RequestBody): AddPenyakitRequest
+    suspend fun insertData(@Body body: RequestBody): AddPenyakitResponse
 
 
 

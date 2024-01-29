@@ -36,6 +36,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".user.ui.detail.ActivityDetail"
+            android:exported="false" />
+        <activity
             android:name=".admin.adddata.ActivityAddPenyakit"
             android:exported="false" />
         <activity
