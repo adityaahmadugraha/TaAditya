@@ -35,7 +35,7 @@ class FragmentPenyakit : Fragment() {
 
 
         getData()
-        mAdapter = AdapterGejala()
+        mAdapter = AdapterGejala{}
         setupRecyclerView()
     }
 

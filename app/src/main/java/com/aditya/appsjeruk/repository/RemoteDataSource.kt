@@ -3,7 +3,9 @@ package com.aditya.appsjeruk.repository
 import com.aditya.appsjeruk.data.Resource
 import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
+import com.aditya.appsjeruk.data.remote.request.RegisterRequest
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
+import com.aditya.appsjeruk.data.remote.response.RegisterResponse
 import com.aditya.appsjeruk.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
@@ -24,6 +26,15 @@ class RemoteDataSource @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
+    fun registerUser(request: RegisterRequest) = flow {
+        emit(Resource.Loading())
+        val response = apiService.register(request)
+        emit(Resource.Success(response))
+    }.catch {
+        emit(Resource.Error(it.message ?: ""))
+    }.flowOn(Dispatchers.IO)
+
+
     fun getItem() = flow {
         emit(Resource.Loading())
         val response = apiService.getItem()
@@ -31,7 +42,6 @@ class RemoteDataSource @Inject constructor(
     }.catch {
         emit(Resource.Error(it.message ?: ""))
     }.flowOn(Dispatchers.IO)
-
 
 
 //    fun insertData(
@@ -45,10 +55,6 @@ class RemoteDataSource @Inject constructor(
 //    }.flowOn(Dispatchers.IO)
 
 
-
-
-
-
     fun insertData(
         request: RequestBody
     ) = flow {
@@ -58,8 +64,6 @@ class RemoteDataSource @Inject constructor(
     }.catch {
         emit(Resource.Error(it.message ?: ""))
     }.flowOn(Dispatchers.IO)
-
-
 
 
 }

@@ -3,8 +3,10 @@ package com.aditya.appsjeruk.network
 import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
 import com.aditya.appsjeruk.data.remote.request.Login
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
+import com.aditya.appsjeruk.data.remote.request.RegisterRequest
 import com.aditya.appsjeruk.data.remote.response.AddPenyakitResponse
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
+import com.aditya.appsjeruk.data.remote.response.RegisterResponse
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -14,6 +16,10 @@ interface ApiService {
 
     @POST("login.php")
     suspend fun login(@Body request: LoginRequest): Login
+
+    @POST("register.php")
+    suspend fun register(@Body request: RegisterRequest): RegisterResponse
+
 
 
     @GET("get_penyakit.php")

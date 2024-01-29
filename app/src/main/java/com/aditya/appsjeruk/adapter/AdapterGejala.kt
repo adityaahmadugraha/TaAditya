@@ -12,9 +12,9 @@ import com.aditya.appsjeruk.databinding.ListPenyakitBinding
 import com.bumptech.glide.Glide
 
 class AdapterGejala
-//    (
-//    private val onItemClick: (PenyakitResponse) -> Unit
-//)
+    (
+    private val onItemClick: (PenyakitResponse) -> Unit
+)
     : ListAdapter<PenyakitResponse, AdapterGejala.ViewHolder>(DIFF_CALLBACK) {
 
 
@@ -38,9 +38,9 @@ class AdapterGejala
                     .load(data.foto)
                     .error(R.color.blue)
                     .into(foto)
-//                itemView.setOnClickListener {
-//                    onItemClick(data)
-//                }
+                itemView.setOnClickListener {
+                    onItemClick(data)
+                }
             }
         }
     }

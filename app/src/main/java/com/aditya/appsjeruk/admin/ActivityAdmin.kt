@@ -9,6 +9,7 @@ import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.admin.adddata.ActivityAddPenyakit
 import com.aditya.appsjeruk.databinding.ActivityAdminBinding
+import com.aditya.appsjeruk.user.ui.detail.ActivityDetail
 import com.aditya.appsjeruk.user.ui.login.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,15 @@ class ActivityAdmin : AppCompatActivity() {
 
         getDataUser()
         getData()
-        mAdapter = AdapterGejala()
+        mAdapter = AdapterGejala{
+            intent = Intent(this@ActivityAdmin, ActivityDetail::class.java).apply {
+                putExtra("title", it.nama)
+                putExtra("deskripsi", it.deskripsi)
+                putExtra("foto", it.foto)
+            }
+            startActivity(intent)
+
+        }
         setupRecyclerView()
 
 

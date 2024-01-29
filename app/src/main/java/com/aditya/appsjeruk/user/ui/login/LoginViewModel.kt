@@ -16,6 +16,8 @@ class LoginViewModel @Inject constructor(
     private val dataRepository: DataRepository
 ) : ViewModel() {
     fun loginUser(loginRequest: LoginRequest) = dataRepository.loginUser(loginRequest).asLiveData()
+
+
   fun getUser() = dataRepository.getUser().asLiveData()
 
     fun saveUserLocal(userLocal: UserLocal) = viewModelScope.launch {

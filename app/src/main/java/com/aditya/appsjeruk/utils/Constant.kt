@@ -36,6 +36,9 @@ object Constant {
     private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
 
+    fun isAllFieldsFilled(vararg fields: String): Boolean {
+        return fields.all { it.isNotEmpty() }
+    }
     fun uriToFile(selectedImg: Uri, context: Context): File {
         val contentResolver: ContentResolver = context.contentResolver
         val myFile = createCustomTempFile(context)
