@@ -1,65 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    app:cardCornerRadius="12dp">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppinssembiold"
-        android:justificationMode="inter_word"
-        android:text="@string/title_profile"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_title"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_title">
-
-        <RadioButton
-            android:id="@+id/rb_tidak_tahu"
+        <CheckBox
+            android:id="@+id/cb_fw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tidak_tahu" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/rb_mungkin_tidak"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/mungkin_tidak" />
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/poppinssembiold"
+            android:justificationMode="inter_word"
+            android:text="@string/title_profile"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cb_fw"
+            app:layout_constraintTop_toTopOf="@+id/cb_fw" />
 
-        <RadioButton
-            android:id="@+id/rb_mungkin_iya"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/mungkin_iya" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/cb_fw"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-        <RadioButton
-            android:id="@+id/rb_hampir_pasti_iya"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hampir_pasti_iya" />
-
-        <RadioButton
-            android:id="@+id/rb_pasti_iya"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pasti_iya" />
-    </RadioGroup>
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/tv_title"
+                app:layout_constraintStart_toStartOf="@+id/cb_fw"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <RadioButton
+                    android:id="@+id/rb_tidak_tahu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tidak_tahu" />
+
+                <RadioButton
+                    android:id="@+id/rb_mungkin_tidak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mungkin_tidak" />
+
+                <RadioButton
+                    android:id="@+id/rb_mungkin_iya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mungkin_iya" />
+
+                <RadioButton
+                    android:id="@+id/rb_hampir_pasti_iya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hampir_pasti_iya" />
+
+                <RadioButton
+                    android:id="@+id/rb_pasti_iya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pasti_iya" />
+
+
+            </RadioGroup>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
