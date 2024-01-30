@@ -9,6 +9,7 @@ import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.admin.adddata.ActivityAddPenyakit
 import com.aditya.appsjeruk.admin.addrule.AddRuleActivity
+import com.aditya.appsjeruk.admin.riwayat_admin.ActivityRiwayatAdmin
 import com.aditya.appsjeruk.databinding.ActivityAdminBinding
 import com.aditya.appsjeruk.user.ui.detail.ActivityDetail
 import com.aditya.appsjeruk.user.ui.login.LoginActivity
@@ -29,13 +30,18 @@ class ActivityAdmin : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
-            cardSaranaAdmin.setOnClickListener {
+            cardData.setOnClickListener {
                 intent = Intent(this@ActivityAdmin, ActivityAddPenyakit::class.java)
                 startActivity(intent)
 
             }
-            cardAddUser.setOnClickListener {
+            cardRule.setOnClickListener {
                 intent = Intent(this@ActivityAdmin, AddRuleActivity::class.java)
+                startActivity(intent)
+            }
+
+            cardRiwayat.setOnClickListener {
+                intent = Intent(this@ActivityAdmin, ActivityRiwayatAdmin::class.java)
                 startActivity(intent)
             }
         }

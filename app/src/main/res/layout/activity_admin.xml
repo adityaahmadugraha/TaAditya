@@ -78,7 +78,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_sarana_admin"
+                android:id="@+id/card_data"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
@@ -127,16 +127,16 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_add_user"
+                android:id="@+id/card_rule"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/card_sarana_admin"
-                app:layout_constraintEnd_toStartOf="@+id/card_laporan"
-                app:layout_constraintStart_toEndOf="@+id/card_sarana_admin"
-                app:layout_constraintTop_toTopOf="@+id/card_sarana_admin">
+                app:layout_constraintBottom_toBottomOf="@+id/card_data"
+                app:layout_constraintEnd_toStartOf="@+id/card_riwayat"
+                app:layout_constraintStart_toEndOf="@+id/card_data"
+                app:layout_constraintTop_toTopOf="@+id/card_data">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -177,14 +177,14 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_laporan"
+                android:id="@+id/card_riwayat"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/card_add_user"
+                app:layout_constraintBottom_toBottomOf="@+id/card_rule"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/card_add_user">
+                app:layout_constraintStart_toEndOf="@+id/card_rule">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -234,6 +234,7 @@
         android:id="@+id/rv_penyakit"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
