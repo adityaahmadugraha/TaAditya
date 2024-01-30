@@ -28,4 +28,11 @@ class AdminViewModel @Inject constructor(
 
 
     fun getItem() = repository.getItem().asLiveData()
+
+//    fun deletePenyakit(id: String, requestBody: RequestBody) =
+//        repository.deletePenyakit(id, requestBody).asLiveData()
+
+    fun deletePenyakit(id: String) = repository.deletePenyakit(id).asLiveData()
+
+
 }

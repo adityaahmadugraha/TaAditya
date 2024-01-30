@@ -18,7 +18,7 @@ class DataRepository @Inject constructor(
     fun registerUser(request: RegisterRequest) = remoteData.registerUser(request)
 
 
-    fun isertData( requestBody: RequestBody) = remoteData.insertData(requestBody)
+    fun isertData(requestBody: RequestBody) = remoteData.insertData(requestBody)
     fun getUser() = localData.getUser()
     suspend fun saveUser(userLocal: UserLocal) = localData.saveUser(userLocal)
 
@@ -27,6 +27,9 @@ class DataRepository @Inject constructor(
     fun getItem() = remoteData.getItem()
 
 
+//    fun deletePenyakit(id: String, requestBody: RequestBody) =
+//        remoteData.deletepenyakit(id, requestBody)
 
+    fun deletePenyakit(id: String) = remoteData.deletepenyakit(id)
 
 }

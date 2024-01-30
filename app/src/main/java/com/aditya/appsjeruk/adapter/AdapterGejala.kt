@@ -52,7 +52,7 @@ class AdapterGejala
                     oldItem: PenyakitResponse,
                     newItem: PenyakitResponse
                 ): Boolean {
-                    return oldItem.idPenyakit == newItem.idPenyakit
+                    return oldItem.id == newItem.id
                 }
 
                 @SuppressLint("DiffUtilEquals")

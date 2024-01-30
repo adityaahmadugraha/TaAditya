@@ -1,7 +1,9 @@
 package com.aditya.appsjeruk.repository
 
+import android.util.Log
 import com.aditya.appsjeruk.data.Resource
 import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
+import com.aditya.appsjeruk.data.remote.request.Login
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.data.remote.request.RegisterRequest
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
@@ -44,15 +46,25 @@ class RemoteDataSource @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
-//    fun insertData(
-//        requestBody: RequestBody
-//    ) = flow<Resource<PenyakitResponse>>  {
+//    fun deletepenyakit(id: String, requestBody: RequestBody) = flow {
 //        emit(Resource.Loading())
-//        val response = apiService.insertData(requestBody)
+//        val response = apiService.deletePenyakit(id, requestBody)
 //        emit(Resource.Success(response))
 //    }.catch {
 //        emit(Resource.Error(it.message ?: ""))
 //    }.flowOn(Dispatchers.IO)
+
+
+    fun deletepenyakit(id: String) = flow<Resource<Login>> {
+        emit(Resource.Loading())
+        val response = apiService.deletePenyakit(id)
+        response.let {
+            if(it.status) emit(Resource.Success(it))
+            else emit(Resource.Error(it.message))
+        }
+    }.catch {
+        emit(Resource.Error(it.message.toString()))
+    }.flowOn(Dispatchers.IO)
 
 
     fun insertData(

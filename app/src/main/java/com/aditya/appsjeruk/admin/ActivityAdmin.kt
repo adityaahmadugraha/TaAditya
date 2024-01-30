@@ -40,6 +40,8 @@ class ActivityAdmin : AppCompatActivity() {
                 putExtra("title", it.nama)
                 putExtra("deskripsi", it.deskripsi)
                 putExtra("foto", it.foto)
+                putExtra("id", it.id)
+//                it.putExtra("id", store.id)
             }
             startActivity(intent)
 
