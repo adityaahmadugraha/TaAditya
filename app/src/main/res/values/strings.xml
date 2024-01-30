@@ -93,6 +93,13 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="tidak">Tidak</string>
+    <string name="tidak_tahu">Tidak Tahu</string>
+    <string name="mungkin_tidak">Mungkin Tidak</string>
+    <string name="mungkin_iya">Mungkin Iya</string>
+    <string name="hampir_pasti_iya">Hampir Pasti Iya</string>
+    <string name="pasti_iya">Pasti Iya</string>
+    <string name="mulai_diagnosa">Mulai Diagnosa</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

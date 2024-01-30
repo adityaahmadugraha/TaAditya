@@ -27,9 +27,6 @@ class ActivityDetail : AppCompatActivity() {
         getDetail()
 
         binding.fabDelete.setOnClickListener {
-//            val id = intent.getStringExtra("id") ?: ""
-//            Log.d("ActivityDetail", "ID yang akan dihapus: $id")
-//            deletePenyakit()
             showDeleteConfirmationDialog()
         }
     }
@@ -55,8 +52,6 @@ class ActivityDetail : AppCompatActivity() {
             .setMessage("Apakah Anda yakin menghapus data ini?")
             .setPositiveButton("Ya") { _, _ ->
 
-//                val id = intent.getStringExtra("id") ?: ""
-
                 deletePenyakit()
             }
             .setNegativeButton("Tidak", null)
@@ -65,7 +60,8 @@ class ActivityDetail : AppCompatActivity() {
 
     private fun deletePenyakit() {
         val itemRequest = PenyakitResponse(
-            id = intent.getStringExtra("id").toString())
+            id = intent.getStringExtra("id").toString()
+        )
         viewModel.deletePenyakit(itemRequest.id.toString()).observe(this) { result ->
             when (result) {
                 is Resource.Loading -> {}
