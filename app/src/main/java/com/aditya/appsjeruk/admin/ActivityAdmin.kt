@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.admin.adddata.ActivityAddPenyakit
+import com.aditya.appsjeruk.admin.addrule.AddRuleActivity
 import com.aditya.appsjeruk.databinding.ActivityAdminBinding
 import com.aditya.appsjeruk.user.ui.detail.ActivityDetail
 import com.aditya.appsjeruk.user.ui.login.LoginActivity
@@ -27,15 +28,22 @@ class ActivityAdmin : AppCompatActivity() {
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.cardSaranaAdmin.setOnClickListener {
-            intent = Intent(this@ActivityAdmin, ActivityAddPenyakit::class.java)
-            startActivity(intent)
+        binding.apply {
+            cardSaranaAdmin.setOnClickListener {
+                intent = Intent(this@ActivityAdmin, ActivityAddPenyakit::class.java)
+                startActivity(intent)
 
+            }
+            cardAddUser.setOnClickListener {
+                intent = Intent(this@ActivityAdmin, AddRuleActivity::class.java)
+                startActivity(intent)
+            }
         }
+
 
         getDataUser()
         getData()
-        mAdapter = AdapterGejala{
+        mAdapter = AdapterGejala {
             intent = Intent(this@ActivityAdmin, ActivityDetail::class.java).apply {
                 putExtra("title", it.nama)
                 putExtra("deskripsi", it.deskripsi)
