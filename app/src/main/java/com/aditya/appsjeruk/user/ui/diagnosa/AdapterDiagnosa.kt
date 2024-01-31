@@ -34,7 +34,7 @@ class AdapterDiagnosa
                 cbFw.setOnCheckedChangeListener { _, isChecked ->
                     radioGroup.visibility = if (isChecked) View.VISIBLE else View.GONE
                 }
-                tvTitle.text = data.nama
+                tvTitle.text = data.namaGejala
                 itemView.setOnClickListener {
                     onItemClick(data)
                 }
@@ -49,7 +49,7 @@ class AdapterDiagnosa
                     oldItem: PenyakitResponse,
                     newItem: PenyakitResponse
                 ): Boolean {
-                    return oldItem.id == newItem.id
+                    return oldItem.idGejala == newItem.idGejala
                 }
 
                 @SuppressLint("DiffUtilEquals")

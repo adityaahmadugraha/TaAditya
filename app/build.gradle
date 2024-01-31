@@ -20,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField ("String", "BASE_URL", '"http://192.168.18.12/api_service/"')
 //        buildConfigField ("String", "BASE_URL", '"http://192.168.152.28/api_service/"')
-        buildConfigField ("String", "BASE_URL", '"http://22.8.23.8/api_service/"')
+        buildConfigField ("String", "BASE_URL", '"http://22.8.23.23/api_service/"')
 //        buildConfigField ("String", "BASE_URL", '"http://192.168.0.163/api_service/"')
     }
 

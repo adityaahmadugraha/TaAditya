@@ -51,10 +51,10 @@ class ActivityAdmin : AppCompatActivity() {
         getData()
         mAdapter = AdapterGejala {
             intent = Intent(this@ActivityAdmin, ActivityDetail::class.java).apply {
-                putExtra("title", it.nama)
-                putExtra("deskripsi", it.deskripsi)
-                putExtra("foto", it.foto)
-                putExtra("id", it.id)
+                putExtra("title", it.namaGejala)
+                putExtra("deskripsi", it.deskripsiGejala)
+                putExtra("foto", it.fotoGejala)
+                putExtra("id", it.idGejala)
 //                it.putExtra("id", store.id)
             }
             startActivity(intent)

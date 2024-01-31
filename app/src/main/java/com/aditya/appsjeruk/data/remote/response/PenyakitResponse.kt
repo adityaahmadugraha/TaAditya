@@ -4,27 +4,18 @@ import com.google.gson.annotations.SerializedName
 
 data class PenyakitResponse(
 
-    @field:SerializedName("nama")
-    val nama: String? = null,
+    @field:SerializedName("kode_gejala")
+    val kodeGejala: String? = null,
 
-    @field:SerializedName("foto")
-    val foto: String? = null,
+    @field:SerializedName("nama_gejala")
+    val namaGejala: String? = null,
 
-    @field:SerializedName("kode")
-    val kode: String? = null,
+    @field:SerializedName("id_gejala")
+    val idGejala: String? = null,
 
-    @field:SerializedName("deskripsi")
-    val deskripsi: String? = null,
+    @field:SerializedName("foto_gejala")
+    val fotoGejala: String? = null,
 
-    @field:SerializedName("type")
-    val type: String? = null,
-
-    @field:SerializedName("id")
-    val id: String? = null,
-
-    @field:SerializedName("pencegahan")
-    val pencegahan: String? = null,
-
-//    @field:SerializedName("id")
-//    val id: String? = null,
+    @field:SerializedName("deskripsi_gejala")
+    val deskripsiGejala: String? = null
 )

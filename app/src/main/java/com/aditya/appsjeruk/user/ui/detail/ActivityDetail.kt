@@ -60,9 +60,9 @@ class ActivityDetail : AppCompatActivity() {
 
     private fun deletePenyakit() {
         val itemRequest = PenyakitResponse(
-            id = intent.getStringExtra("id").toString()
+            idGejala = intent.getStringExtra("id_gejala").toString()
         )
-        viewModel.deletePenyakit(itemRequest.id.toString()).observe(this) { result ->
+        viewModel.deletePenyakit(itemRequest.idGejala.toString()).observe(this) { result ->
             when (result) {
                 is Resource.Loading -> {}
                 is Resource.Success -> {

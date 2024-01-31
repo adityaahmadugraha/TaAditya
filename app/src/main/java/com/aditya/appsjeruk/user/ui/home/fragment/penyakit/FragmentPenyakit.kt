@@ -2,17 +2,16 @@ package com.aditya.appsjeruk.user.ui.home.fragment.penyakit
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.databinding.FragmentPenyakitBinding
 import com.aditya.appsjeruk.user.detail_pengguna.ActivityDetailPengguna
-import com.aditya.appsjeruk.user.ui.detail.ActivityDetail
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -40,9 +39,9 @@ class FragmentPenyakit : Fragment() {
         getData()
         mAdapter = AdapterGejala {
             val intent = Intent(requireContext(), ActivityDetailPengguna::class.java).apply {
-                putExtra("title", it.nama)
-                putExtra("deskripsi", it.deskripsi)
-                putExtra("foto", it.foto)
+                putExtra("title", it.namaGejala)
+                putExtra("deskripsi", it.deskripsiGejala)
+                putExtra("foto", it.fotoGejala)
             }
             startActivity(intent)
         }

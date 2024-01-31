@@ -32,10 +32,10 @@ class AdapterPenyakit
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: PenyakitResponse) {
             binding.apply {
-                tvNama.text = data.nama
-                tvDeskripsi.text = data.deskripsi
+                tvNama.text = data.namaGejala
+                tvDeskripsi.text = data.deskripsiGejala
                 Glide.with(itemView.context)
-                    .load(data.foto)
+                    .load(data.fotoGejala)
                     .error(R.color.blue)
                     .into(foto)
 //                itemView.setOnClickListener {
@@ -52,7 +52,7 @@ class AdapterPenyakit
                     oldItem: PenyakitResponse,
                     newItem: PenyakitResponse
                 ): Boolean {
-                    return oldItem.id == newItem.id
+                    return oldItem.idGejala == newItem.idGejala
                 }
 
                 @SuppressLint("DiffUtilEquals")

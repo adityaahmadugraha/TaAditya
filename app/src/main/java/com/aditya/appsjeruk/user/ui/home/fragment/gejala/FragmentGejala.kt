@@ -39,10 +39,10 @@ class FragmentGejala : Fragment() {
         getData()
         mAdapter = AdapterGejala{
            val intent = Intent(requireContext(), ActivityDetailPengguna::class.java).apply {
-                putExtra("title", it.nama)
-                putExtra("deskripsi", it.deskripsi)
-                putExtra("foto", it.foto)
-                putExtra("kode", it.kode)
+                putExtra("title", it.namaGejala)
+                putExtra("deskripsi", it.deskripsiGejala)
+                putExtra("foto", it.fotoGejala)
+                putExtra("kode", it.kodeGejala)
             }
             startActivity(intent)
         }

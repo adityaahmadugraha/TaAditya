@@ -36,6 +36,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".admin.profile_amin.ActivityProfile"
+            android:exported="false" />
+        <activity
             android:name=".admin.riwayat_admin.ActivityRiwayatAdmin"
             android:exported="false" />
         <activity

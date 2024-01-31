@@ -14,8 +14,7 @@ import com.bumptech.glide.Glide
 class AdapterGejala
     (
     private val onItemClick: (PenyakitResponse) -> Unit
-)
-    : ListAdapter<PenyakitResponse, AdapterGejala.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<PenyakitResponse, AdapterGejala.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,10 +31,10 @@ class AdapterGejala
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: PenyakitResponse) {
             binding.apply {
-                tvNama.text = data.nama
-                tvDeskripsi.text = data.deskripsi
+                tvNama.text = data.namaGejala
+                tvDeskripsi.text = data.deskripsiGejala
                 Glide.with(itemView.context)
-                    .load(data.foto)
+                    .load(data.fotoGejala)
                     .error(R.color.blue)
                     .into(foto)
                 itemView.setOnClickListener {
@@ -52,7 +51,7 @@ class AdapterGejala
                     oldItem: PenyakitResponse,
                     newItem: PenyakitResponse
                 ): Boolean {
-                    return oldItem.id == newItem.id
+                    return oldItem.idGejala == newItem.idGejala
                 }
 
                 @SuppressLint("DiffUtilEquals")

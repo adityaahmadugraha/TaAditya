@@ -25,7 +25,11 @@ interface ApiService {
     suspend fun register(@Body request: RegisterRequest): RegisterResponse
 
 
-    @GET("get_penyakit.php")
+//    @GET("get_penyakit.php")
+//    suspend fun getItem(): List<PenyakitResponse>
+
+
+    @GET("get_gejala.php")
     suspend fun getItem(): List<PenyakitResponse>
 
     @POST("create_penyakit.php")
