@@ -22,8 +22,7 @@ class ActivityDetailPengguna : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener {
-            intent = Intent(this@ActivityDetailPengguna, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         getDetail()
@@ -35,16 +34,28 @@ class ActivityDetailPengguna : AppCompatActivity() {
         val image = intent.getStringExtra("image").toString()
         val deskripsi = intent.getStringExtra("deskripsi").toString()
         val kodeValue = intent.getStringExtra("kode").toString()
+        val pencegahan = intent.getStringExtra("pencegahan").toString()
 
-        val tvDeskripsi = binding.tvName
-        tvDeskripsi.text = title
+
+        val etPencegahan = binding.etPencegahan
+        etPencegahan.setText(pencegahan)
+
+        val etNama = binding.etNama
+        etNama.setText(title)
+
+        val etDeskripsi = binding.etDeskripsi
+        etDeskripsi.setText(deskripsi)
+
+//        val tvDeskripsi = binding.tvName
+//        tvDeskripsi.text = title
+
+//        val tvName = binding.tvDeskripsi
+//        tvName.text = deskripsi
 
         val kodeToolbar = binding.kode
         kodeToolbar.title = kodeValue
 
 
-        val tvName = binding.tvDeskripsi
-        tvName.text = deskripsi
 
         Glide.with(this)
             .load(image)

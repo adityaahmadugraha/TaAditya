@@ -35,9 +35,13 @@ class ActivityDetail : AppCompatActivity() {
         val title = intent.getStringExtra("title").toString()
         val image = intent.getStringExtra("image").toString()
         val deskripsi = intent.getStringExtra("deskripsi").toString()
+//        val pencegahan = intent.getStringExtra("pencegahan").toString()
 
         val tvDeskripsi = binding.tvName
         tvDeskripsi.text = title
+
+//        val tvPencegahan = binding.tvPencegahan
+//        tvPencegahan.text = title
 
         val tvName = binding.tvDeskripsi
         tvName.text = deskripsi

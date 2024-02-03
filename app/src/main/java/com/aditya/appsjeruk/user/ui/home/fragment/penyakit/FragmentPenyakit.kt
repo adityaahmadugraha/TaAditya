@@ -44,6 +44,7 @@ class FragmentPenyakit : Fragment() {
                 putExtra("deskripsi", it.deskripsiPenyakit)
                 putExtra("foto", it.fotoPenyakit)
                 putExtra("kode", it.kodePenyakit)
+                putExtra("pencegahan", it.pencegahan)
             }
             startActivity(intent)
         }
