@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aditya.appsjeruk.R
-import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
+import com.aditya.appsjeruk.data.remote.response.GejalaResponse
 import com.aditya.appsjeruk.databinding.ListPenyakitBinding
 import com.bumptech.glide.Glide
 
 class AdapterGejala
     (
-    private val onItemClick: (PenyakitResponse) -> Unit
-) : ListAdapter<PenyakitResponse, AdapterGejala.ViewHolder>(DIFF_CALLBACK) {
+    private val onItemClick: (GejalaResponse) -> Unit
+) : ListAdapter<GejalaResponse, AdapterGejala.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +29,7 @@ class AdapterGejala
 
     inner class ViewHolder(private val binding: ListPenyakitBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: PenyakitResponse) {
+        fun bind(data: GejalaResponse) {
             binding.apply {
                 tvNama.text = data.namaGejala
                 tvDeskripsi.text = data.deskripsiGejala
@@ -45,19 +45,19 @@ class AdapterGejala
     }
 
     companion object {
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<PenyakitResponse> =
-            object : DiffUtil.ItemCallback<PenyakitResponse>() {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<GejalaResponse> =
+            object : DiffUtil.ItemCallback<GejalaResponse>() {
                 override fun areItemsTheSame(
-                    oldItem: PenyakitResponse,
-                    newItem: PenyakitResponse
+                    oldItem: GejalaResponse,
+                    newItem: GejalaResponse
                 ): Boolean {
                     return oldItem.idGejala == newItem.idGejala
                 }
 
                 @SuppressLint("DiffUtilEquals")
                 override fun areContentsTheSame(
-                    oldItem: PenyakitResponse,
-                    newItem: PenyakitResponse
+                    oldItem: GejalaResponse,
+                    newItem: GejalaResponse
                 ): Boolean {
                     return oldItem == newItem
                 }

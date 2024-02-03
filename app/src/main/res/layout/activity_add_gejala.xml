@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.addrule.AddRuleActivity">
+    tools:context=".admin.addrule.AddGejalaActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/poppinsextrabold"
-                android:text="Kelola Data Rule"
+                android:text="Tambahkan Data Gejala"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -43,13 +43,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_kode_rule"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppinsextrabold"
-                android:text="kode Rule"
+                android:text="Nama"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_halaman" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_kode_rule"
+                android:id="@+id/il_name_gejala"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -72,102 +72,14 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_kode_rule">
+                app:layout_constraintTop_toBottomOf="@+id/tv_name">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_kode_rule"
+                    android:id="@+id/et_name_gejala"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinssembiold"
-                    android:hint="Masukan Kode Rule"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tv_nilai_cf_rule"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppinsextrabold"
-                android:text="Nilai Cf Rule"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/il_kode_rule" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_cf_rule"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nilai_cf_rule">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_cf_rule"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppinssembiold"
-                    android:hint="Masukan Nilai Cf Rule"
-                    android:maxLength="100"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/tv_cf_pakar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppinsextrabold"
-                android:text="Nilai Cf Pakar"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/il_cf_rule" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_cf_pakar"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_cf_pakar">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_cf_pakar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppinssembiold"
-                    android:hint="Masukan Nilai Cf pakar"
-                    android:maxLength="3"
+                    android:hint="Masukan Nama Gejala"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -175,21 +87,21 @@
 
 
             <TextView
-                android:id="@+id/tv_hasil"
+                android:id="@+id/tv_kode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppinsextrabold"
-                android:text="Hasil"
+                android:text="Kode Gejala"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/il_cf_pakar" />
+                app:layout_constraintTop_toBottomOf="@+id/il_name_gejala" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_hasil"
+                android:id="@+id/il_kode_gejala"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -204,19 +116,155 @@
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_hasil">
+                app:layout_constraintTop_toBottomOf="@+id/tv_kode">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/rt_hasil"
+                    android:id="@+id/et_kode_gejala"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinssembiold"
-                    android:hint="Hasil Diangnosa"
+                    android:hint="Kode Gejala"
+                    android:maxLength="4"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/tv_foto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppinsextrabold"
+                android:text="Foto Gejala"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/il_kode_gejala" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_foto">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img_gejala"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_image" />
+
+                    <ImageView
+                        android:id="@+id/img_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/ic_add_photo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppinsextrabold"
+                android:text="Deskripsi Gejala"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView4" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/il_deskripsi_gejala"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_deskripsi_gejala"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinssembiold"
+                    android:hint="Deskripsi Gejala"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_pencegahan"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:fontFamily="@font/poppinsextrabold"-->
+<!--                android:text="Pencegahan"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/il_deskripsi_gejala" />-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/il_pencegahan"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                app:boxCornerRadiusBottomEnd="10dp"-->
+<!--                app:boxCornerRadiusBottomStart="10dp"-->
+<!--                app:boxCornerRadiusTopEnd="10dp"-->
+<!--                app:boxCornerRadiusTopStart="10dp"-->
+<!--                app:hintAnimationEnabled="true"-->
+<!--                app:hintEnabled="false"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_pencegahan">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/et_pencegahan"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/poppinssembiold"-->
+<!--                    android:hint="Pencegahan"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="12sp" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <Button
                 android:id="@+id/btn_kirim"
@@ -226,12 +274,11 @@
                 android:layout_marginBottom="32dp"
                 android:text="Kirim"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/il_hasil"
-                app:layout_constraintStart_toStartOf="@+id/il_hasil"
-                app:layout_constraintTop_toBottomOf="@+id/il_hasil" />
+                app:layout_constraintEnd_toEndOf="@+id/il_deskripsi_gejala"
+                app:layout_constraintStart_toStartOf="@+id/il_deskripsi_gejala"
+                app:layout_constraintTop_toBottomOf="@+id/il_deskripsi_gejala" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
 
 

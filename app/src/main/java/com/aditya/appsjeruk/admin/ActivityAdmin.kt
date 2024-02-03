@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.admin.adddata.ActivityAddPenyakit
-import com.aditya.appsjeruk.admin.addrule.AddRuleActivity
+import com.aditya.appsjeruk.admin.addrule.AddGejalaActivity
 import com.aditya.appsjeruk.admin.riwayat_admin.ActivityRiwayatAdmin
 import com.aditya.appsjeruk.databinding.ActivityAdminBinding
 import com.aditya.appsjeruk.user.ui.detail.ActivityDetail
@@ -36,7 +36,7 @@ class ActivityAdmin : AppCompatActivity() {
 
             }
             cardRule.setOnClickListener {
-                intent = Intent(this@ActivityAdmin, AddRuleActivity::class.java)
+                intent = Intent(this@ActivityAdmin, AddGejalaActivity::class.java)
                 startActivity(intent)
             }
 

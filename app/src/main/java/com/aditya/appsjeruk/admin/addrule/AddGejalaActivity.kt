@@ -1,4 +1,4 @@
-package com.aditya.appsjeruk.admin.adddata
+package com.aditya.appsjeruk.admin.addrule
 
 import android.Manifest
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.AutoCompleteTextView
@@ -25,11 +24,10 @@ import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.admin.ActivityAdmin
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
+import com.aditya.appsjeruk.databinding.ActivityAddGejalaBinding
 import com.aditya.appsjeruk.databinding.ActivityAddPenyakitBinding
 import com.aditya.appsjeruk.utils.Constant
-import com.aditya.appsjeruk.utils.Constant.reduceFileImage
 import com.aditya.appsjeruk.utils.Constant.setInputError
-import com.aditya.appsjeruk.utils.Constant.uriToFile
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
@@ -43,9 +41,9 @@ import java.io.File
 
 
 @AndroidEntryPoint
-class ActivityAddPenyakit : AppCompatActivity() {
+class AddGejalaActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddPenyakitBinding
+    private lateinit var binding: ActivityAddGejalaBinding
     private val viewModel: AdminViewModel by viewModels()
     private var fotoFile: File? = null
     private var fotoPath: String? = null
@@ -80,7 +78,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityAddPenyakitBinding.inflate(layoutInflater)
+        binding = ActivityAddGejalaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnKirim.setOnClickListener {
@@ -88,7 +86,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
         }
 
         binding.icBack.setOnClickListener {
-            intent = Intent(this@ActivityAddPenyakit, ActivityAdmin::class.java)
+            intent = Intent(this@AddGejalaActivity, ActivityAdmin::class.java)
             startActivity(intent)
         }
 
@@ -100,7 +98,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
             )
         }
 
-        val bottomSheetDialog = BottomSheetDialog(this@ActivityAddPenyakit)
+        val bottomSheetDialog = BottomSheetDialog(this@AddGejalaActivity)
         binding.imgAdd.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.bottom_sheet, null)
             bottomSheetDialog.setContentView(view)
@@ -130,19 +128,19 @@ class ActivityAddPenyakit : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             val selectedImg = result.data?.data as Uri
             selectedImg.let { uri ->
-                fotoFile = uriToFile(uri, this@ActivityAddPenyakit)
-                binding.imgPenyakit.setImageURI(uri)
+                fotoFile = Constant.uriToFile(uri, this@AddGejalaActivity)
+                binding.imgGejala.setImageURI(uri)
             }
         }
     }
 
     private fun startCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.resolveActivity(this@ActivityAddPenyakit.packageManager)
+        intent.resolveActivity(this@AddGejalaActivity.packageManager)
 
-        Constant.createCustomTempFile(this@ActivityAddPenyakit).also {
+        Constant.createCustomTempFile(this@AddGejalaActivity).also {
             val photoURI: Uri = FileProvider.getUriForFile(
-                this@ActivityAddPenyakit,
+                this@AddGejalaActivity,
                 BuildConfig.APPLICATION_ID,
                 it
             )
@@ -162,37 +160,36 @@ class ActivityAddPenyakit : AppCompatActivity() {
                 val uri = rotatedBitmap?.let { it1 ->
                     Constant.bitmapToFile(
                         it1,
-                        this@ActivityAddPenyakit
+                        this@AddGejalaActivity
                     )
                 }
                 fotoFile = File(uri?.path.toString())
 
             }
-            Glide.with(this@ActivityAddPenyakit)
+            Glide.with(this@AddGejalaActivity)
                 .load(rotatedBitmap)
-                .into(binding.imgPenyakit)
+                .into(binding.imgGejala)
         }
     }
 
     private fun getUserInput() {
         binding.apply {
-            val nama_penyakit = etName.text.toString()
-            val deskripsi_penyakit = etDeskripsi.text.toString()
-            val pencegahan = etPencegahan.text.toString()
-            val kode_penyakit = etKode.text.toString()
+            val nama_gejala = etNameGejala.text.toString()
+            val deskripsi_gejala = etDeskripsiGejala.text.toString()
+//            val pencegahan = etPencegahan.text.toString()
+            val kode_gejala = etKodeGejala.text.toString()
 
-            if (validateInput(nama_penyakit, deskripsi_penyakit, pencegahan, kode_penyakit)) {
+            if (validateInput(nama_gejala, deskripsi_gejala, kode_gejala)) {
                 if (fotoFile != null) {
-                    val fileProfilePicture: File = reduceFileImage(fotoFile as File)
+                    val fileProfilePicture: File = Constant.reduceFileImage(fotoFile as File)
 
                     val requestBody: RequestBody = MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
-                        .addFormDataPart("nama_penyakit", nama_penyakit)
-                        .addFormDataPart("deskripsi_penyakit", deskripsi_penyakit)
-                        .addFormDataPart("pencegahan", pencegahan)
-                        .addFormDataPart("kode_penyakit", kode_penyakit)
+                        .addFormDataPart("nama_gejala", nama_gejala)
+                        .addFormDataPart("deskripsi_gejala", deskripsi_gejala)
+                        .addFormDataPart("kode_gejala", kode_gejala)
                         .addFormDataPart(
-                            "foto_penyakit",
+                            "foto_gejala",
                             fileProfilePicture.name,
                             RequestBody.create("image/*".toMediaTypeOrNull(), fileProfilePicture)
                         ).build()
@@ -200,7 +197,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
                     insertData(requestBody)
                 } else {
                     Toast.makeText(
-                        this@ActivityAddPenyakit,
+                        this@AddGejalaActivity,
                         getString(R.string.pick_photo_first),
                         Toast.LENGTH_SHORT
                     ).show()
@@ -213,25 +210,21 @@ class ActivityAddPenyakit : AppCompatActivity() {
     private fun validateInput(
         nama: String,
         deskripsi: String,
-        pencegahan: String,
         kode: String
     ): Boolean {
         binding.apply {
             if (nama.isEmpty()) {
-                return ilName.setInputError(getString(R.string.must_not_empty))
+                return ilNameGejala.setInputError(getString(R.string.must_not_empty))
             }
             if (deskripsi.isEmpty()) {
-                return ilDeskripsi.setInputError(getString(R.string.must_not_empty))
-            }
-            if (pencegahan.isEmpty()) {
-                return ilPencegahan.setInputError(getString(R.string.must_not_empty))
+                return ilDeskripsiGejala.setInputError(getString(R.string.must_not_empty))
             }
             if (kode.isEmpty()) {
-                return ilKode.setInputError(getString(R.string.must_not_empty))
+                return ilKodeGejala.setInputError(getString(R.string.must_not_empty))
             }
             if (fotoFile == null) {
                 Toast.makeText(
-                    this@ActivityAddPenyakit,
+                    this@AddGejalaActivity,
                     getString(R.string.pick_photo_first),
                     Toast.LENGTH_SHORT
                 ).show()
@@ -242,7 +235,7 @@ class ActivityAddPenyakit : AppCompatActivity() {
     }
 
     private fun insertData(requestBody: RequestBody) {
-        viewModel.insertPenyakit(requestBody).observe(this@ActivityAddPenyakit) { result ->
+        viewModel.insertGejala(requestBody).observe(this@AddGejalaActivity) { result ->
             binding.apply {
                 when (result) {
                     is Resource.Loading -> {
@@ -250,14 +243,14 @@ class ActivityAddPenyakit : AppCompatActivity() {
 
                     is Resource.Success -> {
 
-                        Intent(this@ActivityAddPenyakit, ActivityAdmin::class.java).apply {
+                        Intent(this@AddGejalaActivity, ActivityAdmin::class.java).apply {
                             startActivity(this)
                         }
                     }
 
                     is Resource.Error -> {
                         Toast.makeText(
-                            this@ActivityAddPenyakit, result.error,
+                            this@AddGejalaActivity, result.error,
                             Toast.LENGTH_SHORT
                         ).show()
                     }

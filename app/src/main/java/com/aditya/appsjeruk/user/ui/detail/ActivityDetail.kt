@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
-import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
+import com.aditya.appsjeruk.data.remote.response.GejalaResponse
 import com.aditya.appsjeruk.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,7 +59,7 @@ class ActivityDetail : AppCompatActivity() {
     }
 
     private fun deletePenyakit() {
-        val itemRequest = PenyakitResponse(
+        val itemRequest = GejalaResponse(
             idGejala = intent.getStringExtra("id_gejala").toString()
         )
         viewModel.deletePenyakit(itemRequest.idGejala.toString()).observe(this) { result ->

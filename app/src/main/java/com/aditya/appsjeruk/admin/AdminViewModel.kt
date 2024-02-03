@@ -22,12 +22,19 @@ class AdminViewModel @Inject constructor(
         repository.deleteUser()
     }
 
-    fun insertData(
+    fun insertPenyakit(
         requestBody: RequestBody
     ) = repository.isertData(requestBody).asLiveData()
 
 
+    fun insertGejala(
+        requestBody: RequestBody
+    ) = repository.insertGejala(requestBody).asLiveData()
+
+
+
     fun getItem() = repository.getItem().asLiveData()
+    fun getPenyakit() = repository.getPenyakit().asLiveData()
 
 //    fun deletePenyakit(id: String, requestBody: RequestBody) =
 //        repository.deletePenyakit(id, requestBody).asLiveData()

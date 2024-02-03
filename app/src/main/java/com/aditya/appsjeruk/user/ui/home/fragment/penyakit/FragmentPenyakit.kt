@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.adapter.AdapterGejala
+import com.aditya.appsjeruk.adapter.AdapterPenyakit
 import com.aditya.appsjeruk.admin.AdminViewModel
+import com.aditya.appsjeruk.databinding.FragmentGejalaBinding
 import com.aditya.appsjeruk.databinding.FragmentPenyakitBinding
 import com.aditya.appsjeruk.user.detail_pengguna.ActivityDetailPengguna
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,8 +22,7 @@ class FragmentPenyakit : Fragment() {
 
     private var binding: FragmentPenyakitBinding? = null
     private val viewModel: AdminViewModel by viewModels()
-    private lateinit var mAdapter: AdapterGejala
-
+    private lateinit var mAdapter: AdapterPenyakit
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,11 +38,12 @@ class FragmentPenyakit : Fragment() {
 
 
         getData()
-        mAdapter = AdapterGejala {
+        mAdapter = AdapterPenyakit {
             val intent = Intent(requireContext(), ActivityDetailPengguna::class.java).apply {
-                putExtra("title", it.namaGejala)
-                putExtra("deskripsi", it.deskripsiGejala)
-                putExtra("foto", it.fotoGejala)
+                putExtra("title", it.namaPenyakit)
+                putExtra("deskripsi", it.deskripsiPenyakit)
+                putExtra("foto", it.fotoPenyakit)
+                putExtra("kode", it.kodePenyakit)
             }
             startActivity(intent)
         }
@@ -58,7 +60,7 @@ class FragmentPenyakit : Fragment() {
 
     private fun getData() {
 
-        viewModel.getItem().observe(
+        viewModel.getPenyakit().observe(
             viewLifecycleOwner
         ) { result ->
             when (result) {

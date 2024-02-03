@@ -42,7 +42,7 @@
             android:name=".admin.riwayat_admin.ActivityRiwayatAdmin"
             android:exported="false" />
         <activity
-            android:name=".admin.addrule.AddRuleActivity"
+            android:name=".admin.addrule.AddGejalaActivity"
             android:exported="false" />
         <activity
             android:name=".user.detail_pengguna.ActivityDetailPengguna"

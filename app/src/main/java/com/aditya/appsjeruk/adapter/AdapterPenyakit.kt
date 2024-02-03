@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aditya.appsjeruk.R
+import com.aditya.appsjeruk.data.remote.response.GejalaResponse
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
 import com.aditya.appsjeruk.databinding.ListPenyakitBinding
 import com.bumptech.glide.Glide
 
 class AdapterPenyakit
-//    (
-//    private val onItemClick: (PenyakitResponse) -> Unit
-//)
+    (
+    private val onItemClick: (PenyakitResponse) -> Unit
+)
     : ListAdapter<PenyakitResponse, AdapterPenyakit.ViewHolder>(DIFF_CALLBACK) {
 
 
@@ -32,15 +33,15 @@ class AdapterPenyakit
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: PenyakitResponse) {
             binding.apply {
-                tvNama.text = data.namaGejala
-                tvDeskripsi.text = data.deskripsiGejala
+                tvNama.text = data.namaPenyakit
+                tvDeskripsi.text = data.deskripsiPenyakit
                 Glide.with(itemView.context)
-                    .load(data.fotoGejala)
+                    .load(data.fotoPenyakit)
                     .error(R.color.blue)
                     .into(foto)
-//                itemView.setOnClickListener {
-//                    onItemClick(data)
-//                }
+                itemView.setOnClickListener {
+                    onItemClick(data)
+                }
             }
         }
     }
@@ -52,7 +53,7 @@ class AdapterPenyakit
                     oldItem: PenyakitResponse,
                     newItem: PenyakitResponse
                 ): Boolean {
-                    return oldItem.idGejala == newItem.idGejala
+                    return oldItem.idPenyakit == newItem.idPenyakit
                 }
 
                 @SuppressLint("DiffUtilEquals")
