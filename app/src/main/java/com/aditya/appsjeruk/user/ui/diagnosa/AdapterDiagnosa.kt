@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aditya.appsjeruk.R
-import com.aditya.appsjeruk.data.remote.response.GejalaResponse
 import com.aditya.appsjeruk.databinding.ListDiagnosaBinding
 
 class AdapterDiagnosa(
@@ -21,42 +20,87 @@ class AdapterDiagnosa(
         val selectedSymptoms = currentList.filter { it.isSelected }
 
         // Rule 1
-        if (selectedSymptoms.any { it.kodeGejala == "G1" } && selectedSymptoms.any { it.kodeGejala == "G2" }) {
-            return "P1"
-        }
+        val hasG1 = selectedSymptoms.any { it.kodeGejala == "G1" }
+        val hasG2 = selectedSymptoms.any { it.kodeGejala == "G2" }
+        val rule1 = hasG1 && hasG2
 
         // Rule 2
-        if (selectedSymptoms.any { it.kodeGejala == "G3" }) {
-            return "G2"
-        }
+        val hasG3 = selectedSymptoms.any { it.kodeGejala == "G3" }
+        val rule2 = hasG3
 
         // Rule 3
-        if (selectedSymptoms.any { it.kodeGejala == "G4" } && selectedSymptoms.any { it.kodeGejala == "G5" }) {
-            return "P2"
-        }
+        val hasG4 = selectedSymptoms.any { it.kodeGejala == "G4" }
+        val hasG5 = selectedSymptoms.any { it.kodeGejala == "G5" }
+        val rule3 = hasG4 && hasG5
 
         // Rule 4
-        if (selectedSymptoms.any { it.kodeGejala == "G6" }) {
-            return "P3"
-        }
+        val rule4 = selectedSymptoms.any { it.kodeGejala == "G6" }
 
         // Rule 5
-        if (selectedSymptoms.any { it.kodeGejala == "G7" }) {
-            return "G6"
-        }
+        val rule5 = selectedSymptoms.any { it.kodeGejala == "G7" }
 
         // Rule 6
-        if (selectedSymptoms.any { it.kodeGejala == "G8" }) {
-            return "G7"
-        }
+        val rule6 = selectedSymptoms.any { it.kodeGejala == "G8" }
 
         // Rule 7
-        if (selectedSymptoms.any { it.kodeGejala == "G9" } && selectedSymptoms.any { it.kodeGejala == "G12" }) {
-            return "P4"
-        }
+        val hasG9 = selectedSymptoms.any { it.kodeGejala == "G9" }
+        val hasG12 = selectedSymptoms.any { it.kodeGejala == "G12" }
+        val rule7 = hasG9 && hasG12
 
-        return "Tidak Diketahui"
+        // Rule 8
+        val hasG10 = selectedSymptoms.any { it.kodeGejala == "G10" }
+        val rule8 = hasG10
+
+        // Rule 9
+        val hasG11 = selectedSymptoms.any { it.kodeGejala == "G11" }
+        val rule9 = hasG11
+
+        // Rule 10
+        val hasG13 = selectedSymptoms.any { it.kodeGejala == "G13" }
+        val hasG15 = selectedSymptoms.any { it.kodeGejala == "G15" }
+        val hasG18 = selectedSymptoms.any { it.kodeGejala == "G18" }
+        val rule10 = hasG13 && hasG15 && hasG18
+
+        // Rule 11
+        val hasG14 = selectedSymptoms.any { it.kodeGejala == "G14" }
+        val rule11 = hasG14
+
+        // Rule 12
+        val hasG16 = selectedSymptoms.any { it.kodeGejala == "G16" }
+        val rule12 = hasG16
+
+        // Rule 13
+        val hasG17 = selectedSymptoms.any { it.kodeGejala == "G17" }
+        val rule13 = hasG17
+
+        // Rule 14
+        val hasG19 = selectedSymptoms.any { it.kodeGejala == "G19" }
+        val hasG22 = selectedSymptoms.any { it.kodeGejala == "G22" }
+        val hasG23 = selectedSymptoms.any { it.kodeGejala == "G23" }
+        val rule14 = hasG19 && hasG22 && hasG23
+
+        // Rule 15
+        val hasG20 = selectedSymptoms.any { it.kodeGejala == "G20" }
+        val rule15 = hasG20
+
+        // Rule 16
+        val hasG21 = selectedSymptoms.any { it.kodeGejala == "G21" }
+        val rule16 = hasG21
+
+        // Check rules
+        return when {
+            rule1 && rule2 -> "P1"
+            rule3 -> "P2"
+            rule4 && rule5 && rule6 -> "P3"
+            rule7 && rule8 && rule9 -> "P4"
+            rule10 && rule11 && rule12 && rule13 -> "P5"
+            rule14 && rule15 && rule16 -> "P6"
+            else -> "Tidak Diketahui"
+        }
     }
+
+
+
 
     fun getSelectedSymptoms(): List<GejalaResponse> {
         return currentList.filter { it.isSelected }

@@ -1,4 +1,4 @@
-package com.aditya.appsjeruk.data.remote.response
+package com.aditya.appsjeruk.user.ui.diagnosa
 
 import com.google.gson.annotations.SerializedName
 

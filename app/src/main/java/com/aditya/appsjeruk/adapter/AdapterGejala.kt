@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aditya.appsjeruk.R
-import com.aditya.appsjeruk.data.remote.response.GejalaResponse
+import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.aditya.appsjeruk.databinding.ListPenyakitBinding
 import com.bumptech.glide.Glide
 

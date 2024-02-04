@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
-import com.aditya.appsjeruk.data.remote.response.GejalaResponse
+import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.aditya.appsjeruk.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint

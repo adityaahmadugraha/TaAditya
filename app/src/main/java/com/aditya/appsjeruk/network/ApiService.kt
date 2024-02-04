@@ -6,7 +6,7 @@ import com.aditya.appsjeruk.data.remote.request.Login
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.data.remote.request.RegisterRequest
 import com.aditya.appsjeruk.data.remote.response.AddPenyakitResponse
-import com.aditya.appsjeruk.data.remote.response.GejalaResponse
+import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
 import com.aditya.appsjeruk.data.remote.response.RegisterResponse
 import okhttp3.RequestBody
