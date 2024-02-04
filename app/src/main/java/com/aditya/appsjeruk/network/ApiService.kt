@@ -54,7 +54,7 @@ interface ApiService {
     ): Login
 
 
-    @POST("diagnosa_penyakit.php")
+    @POST("rule.php")
     suspend fun diagnosaPenyakit(
         @Body request: DiagnosaRequest
     ): DiagnosaResponse

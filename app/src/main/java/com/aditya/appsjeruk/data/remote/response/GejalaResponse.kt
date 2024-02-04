@@ -3,7 +3,6 @@ package com.aditya.appsjeruk.data.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class GejalaResponse(
-
     @field:SerializedName("kode_gejala")
     val kodeGejala: String? = null,
 
@@ -19,5 +18,7 @@ data class GejalaResponse(
     @field:SerializedName("deskripsi_gejala")
     val deskripsiGejala: String? = null,
 
-    var isSelected: Boolean = false
+    var isSelected: Boolean = false,
+
+    var selectedTingkatKepastian: Double = 0.0
 )
