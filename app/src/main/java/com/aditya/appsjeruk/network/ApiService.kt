@@ -1,5 +1,7 @@
 package com.aditya.appsjeruk.network
 
+import com.aditya.appsjeruk.data.remote.request.DiagnosaRequest
+import com.aditya.appsjeruk.data.remote.request.DiagnosaResponse
 import com.aditya.appsjeruk.data.remote.request.Login
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.data.remote.request.RegisterRequest
@@ -41,9 +43,9 @@ interface ApiService {
 
 
 
-
     @POST("input_gejala.php")
-    suspend fun insertGejala(@Body body: RequestBody): AddPenyakitResponse
+    suspend fun insertGejala(
+        @Body body: RequestBody): AddPenyakitResponse
 
 
     @GET("delete_penyakit.php")
@@ -51,5 +53,10 @@ interface ApiService {
         @Query("id") id: String
     ): Login
 
+
+    @POST("diagnosa_penyakit.php")
+    suspend fun diagnosaPenyakit(
+        @Body request: DiagnosaRequest
+    ): DiagnosaResponse
 
 }

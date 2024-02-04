@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
     app:cardCornerRadius="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,59 +39,29 @@
             app:layout_constraintStart_toEndOf="@+id/cb_fw"
             app:layout_constraintTop_toTopOf="@+id/cb_fw" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_spineer"
+            style="@style/input_layout_spinner"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            app:boxBackgroundColor="@color/white"
+            app:hintEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="@+id/cb_fw"
             app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-            <RadioGroup
-                android:id="@+id/radioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/tv_title"
-                app:layout_constraintStart_toStartOf="@+id/cb_fw"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title">
+            <AutoCompleteTextView
+                android:id="@+id/et_spiner"
+                style="@style/input_edit_text"
+                android:hint="Pilih Tingkat Keyakinan"
+                android:inputType="none"
+                android:textColor="@color/black" />
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <RadioButton
-                    android:id="@+id/rb_tidak_tahu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tidak_tahu" />
-
-                <RadioButton
-                    android:id="@+id/rb_mungkin_tidak"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mungkin_tidak" />
-
-                <RadioButton
-                    android:id="@+id/rb_mungkin_iya"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mungkin_iya" />
-
-                <RadioButton
-                    android:id="@+id/rb_hampir_pasti_iya"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hampir_pasti_iya" />
-
-                <RadioButton
-                    android:id="@+id/rb_pasti_iya"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pasti_iya" />
-
-
-            </RadioGroup>
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

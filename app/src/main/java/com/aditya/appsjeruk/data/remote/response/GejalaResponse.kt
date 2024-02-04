@@ -17,5 +17,7 @@ data class GejalaResponse(
     val fotoGejala: String? = null,
 
     @field:SerializedName("deskripsi_gejala")
-    val deskripsiGejala: String? = null
+    val deskripsiGejala: String? = null,
+
+    var isSelected: Boolean = false
 )

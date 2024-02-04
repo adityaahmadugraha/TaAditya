@@ -4,6 +4,7 @@ package com.aditya.appsjeruk.repository
 import com.aditya.appsjeruk.data.local.UserLocal
 import com.aditya.appsjeruk.data.local.UserPreference
 import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
+import com.aditya.appsjeruk.data.remote.request.DiagnosaRequest
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.data.remote.request.RegisterRequest
 import okhttp3.RequestBody
@@ -28,10 +29,9 @@ class DataRepository @Inject constructor(
     fun getItem() = remoteData.getItem()
     fun getPenyakit() = remoteData.getPenyakit()
 
-
-//    fun deletePenyakit(id: String, requestBody: RequestBody) =
-//        remoteData.deletepenyakit(id, requestBody)
-
     fun deletePenyakit(id: String) = remoteData.deletepenyakit(id)
 
+    fun diagnosaPenyakit(request: DiagnosaRequest) = remoteData.diagnosaPenyakit(request)
+
+//    fun insertGejala(requestBody: RequestBody) = remoteData.insertGejala(requestBody)
 }

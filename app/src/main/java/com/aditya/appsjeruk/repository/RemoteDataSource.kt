@@ -1,6 +1,7 @@
 package com.aditya.appsjeruk.repository
 
 import com.aditya.appsjeruk.data.Resource
+import com.aditya.appsjeruk.data.remote.request.DiagnosaRequest
 import com.aditya.appsjeruk.data.remote.request.Login
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.data.remote.request.RegisterRequest
@@ -51,15 +52,6 @@ class RemoteDataSource @Inject constructor(
     }.flowOn(Dispatchers.IO)
 
 
-//    fun deletepenyakit(id: String, requestBody: RequestBody) = flow {
-//        emit(Resource.Loading())
-//        val response = apiService.deletePenyakit(id, requestBody)
-//        emit(Resource.Success(response))
-//    }.catch {
-//        emit(Resource.Error(it.message ?: ""))
-//    }.flowOn(Dispatchers.IO)
-
-
     fun deletepenyakit(id: String) = flow<Resource<Login>> {
         emit(Resource.Loading())
         val response = apiService.deletePenyakit(id)
@@ -88,6 +80,16 @@ class RemoteDataSource @Inject constructor(
     ) = flow {
         emit(Resource.Loading())
         val response = apiService.insertGejala(request)
+        emit(Resource.Success(response))
+    }.catch {
+        emit(Resource.Error(it.message ?: ""))
+    }.flowOn(Dispatchers.IO)
+
+
+    fun diagnosaPenyakit(
+        request: DiagnosaRequest) = flow {
+        emit(Resource.Loading())
+        val response = apiService.diagnosaPenyakit(request)
         emit(Resource.Success(response))
     }.catch {
         emit(Resource.Error(it.message ?: ""))
