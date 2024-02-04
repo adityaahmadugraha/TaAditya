@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.aditya.appsjeruk.BuildConfig
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.aditya.appsjeruk.databinding.ListPenyakitBinding
@@ -34,8 +35,8 @@ class AdapterGejala
                 tvNama.text = data.namaGejala
                 tvDeskripsi.text = data.deskripsiGejala
                 Glide.with(itemView.context)
-                    .load(data.fotoGejala)
-                    .error(R.color.blue)
+                    .load(BuildConfig.IMAGE_URL + data.fotoGejala)
+                    .error(R.drawable.error)
                     .into(foto)
                 itemView.setOnClickListener {
                     onItemClick(data)

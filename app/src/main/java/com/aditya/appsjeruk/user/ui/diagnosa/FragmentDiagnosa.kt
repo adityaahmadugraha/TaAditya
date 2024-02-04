@@ -47,17 +47,15 @@ class FragmentDiagnosa : Fragment() {
             if (selectedSymptoms.isNotEmpty()) {
                 val selectedTingkatKepastian = mAdapter.getSelectedTingkatKepastian()
 
-                // Diagnosa untuk setiap gejala dengan tingkat kepastian yang dipilih
+
                 for ((index, gejala) in selectedSymptoms.withIndex()) {
                     val tingkatKepastian = selectedTingkatKepastian[index]
-                    // Lakukan sesuatu dengan tingkat kepastian
+
                     Log.d(
                         "Diagnosa",
                         "Gejala: ${gejala.kodeGejala}, Tingkat Kepastian: $tingkatKepastian"
                     )
                 }
-
-                // Proses diagnosa keseluruhan
                 val hasilDiagnosa = mAdapter.diagnosaPenyakit()
 
                 val toastMessage = "Tanaman Anda didiagnosa penyakit $hasilDiagnosa"

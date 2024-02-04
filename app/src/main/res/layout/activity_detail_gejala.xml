@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/home_gradien"
-    tools:context=".user.detail_pengguna.ActivityDetailPengguna">
+    tools:context=".user.ui.detail.ActivityDetailGejala">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -58,7 +59,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppinsextrabold"
-                android:text="Nama Penyakit"
+                android:text="Nama Gejala"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -86,10 +87,9 @@
                     android:id="@+id/et_nama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:focusable="false"
                     android:fontFamily="@font/poppinssembiold"
                     android:hint="Nama"
+                 android:layout_gravity="start|left"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -105,7 +105,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppinsextrabold"
                 android:justificationMode="inter_word"
-                android:text="Deskripsi Penyakit"
+                android:text="Deskripsi Gejala"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -132,63 +132,57 @@
                     android:id="@+id/et_deskripsi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/poppinsmedium"
-                    android:gravity="left|start"
+                    android:fontFamily="@font/poppinsextrabold"
                     android:hint="Deskripsi"
-                    android:textAlignment="textStart"
+                    android:justificationMode="inter_word"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/tv_pencegahan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppinsextrabold"
-                android:text="Pencegahan"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/il_name" />
+<!--            <TextView-->
+<!--                android:id="@+id/tv_pencegahan"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:fontFamily="@font/poppinsextrabold"-->
+<!--                android:text="Pencegahan"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/il_name" />-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/il_pencegahan"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="10dp"
-                app:hintAnimationEnabled="true"
-                app:hintEnabled="false"
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/il_pencegahan"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                app:boxCornerRadiusBottomEnd="10dp"-->
+<!--                app:boxCornerRadiusBottomStart="8dp"-->
+<!--                app:boxCornerRadiusTopEnd="8dp"-->
+<!--                app:boxCornerRadiusTopStart="10dp"-->
+<!--                app:hintAnimationEnabled="true"-->
+<!--                app:hintEnabled="false"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/tv_kode">-->
 
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_kode">
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/et_pencegahan"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/poppinssembiold"-->
+<!--                    android:hint="pencegahan"-->
+<!--                    android:justificationMode="inter_word"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="12sp" />-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_pencegahan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/poppinssembiold"
-                    android:gravity="start|left"
-                    android:hint="pencegahan"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
 
         </LinearLayout>
@@ -202,5 +196,6 @@
         android:layout_margin="16dp"
         android:text="Back"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

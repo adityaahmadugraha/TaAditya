@@ -18,6 +18,9 @@ data class GejalaResponse(
     @field:SerializedName("deskripsi_gejala")
     val deskripsiGejala: String? = null,
 
+    @field:SerializedName("nilai_cf")
+    val nilaiCf: String? = null,
+
     var isSelected: Boolean = false,
 
     var selectedTingkatKepastian: Double = 0.0

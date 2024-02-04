@@ -1,6 +1,8 @@
 package com.aditya.appsjeruk.user.ui.login
 
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
@@ -43,6 +45,20 @@ class LoginActivity : AppCompatActivity() {
             intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+        playAnimation()
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofPropertyValuesHolder(
+            binding.imageView,
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 0.5f, 1.0f),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.5f, 1.0f)
+        ).apply {
+            duration = 1500
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
     }
 
     private fun loginUser() {
@@ -56,7 +72,11 @@ class LoginActivity : AppCompatActivity() {
                 when (result) {
                     is Resource.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
-
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Cek Kembali Password atau Username",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         Log.d("LoginActivity", "Loading...")
                     }
 
@@ -84,7 +104,11 @@ class LoginActivity : AppCompatActivity() {
 
                     is Resource.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        Toast.makeText(this@LoginActivity, result.error, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Maaf, username atau password salah",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         Log.e("LoginActivity", "Login error: ${result.error}")
                     }
                 }

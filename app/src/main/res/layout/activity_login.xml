@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppinsextrabold"
-        android:text="@string/masuk_ke_akun_anda"
+        android:text="Selamat Datang"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,19 +33,21 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="210dp"
-        android:layout_height="190dp"
+        android:layout_width="190dp"
+        android:layout_height="175dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/icon_jeruk"
+        android:src="@drawable/ai"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_login" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="357dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -60,20 +62,25 @@
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppinssembiold"
                 android:text="@string/useraname"
                 android:textColor="@color/black"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_username"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="335dp"
+                android:layout_width="0dp"
                 android:layout_height="62dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:hintEnabled="false"
-                app:layout_constraintStart_toStartOf="@+id/tv_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_username"
                 app:startIconDrawable="@drawable/ic_person">
 
@@ -95,17 +102,20 @@
                 android:fontFamily="@font/poppinssembiold"
                 android:text="@string/password"
                 android:textColor="@color/black"
-                android:textSize="10sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/ti_username"
                 app:layout_constraintTop_toBottomOf="@+id/ti_username" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ti_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="335dp"
+                android:layout_width="0dp"
                 android:layout_height="62dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:hintEnabled="false"
-                app:layout_constraintStart_toStartOf="@+id/tv_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_password"
                 app:passwordToggleEnabled="true"
                 app:startIconDrawable="@drawable/ic_lock">
@@ -126,10 +136,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/poppinsblack"
                 android:text="Belum Mempunyai Akun?"
                 android:textColor="@color/yellow"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/ti_password"
                 app:layout_constraintTop_toBottomOf="@+id/ti_password" />
 

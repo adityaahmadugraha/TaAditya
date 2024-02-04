@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.aditya.appsjeruk.BuildConfig
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
 import com.aditya.appsjeruk.databinding.ListPenyakitBinding
@@ -14,8 +15,7 @@ import com.bumptech.glide.Glide
 class AdapterPenyakit
     (
     private val onItemClick: (PenyakitResponse) -> Unit
-)
-    : ListAdapter<PenyakitResponse, AdapterPenyakit.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<PenyakitResponse, AdapterPenyakit.ViewHolder>(DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +35,7 @@ class AdapterPenyakit
                 tvNama.text = data.namaPenyakit
                 tvDeskripsi.text = data.deskripsiPenyakit
                 Glide.with(itemView.context)
-                    .load(data.fotoPenyakit)
+                    .load(BuildConfig.IMAGE_URL + data.fotoPenyakit)
                     .error(R.color.blue)
                     .into(foto)
                 itemView.setOnClickListener {

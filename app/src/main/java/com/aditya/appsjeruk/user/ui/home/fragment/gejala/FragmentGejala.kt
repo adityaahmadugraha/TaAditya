@@ -13,6 +13,7 @@ import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.databinding.FragmentGejalaBinding
 import com.aditya.appsjeruk.user.detail_pengguna.ActivityDetailPengguna
 import com.aditya.appsjeruk.user.ui.detail.ActivityDetail
+import com.aditya.appsjeruk.user.ui.detail.ActivityDetailGejala
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -37,8 +38,8 @@ class FragmentGejala : Fragment() {
 
 
         getData()
-        mAdapter = AdapterGejala{
-           val intent = Intent(requireContext(), ActivityDetailPengguna::class.java).apply {
+        mAdapter = AdapterGejala {
+            val intent = Intent(requireContext(), ActivityDetailGejala::class.java).apply {
                 putExtra("title", it.namaGejala)
                 putExtra("deskripsi", it.deskripsiGejala)
                 putExtra("foto", it.fotoGejala)
@@ -76,7 +77,6 @@ class FragmentGejala : Fragment() {
             }
         }
     }
-
 
 
 }

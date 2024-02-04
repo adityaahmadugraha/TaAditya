@@ -1,25 +1,23 @@
-package com.aditya.appsjeruk.user.detail_pengguna
+package com.aditya.appsjeruk.user.ui.detail
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.aditya.appsjeruk.BuildConfig
 import com.aditya.appsjeruk.R
-import com.aditya.appsjeruk.databinding.ActivityDetailPenggunaBinding
-import com.aditya.appsjeruk.user.MainActivity
+import com.aditya.appsjeruk.databinding.ActivityDetailGejalaBinding
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ActivityDetailPengguna : AppCompatActivity() {
+class ActivityDetailGejala : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDetailPenggunaBinding
+    private lateinit var binding: ActivityDetailGejalaBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityDetailPenggunaBinding.inflate(layoutInflater)
+        binding = ActivityDetailGejalaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener {
@@ -35,17 +33,23 @@ class ActivityDetailPengguna : AppCompatActivity() {
         val foto = intent.getStringExtra("foto").toString()
         val deskripsi = intent.getStringExtra("deskripsi").toString()
         val kodeValue = intent.getStringExtra("kode").toString()
-        val pencegahan = intent.getStringExtra("pencegahan").toString()
+//        val pencegahan = intent.getStringExtra("pencegahan").toString()
 
-
-        val etPencegahan = binding.etPencegahan
-        etPencegahan.setText(pencegahan)
+//
+//        val etPencegahan = binding.etPencegahan
+//        etPencegahan.setText(pencegahan)
 
         val etNama = binding.etNama
         etNama.setText(title)
 
         val etDeskripsi = binding.etDeskripsi
         etDeskripsi.setText(deskripsi)
+
+//        val tvDeskripsi = binding.tvName
+//        tvDeskripsi.text = title
+
+//        val tvName = binding.tvDeskripsi
+//        tvName.text = deskripsi
 
         val kodeToolbar = binding.kode
         kodeToolbar.title = kodeValue

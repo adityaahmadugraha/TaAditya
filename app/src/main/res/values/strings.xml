@@ -6,7 +6,7 @@
     <string name="title_diagnosa">Diagnosa</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
-  <string name="name">Aditya ahmad nugraha</string>
+    <string name="name">Aditya ahmad nugraha</string>
     <string name="nama">Nama</string>
     <string name="jenis">Jenis</string>
     <string name="jenis_status">Kamtibmas</string>
@@ -97,7 +97,6 @@
     <string name="hampir_pasti_iya">Hampir Pasti Iya</string>
     <string name="pasti_iya">Pasti Iya</string>
     <string name="mulai_diagnosa">Mulai Diagnosa</string>
-
 
 
     <string name="gejala">Gejala</string>
