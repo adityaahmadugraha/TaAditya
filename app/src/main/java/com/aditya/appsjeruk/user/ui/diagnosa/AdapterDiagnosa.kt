@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.databinding.ListDiagnosaBinding
 
-class AdapterDiagnosa(
-    private val onItemClick: (String) -> Unit
-) : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(DIFF_CALLBACK) {
+class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(DIFF_CALLBACK) {
 
     fun diagnosaPenyakit(): String {
         val selectedSymptoms = currentList.filter { it.isSelected }
@@ -23,10 +21,15 @@ class AdapterDiagnosa(
         val hasG1 = selectedSymptoms.any { it.kodeGejala == "G1" }
         val hasG2 = selectedSymptoms.any { it.kodeGejala == "G2" }
         val rule1 = hasG1 && hasG2
+        val rule1Certainty =
+            if (rule1) calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) else 0.0
 
         // Rule 2
         val hasG3 = selectedSymptoms.any { it.kodeGejala == "G3" }
         val rule2 = hasG3
+        val rule2Certainty =
+            if (rule2) calculateRuleCertainty(selectedSymptoms, listOf("G3")) else 0.0
+
 
         // Rule 3
         val hasG4 = selectedSymptoms.any { it.kodeGejala == "G4" }
@@ -97,9 +100,15 @@ class AdapterDiagnosa(
             rule14 && rule15 && rule16 -> "P6"
             else -> "Tidak Diketahui"
         }
+
+
+        val finalCertainty = (rule1Certainty + rule2Certainty) / 2 * 0.77777
+
+        return when {
+            finalCertainty > 0.0 -> "P1"
+            else -> "Tidak Diketahui"
+        }
     }
-
-
 
 
     fun getSelectedSymptoms(): List<GejalaResponse> {
@@ -111,13 +120,43 @@ class AdapterDiagnosa(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListDiagnosaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListDiagnosaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
+    private fun calculateRuleCertainty(
+        selectedSymptoms: List<GejalaResponse>,
+        gejalaCodes: List<String>
+    ): Double {
+        val relevantSymptoms = selectedSymptoms.filter { it.kodeGejala in gejalaCodes }
+        return if (relevantSymptoms.isNotEmpty()) {
+            val averageTingkatKepastian =
+                relevantSymptoms.map { it.selectedTingkatKepastian }.average()
+
+            val certaintyWeight = getCertaintyWeight(averageTingkatKepastian)
+
+            val convertedCertainty = averageTingkatKepastian * certaintyWeight
+
+            convertedCertainty
+        } else {
+            0.0
+        }
+    }
+
+
+    private fun getCertaintyWeight(selectedTingkatKepastian: Double): Double {
+        return when {
+            selectedTingkatKepastian >= -0.8 && selectedTingkatKepastian <= 0.2 -> 1.0
+            selectedTingkatKepastian >= 0.4 && selectedTingkatKepastian <= 1.0 -> 1.0
+            else -> 0.0
+        }
+    }
+
 
     inner class ViewHolder(private val binding: ListDiagnosaBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -148,8 +187,20 @@ class AdapterDiagnosa(
                 etSpiner.setAdapter(adapter)
 
                 etSpiner.setOnItemClickListener { _, _, position, _ ->
-                    data.selectedTingkatKepastian = position.toDouble() / options.size.toDouble()
+                    data.selectedTingkatKepastian = when (options[position]) {
+                        "Pasti Tidak" -> -0.2
+                        "Hampir Pasti Tidak" -> -0.4
+                        "Kemungkinan Besar Tidak" -> -0.6
+                        "Mungkin Tidak" -> -0.8
+                        "Tidak Tahu" -> 0.0
+                        "Mungkin Iya" -> 0.4
+                        "Kemungkinan Besar Iya" -> 0.6
+                        "Hampir Pasti Iya" -> 0.8
+                        "Pasti Iya" -> 1.0
+                        else -> 0.0
+                    }
                 }
+
             }
         }
     }

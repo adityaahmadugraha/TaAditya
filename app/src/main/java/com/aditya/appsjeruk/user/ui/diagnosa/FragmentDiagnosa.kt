@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
-import com.aditya.appsjeruk.data.remote.request.DiagnosaRequest
 import com.aditya.appsjeruk.databinding.FragmentDiagnosaBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,9 +35,7 @@ class FragmentDiagnosa : Fragment() {
 
         getData()
 
-        mAdapter = AdapterDiagnosa { etSpinerValue ->
-            Log.d("Diagnosa", "Nilai etSpiner: $etSpinerValue")
-        }
+        mAdapter = AdapterDiagnosa()
         setupRecyclerView()
 
         binding?.btnDiagnosa?.setOnClickListener {

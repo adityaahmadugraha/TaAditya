@@ -23,5 +23,6 @@ data class GejalaResponse(
 
     var isSelected: Boolean = false,
 
-    var selectedTingkatKepastian: Double = 0.0
+    var selectedTingkatKepastian: Double = 0.0,
+
 )

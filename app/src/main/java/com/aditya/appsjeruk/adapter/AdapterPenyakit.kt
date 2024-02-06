@@ -36,7 +36,7 @@ class AdapterPenyakit
                 tvDeskripsi.text = data.deskripsiPenyakit
                 Glide.with(itemView.context)
                     .load(BuildConfig.IMAGE_URL + data.fotoPenyakit)
-                    .error(R.color.blue)
+                    .error(R.drawable.error)
                     .into(foto)
                 itemView.setOnClickListener {
                     onItemClick(data)
