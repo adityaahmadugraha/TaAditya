@@ -44,7 +44,6 @@ class FragmentDiagnosa : Fragment() {
             if (selectedSymptoms.isNotEmpty()) {
                 val selectedTingkatKepastian = mAdapter.getSelectedTingkatKepastian()
 
-                // Variable untuk menyimpan nilai perhitungan hasil diagnosa
                 var calculationResult = ""
 
                 for ((index, gejala) in selectedSymptoms.withIndex()) {
@@ -56,27 +55,29 @@ class FragmentDiagnosa : Fragment() {
                     )
                 }
 
-                // Memperoleh hasil diagnosa
                 val hasilDiagnosa = mAdapter.diagnosaPenyakit()
 
-                // Menampilkan pesan toast sesuai dengan hasil diagnosa
                 val toastMessage = if (hasilDiagnosa == "Tidak Diketahui") {
                     "Tidak diketahui penyakit"
                 } else {
-                    // Jika hasil diagnosa bukan "Tidak Diketahui", tampilkan hasil perhitungan
+                    // Memeriksa apakah hasil diagnosa adalah P1 atau P2
                     val formattedCertainty = if (hasilDiagnosa == "P1") {
                         "%.4f".format(mAdapter.rule1Certainty)
+                    } else if (hasilDiagnosa == "P2") {
+                        "%.4f".format(mAdapter.rule4Certainty) // Menggunakan nilai kepastian untuk P2
                     } else {
-                        "" // Kosongkan nilai jika penyakit tidak diketahui
+                        ""
                     }
                     "Tanaman Anda didiagnosa penyakit $hasilDiagnosa $formattedCertainty"
                 }
+
                 Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Pilih gejala terlebih dahulu", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+
 
 
     }

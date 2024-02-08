@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +16,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
 
     private val rule1Value = 0.8
     private val rule2Value = 0.8
-    private val rule3Value = 0.7
+    private val rule3Value = 0.8 // Mengaktifkan rule3Value dan mengatur nilainya
     private val rule4Value = 0.6
     private val rule5Value = 0.5
     private val rule6Value = 0.4
@@ -25,6 +24,12 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     private val rule8Value = 0.85
 
     var rule1Certainty: Double = 0.0
+        private set
+
+    var rule3Certainty: Double = 0.0
+        private set
+
+    var rule4Certainty: Double = 0.0 // Menambahkan properti untuk menyimpan nilai kepastian P2
         private set
 
     fun diagnosaPenyakit(): String {
@@ -35,7 +40,11 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
         val isG2Selected = selectedSymptoms.any { it.kodeGejala == "G2" }
         val isG3Selected = selectedSymptoms.any { it.kodeGejala == "G3" }
 
-        // Jika G1, G2, dan G3 terpilih, hitung tingkat kepastian
+        // Memeriksa apakah G4 dan G5 terpilih
+        val isG4Selected = selectedSymptoms.any { it.kodeGejala == "G4" }
+        val isG5Selected = selectedSymptoms.any { it.kodeGejala == "G5" }
+
+        // Jika G1, G2, dan G3 terpilih, hitung tingkat kepastian P1
         if (isG1Selected && isG2Selected && isG3Selected) {
             val rule1Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * rule1Value
             val rule2Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G3")) * rule2Value
@@ -49,12 +58,25 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
             } else {
                 "Tidak Diketahui"
             }
+        } else if (isG4Selected && isG5Selected) {
+
+            // Hitung tingkat kepastian P2
+            val rule4Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G4", "G5")) * rule3Value
+            this.rule4Certainty = rule4Certainty
+
+            Log.d("Rule4Certainty", "Rule 4 Certainty: $rule4Certainty")
+
+            return if (rule4Certainty > 0.0) {
+                "P2"
+            } else {
+                "Tidak Diketahui"
+            }
         } else {
-            // Jika tidak memenuhi syarat, kembalikan "Tidak Diketahui"
             return "Tidak Diketahui"
         }
     }
 
+    // Fungsi-fungsi lainnya tetap tidak berubah
 
     fun getSelectedSymptoms(): List<GejalaResponse> {
         return currentList.filter { it.isSelected }
@@ -156,3 +178,5 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
             }
     }
 }
+
+
