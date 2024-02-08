@@ -59,17 +59,25 @@ class FragmentDiagnosa : Fragment() {
                 // Memperoleh hasil diagnosa
                 val hasilDiagnosa = mAdapter.diagnosaPenyakit()
 
-                // Menambahkan kode P dan nilai perhitungan ke pesan toast
-                calculationResult = "$hasilDiagnosa ${"%.4f".format(mAdapter.rule1Certainty)}"
-
-                // Menampilkan pesan toast
-                val toastMessage = "Tanaman Anda didiagnosa penyakit $calculationResult"
+                // Menampilkan pesan toast sesuai dengan hasil diagnosa
+                val toastMessage = if (hasilDiagnosa == "Tidak Diketahui") {
+                    "Tidak diketahui penyakit"
+                } else {
+                    // Jika hasil diagnosa bukan "Tidak Diketahui", tampilkan hasil perhitungan
+                    val formattedCertainty = if (hasilDiagnosa == "P1") {
+                        "%.4f".format(mAdapter.rule1Certainty)
+                    } else {
+                        "" // Kosongkan nilai jika penyakit tidak diketahui
+                    }
+                    "Tanaman Anda didiagnosa penyakit $hasilDiagnosa $formattedCertainty"
+                }
                 Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Pilih gejala terlebih dahulu", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+
 
     }
 

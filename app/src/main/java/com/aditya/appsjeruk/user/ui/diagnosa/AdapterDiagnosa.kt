@@ -16,7 +16,7 @@ import com.aditya.appsjeruk.databinding.ListDiagnosaBinding
 class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(DIFF_CALLBACK) {
 
     private val rule1Value = 0.8
-    private val rule2Value = 0.9
+    private val rule2Value = 0.8
     private val rule3Value = 0.7
     private val rule4Value = 0.6
     private val rule5Value = 0.5
@@ -24,31 +24,37 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     private val rule7Value = 0.75
     private val rule8Value = 0.85
 
-    // Properti untuk menyimpan nilai kepastian aturan 1
     var rule1Certainty: Double = 0.0
-        private set // Membuat aksesor set private agar properti hanya bisa diubah di dalam kelas ini
+        private set
 
     fun diagnosaPenyakit(): String {
         val selectedSymptoms = currentList.filter { it.isSelected }
 
-        // Hitung tingkat kepastian untuk setiap aturan
-        val rule1Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * rule1Value
-        val rule2Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G3")) * rule2Value
+        // Memeriksa apakah G1, G2, dan G3 terpilih
+        val isG1Selected = selectedSymptoms.any { it.kodeGejala == "G1" }
+        val isG2Selected = selectedSymptoms.any { it.kodeGejala == "G2" }
+        val isG3Selected = selectedSymptoms.any { it.kodeGejala == "G3" }
 
-        // Set nilai properti rule1Certainty di sini
-        this.rule1Certainty = rule1Certainty
+        // Jika G1, G2, dan G3 terpilih, hitung tingkat kepastian
+        if (isG1Selected && isG2Selected && isG3Selected) {
+            val rule1Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * rule1Value
+            val rule2Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G3")) * rule2Value
 
-        val finalCertainty = (rule1Certainty + rule2Certainty) / 2
+            this.rule1Certainty = rule1Certainty
 
-        val result = when {
-            finalCertainty > 0.0 -> "P1"
-            else -> "Tidak Diketahui"
+            val finalCertainty = (rule1Certainty + rule2Certainty) / 2
+
+            return if (finalCertainty > 0.0) {
+                "P1"
+            } else {
+                "Tidak Diketahui"
+            }
+        } else {
+            // Jika tidak memenuhi syarat, kembalikan "Tidak Diketahui"
+            return "Tidak Diketahui"
         }
-
-        Log.d("DiagnosisResult", "Diagnosis: $result $finalCertainty")
-
-        return result
     }
+
 
     fun getSelectedSymptoms(): List<GejalaResponse> {
         return currentList.filter { it.isSelected }
