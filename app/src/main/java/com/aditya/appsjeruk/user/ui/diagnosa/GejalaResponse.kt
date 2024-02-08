@@ -25,4 +25,8 @@ data class GejalaResponse(
 
     var selectedTingkatKepastian: Double = 0.0,
 
+//    var isSelected: Boolean = false,
+//    var selectedTingkatKepastian: Double = 0.0,
+    val nilaiCfPakar: Double
+
 )

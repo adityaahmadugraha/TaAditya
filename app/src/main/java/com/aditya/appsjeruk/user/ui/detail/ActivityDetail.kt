@@ -56,28 +56,28 @@ class ActivityDetail : AppCompatActivity() {
             .setMessage("Apakah Anda yakin menghapus data ini?")
             .setPositiveButton("Ya") { _, _ ->
 
-                deletePenyakit()
+//                deletePenyakit()
             }
             .setNegativeButton("Tidak", null)
             .show()
     }
 
-    private fun deletePenyakit() {
-        val itemRequest = GejalaResponse(
-            idGejala = intent.getStringExtra("id_gejala").toString()
-        )
-        viewModel.deletePenyakit(itemRequest.idGejala.toString()).observe(this) { result ->
-            when (result) {
-                is Resource.Loading -> {}
-                is Resource.Success -> {
-                    Toast.makeText(this, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-
-                is Resource.Error -> {
-                    Toast.makeText(this, "Gagal menghapus penyakit", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+//    private fun deletePenyakit() {
+//        val itemRequest = GejalaResponse(
+//            idGejala = intent.getStringExtra("id_gejala").toString()
+//        )
+//        viewModel.deletePenyakit(itemRequest.idGejala.toString()).observe(this) { result ->
+//            when (result) {
+//                is Resource.Loading -> {}
+//                is Resource.Success -> {
+//                    Toast.makeText(this, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show()
+//                    finish()
+//                }
+//
+//                is Resource.Error -> {
+//                    Toast.makeText(this, "Gagal menghapus penyakit", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 }

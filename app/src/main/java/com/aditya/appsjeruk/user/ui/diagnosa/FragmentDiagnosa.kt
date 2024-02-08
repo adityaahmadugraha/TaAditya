@@ -44,6 +44,8 @@ class FragmentDiagnosa : Fragment() {
             if (selectedSymptoms.isNotEmpty()) {
                 val selectedTingkatKepastian = mAdapter.getSelectedTingkatKepastian()
 
+                // Variable untuk menyimpan nilai perhitungan hasil diagnosa
+                var calculationResult = ""
 
                 for ((index, gejala) in selectedSymptoms.withIndex()) {
                     val tingkatKepastian = selectedTingkatKepastian[index]
@@ -53,15 +55,22 @@ class FragmentDiagnosa : Fragment() {
                         "Gejala: ${gejala.kodeGejala}, Tingkat Kepastian: $tingkatKepastian"
                     )
                 }
+
+                // Memperoleh hasil diagnosa
                 val hasilDiagnosa = mAdapter.diagnosaPenyakit()
 
-                val toastMessage = "Tanaman Anda didiagnosa penyakit $hasilDiagnosa"
+                // Menambahkan kode P dan nilai perhitungan ke pesan toast
+                calculationResult = "$hasilDiagnosa ${"%.4f".format(mAdapter.rule1Certainty)}"
+
+                // Menampilkan pesan toast
+                val toastMessage = "Tanaman Anda didiagnosa penyakit $calculationResult"
                 Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Pilih gejala terlebih dahulu", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+
     }
 
     private fun getData() {
