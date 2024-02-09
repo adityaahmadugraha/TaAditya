@@ -86,24 +86,22 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
             }
         }
         else if (isG4Selected && isG5Selected) {
-//            val rule4Certainty =
-
-            val rule4Certainty = minOf(
+            val ruleCertainty3 = minOf(
                 calculateRuleCertainty(selectedSymptoms, listOf("G4")),
                 calculateRuleCertainty(selectedSymptoms, listOf("G5"))
             ) * cfPakar3
-
-//                calculateRuleCertainty(selectedSymptoms, listOf("G4", "G5")) * cfPakar3
-            this.hasilPerhitunganCf = rule4Certainty
+            this.hasilPerhitunganCf = ruleCertainty3
             Log.d("Diagnosa", "Hasil CF P1: ${this.hasilPerhitunganCf}")
-            return if (rule4Certainty > 0.0) {
+            return if (ruleCertainty3 > 0.0) {
                 "P2"
             } else {
                 "Tidak Diketahui"
             }
         } else if (isG6Selected && isG7Selected && isG8Selected) {
-            val ruleCertainty4 =
-                calculateRuleCertainty(selectedSymptoms, listOf("G6", "G7")) * cfPakar4
+            val ruleCertainty4 = minOf(
+                calculateRuleCertainty(selectedSymptoms, listOf("G6")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G7"))
+            ) * cfPakar4
             val ruleCertainty5 = calculateRuleCertainty(selectedSymptoms, listOf("G8")) * cfPakar5
             val finalCertainty = (ruleCertainty4 + ruleCertainty5) / 2
             this.hasilPerhitunganCf = finalCertainty
@@ -114,9 +112,11 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
                 "Tidak Diketahui"
             }
         } else if (isG9Selected && isG10Selected && isG11Selected && isG12Selected) {
-            val ruleCertainty6 = calculateRuleCertainty(
-                selectedSymptoms,
-                listOf("G9", "G10", "G11", "G12")
+            val ruleCertainty6 = minOf(
+                calculateRuleCertainty(selectedSymptoms, listOf("G9")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G10")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G11")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G12"))
             ) * cfPakar6
             val ruleCertainty7 = calculateRuleCertainty(selectedSymptoms, listOf("G13")) * cfPakar7
             val finalCertainty = (ruleCertainty6 + ruleCertainty7) / 2
@@ -129,10 +129,15 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
             }
         } else if (isG13Selected && isG14Selected && isG15Selected && isG16Selected && isG17Selected && isG18Selected) {
 
-            val ruleCertainty8 =
-                calculateRuleCertainty(selectedSymptoms, listOf("G13", "G14", "G15")) * cfPakar8
-            val ruleCertainty9 =
-                calculateRuleCertainty(selectedSymptoms, listOf("G16", "G17")) * cfPakar9
+            val ruleCertainty8 = minOf(
+                calculateRuleCertainty(selectedSymptoms, listOf("G13")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G14")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G15"))
+            ) * cfPakar8
+            val ruleCertainty9 = minOf(
+                calculateRuleCertainty(selectedSymptoms, listOf("G16")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G17"))
+            ) * cfPakar9
             val ruleCertainty10 =
                 calculateRuleCertainty(selectedSymptoms, listOf("G18")) * cfPakar10
             val finalCertainty = (ruleCertainty8 + ruleCertainty9 + ruleCertainty10) / 3
@@ -144,9 +149,11 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
                 "Tidak Diketahui"
             }
         } else if (isG19Selected && isG20Selected && isG21Selected && isG22Selected && isG23Selected) {
-
-            val ruleCertainty11 =
-                calculateRuleCertainty(selectedSymptoms, listOf("G19", "G22", "G23")) * cfPakar11
+            val ruleCertainty11 = minOf(
+                calculateRuleCertainty(selectedSymptoms, listOf("G19")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G22")),
+                calculateRuleCertainty(selectedSymptoms, listOf("G23"))
+            ) * cfPakar11
             val ruleCertainty12 =
                 calculateRuleCertainty(selectedSymptoms, listOf("G20", "G21")) * cfPakar12
             val finalCertainty = (ruleCertainty11 + ruleCertainty12) / 2
