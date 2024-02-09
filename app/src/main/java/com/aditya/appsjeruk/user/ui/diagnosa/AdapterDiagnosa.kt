@@ -14,14 +14,18 @@ import com.aditya.appsjeruk.databinding.ListDiagnosaBinding
 
 class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(DIFF_CALLBACK) {
 
-    private val rule1Value = 0.8
-    private val rule2Value = 0.8
-    private val rule3Value = 0.8 // Mengaktifkan rule3Value dan mengatur nilainya
-    private val rule4Value = 0.6
-    private val rule5Value = 0.5
-    private val rule6Value = 0.4
-    private val rule7Value = 0.75
-    private val rule8Value = 0.85
+    private val cfPakar1 = 1
+    private val cfPakar2 = 0.8
+    private val cfPakar3 = 1
+    private val cfPakar4 = 0.8
+    private val cfPakar5 = 0.8
+    private val cfPakar6 = 1
+    private val cfPakar7 = 0.8
+    private val cfPakar8 = 0.8
+    private val cfPakar9 = 0.6
+    private val cfPakar10 = 0.8
+    private val cfPakar11 = 0.8
+    private val cfPakar12 = 0.8
 
     var rule1Certainty: Double = 0.0
         private set
@@ -46,8 +50,8 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
 
         // Jika G1, G2, dan G3 terpilih, hitung tingkat kepastian P1
         if (isG1Selected && isG2Selected && isG3Selected) {
-            val rule1Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * rule1Value
-            val rule2Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G3")) * rule2Value
+            val rule1Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * cfPakar1
+            val rule2Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G3")) * cfPakar2
 
             this.rule1Certainty = rule1Certainty
 
@@ -61,7 +65,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
         } else if (isG4Selected && isG5Selected) {
 
             // Hitung tingkat kepastian P2
-            val rule4Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G4", "G5")) * rule3Value
+            val rule4Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G4", "G5")) * cfPakar3
             this.rule4Certainty = rule4Certainty
 
             Log.d("Rule4Certainty", "Rule 4 Certainty: $rule4Certainty")
@@ -76,7 +80,6 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
         }
     }
 
-    // Fungsi-fungsi lainnya tetap tidak berubah
 
     fun getSelectedSymptoms(): List<GejalaResponse> {
         return currentList.filter { it.isSelected }
@@ -112,7 +115,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     private fun getCertaintyWeight(selectedTingkatKepastian: Double): Double {
         return when {
             selectedTingkatKepastian >= -0.8 && selectedTingkatKepastian <= 0.2 -> 1.0
-            selectedTingkatKepastian >= 0.4 && selectedTingkatKepastian <= 1.0 -> 1.0
+            selectedTingkatKepastian in 0.4..1.0 -> 1.0
             else -> 0.0
         }
     }
@@ -122,6 +125,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
             binding.apply {
                 cbFw.setOnCheckedChangeListener(null)
                 cbFw.isChecked = data.isSelected
+                ilSpineer.visibility = if (data.isSelected) View.VISIBLE else View.GONE
                 cbFw.setOnCheckedChangeListener { _, isChecked ->
                     data.isSelected = isChecked
                     ilSpineer.visibility = if (isChecked) View.VISIBLE else View.GONE

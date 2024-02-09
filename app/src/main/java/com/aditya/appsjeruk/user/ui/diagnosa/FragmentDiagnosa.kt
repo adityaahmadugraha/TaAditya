@@ -44,7 +44,7 @@ class FragmentDiagnosa : Fragment() {
             if (selectedSymptoms.isNotEmpty()) {
                 val selectedTingkatKepastian = mAdapter.getSelectedTingkatKepastian()
 
-                var calculationResult = ""
+
 
                 for ((index, gejala) in selectedSymptoms.withIndex()) {
                     val tingkatKepastian = selectedTingkatKepastian[index]
@@ -61,12 +61,16 @@ class FragmentDiagnosa : Fragment() {
                     "Tidak diketahui penyakit"
                 } else {
                     // Memeriksa apakah hasil diagnosa adalah P1 atau P2
-                    val formattedCertainty = if (hasilDiagnosa == "P1") {
-                        "%.4f".format(mAdapter.rule1Certainty)
-                    } else if (hasilDiagnosa == "P2") {
-                        "%.4f".format(mAdapter.rule4Certainty) // Menggunakan nilai kepastian untuk P2
-                    } else {
-                        ""
+                    val formattedCertainty = when (hasilDiagnosa) {
+                        "P1" -> {
+                            "%.4f".format(mAdapter.rule1Certainty)
+                        }
+                        "P2" -> {
+                            "%.4f".format(mAdapter.rule4Certainty) // Menggunakan nilai kepastian untuk P2
+                        }
+                        else -> {
+                            ""
+                        }
                     }
                     "Tanaman Anda didiagnosa penyakit $hasilDiagnosa $formattedCertainty"
                 }
@@ -91,6 +95,7 @@ class FragmentDiagnosa : Fragment() {
 
                 is Resource.Success -> {
                     mAdapter.submitList(it.data)
+
                 }
 
                 is Resource.Error -> {}
