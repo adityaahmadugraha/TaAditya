@@ -44,8 +44,6 @@ class FragmentDiagnosa : Fragment() {
             if (selectedSymptoms.isNotEmpty()) {
                 val selectedTingkatKepastian = mAdapter.getSelectedTingkatKepastian()
 
-
-
                 for ((index, gejala) in selectedSymptoms.withIndex()) {
                     val tingkatKepastian = selectedTingkatKepastian[index]
 
@@ -60,30 +58,29 @@ class FragmentDiagnosa : Fragment() {
                 val toastMessage = if (hasilDiagnosa == "Tidak Diketahui") {
                     "Tidak diketahui penyakit"
                 } else {
-                    // Memeriksa apakah hasil diagnosa adalah P1 atau P2
                     val formattedCertainty = when (hasilDiagnosa) {
                         "P1" -> {
-                            "%.4f".format(mAdapter.hasilCfP1)
+                            "%.4f".format(mAdapter.hasilPerhitunganCf)
                         }
 
                         "P2" -> {
-                            "%.4f".format(mAdapter.hasilCfP2)
+                            "%.4f".format(mAdapter.hasilPerhitunganCf)
                         }
 
                         "P3" -> {
-                            "%.4f".format(mAdapter.hasilCfP3)
+                            "%.4f".format(mAdapter.hasilPerhitunganCf)
                         }
 
                         "P4" -> {
-                            "%.4f".format(mAdapter.hasilCfP4)
+                            "%.4f".format(mAdapter.hasilPerhitunganCf)
                         }
 
                         "P5" -> {
-                            "%.4f".format(mAdapter.hasilCfP5)
+                            "%.4f".format(mAdapter.hasilPerhitunganCf)
                         }
 
                         "P6" -> {
-                            "%.4f".format(mAdapter.hasilCfP6)
+                            "%.4f".format(mAdapter.hasilPerhitunganCf)
                         }
 
                         else -> {

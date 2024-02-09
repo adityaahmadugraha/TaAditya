@@ -36,6 +36,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".user.ui.hasil.ActivityHasil"
+            android:exported="false" />
+        <activity
             android:name=".user.ui.detail.ActivityDetailGejala"
             android:exported="false" />
         <activity
