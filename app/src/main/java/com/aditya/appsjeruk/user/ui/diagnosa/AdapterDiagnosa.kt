@@ -27,17 +27,30 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     private val cfPakar11 = 0.8
     private val cfPakar12 = 0.8
 
-    var rule1Certainty: Double = 0.0
+    var hasilCfP1: Double = 0.0
         private set
 
-    var rule3Certainty: Double = 0.0
+    var hasilCfP2: Double = 0.0
+        private set
+    var hasilCfP3: Double = 0.0
         private set
 
-    var rule4Certainty: Double = 0.0 // Menambahkan properti untuk menyimpan nilai kepastian P2
+    var hasilCfP4: Double = 0.0
         private set
+
+    var hasilCfP5: Double = 0.0
+        private set
+
+    var hasilCfP6: Double = 0.0
+        private set
+
 
     fun diagnosaPenyakit(): String {
         val selectedSymptoms = currentList.filter { it.isSelected }
+
+        selectedSymptoms.forEach {
+            Log.d("Diagnosa", "Gejala terpilih: ${it.namaGejala}")
+        }
 
         // Memeriksa apakah G1, G2, dan G3 terpilih
         val isG1Selected = selectedSymptoms.any { it.kodeGejala == "G1" }
@@ -48,14 +61,51 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
         val isG4Selected = selectedSymptoms.any { it.kodeGejala == "G4" }
         val isG5Selected = selectedSymptoms.any { it.kodeGejala == "G5" }
 
-        // Jika G1, G2, dan G3 terpilih, hitung tingkat kepastian P1
+        //P3
+        val isG6Selected = selectedSymptoms.any { it.kodeGejala == "G6" }
+        val isG7Selected = selectedSymptoms.any { it.kodeGejala == "G7" }
+        val isG8Selected = selectedSymptoms.any { it.kodeGejala == "G8" }
+        //P4
+        val isG9Selected = selectedSymptoms.any { it.kodeGejala == "G9" }
+        val isG10Selected = selectedSymptoms.any { it.kodeGejala == "G10" }
+        val isG11Selected = selectedSymptoms.any { it.kodeGejala == "G11" }
+        val isG12Selected = selectedSymptoms.any { it.kodeGejala == "G12" }
+        //P5
+        val isG13Selected = selectedSymptoms.any { it.kodeGejala == "G13" }
+        val isG14Selected = selectedSymptoms.any { it.kodeGejala == "G14" }
+        val isG15Selected = selectedSymptoms.any { it.kodeGejala == "G15" }
+        val isG16Selected = selectedSymptoms.any { it.kodeGejala == "G16" }
+        val isG17Selected = selectedSymptoms.any { it.kodeGejala == "G17" }
+        val isG18Selected = selectedSymptoms.any { it.kodeGejala == "G18" }
+        //P6
+        val isG19Selected = selectedSymptoms.any { it.kodeGejala == "G19" }
+        val isG20Selected = selectedSymptoms.any { it.kodeGejala == "G20" }
+        val isG21Selected = selectedSymptoms.any { it.kodeGejala == "G21" }
+        val isG22Selected = selectedSymptoms.any { it.kodeGejala == "G22" }
+        val isG23Selected = selectedSymptoms.any { it.kodeGejala == "G23" }
+
+//        if (isG1Selected && isG2Selected && isG3Selected) {
+//            val rule1Certainty =
+//                calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * cfPakar1
+//            val rule2Certainty =
+//                calculateRuleCertainty(selectedSymptoms, listOf("G3")) * cfPakar2
+//            this.hasilCfP1 = rule1Certainty
+//            val finalCertainty = (rule1Certainty + rule2Certainty) / 2
+//            return if (finalCertainty > 0.0) {
+//                "P1"
+//            }
+//            else {
+//                "Tidak Diketahui"
+//            }
+//        }
+
+
         if (isG1Selected && isG2Selected && isG3Selected) {
-            val rule1Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * cfPakar1
-            val rule2Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G3")) * cfPakar2
-
-            this.rule1Certainty = rule1Certainty
-
-            val finalCertainty = (rule1Certainty + rule2Certainty) / 2
+            val ruleCertainty1 =
+                calculateRuleCertainty(selectedSymptoms, listOf("G1", "G2")) * cfPakar1
+            val ruleCertainty2 = calculateRuleCertainty(selectedSymptoms, listOf("G3")) * cfPakar2
+            val finalCertainty = (ruleCertainty1 + ruleCertainty2) / 2
+            this.hasilCfP1 = finalCertainty
 
             return if (finalCertainty > 0.0) {
                 "P1"
@@ -63,15 +113,72 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
                 "Tidak Diketahui"
             }
         } else if (isG4Selected && isG5Selected) {
-
-            // Hitung tingkat kepastian P2
-            val rule4Certainty = calculateRuleCertainty(selectedSymptoms, listOf("G4", "G5")) * cfPakar3
-            this.rule4Certainty = rule4Certainty
-
-            Log.d("Rule4Certainty", "Rule 4 Certainty: $rule4Certainty")
-
+            val rule4Certainty =
+                calculateRuleCertainty(selectedSymptoms, listOf("G4", "G5")) * cfPakar3
+            this.hasilCfP2 = rule4Certainty
+            Log.d("Diagnosa", "Hasil CF P1: ${this.hasilCfP2}")
             return if (rule4Certainty > 0.0) {
                 "P2"
+            } else {
+                "Tidak Diketahui"
+            }
+        } else if (isG6Selected && isG7Selected && isG8Selected) {
+            val ruleCertainty4 =
+                calculateRuleCertainty(selectedSymptoms, listOf("G6", "G7")) * cfPakar4
+            val ruleCertainty5 = calculateRuleCertainty(selectedSymptoms, listOf("G8")) * cfPakar5
+            val finalCertainty = (ruleCertainty4 + ruleCertainty5) / 2
+            this.hasilCfP3 = finalCertainty
+
+            return if (finalCertainty > 0.0) {
+                "P3"
+            } else {
+                "Tidak Diketahui"
+            }
+        }
+
+        else if (isG9Selected && isG10Selected && isG11Selected && isG12Selected) {
+            val ruleCertainty6 = calculateRuleCertainty(
+                selectedSymptoms,
+                listOf("G9", "G10", "G11", "G12")
+            ) * cfPakar6
+            val ruleCertainty7 = calculateRuleCertainty(selectedSymptoms, listOf("G13")) * cfPakar7
+            val finalCertainty = (ruleCertainty6 + ruleCertainty7) / 2
+            this.hasilCfP4 = finalCertainty
+
+            return if (finalCertainty > 0.0) {
+                "P4"
+            } else {
+                "Tidak Diketahui"
+            }
+        }
+        else if (isG13Selected && isG14Selected && isG15Selected && isG16Selected && isG17Selected && isG18Selected) {
+
+            val ruleCertainty8 =
+                calculateRuleCertainty(selectedSymptoms, listOf("G13", "G14", "G15")) * cfPakar8
+            val ruleCertainty9 =
+                calculateRuleCertainty(selectedSymptoms, listOf("G16", "G17")) * cfPakar9
+            val ruleCertainty10 =
+                calculateRuleCertainty(selectedSymptoms, listOf("G18")) * cfPakar10
+            val finalCertainty = (ruleCertainty8 + ruleCertainty9 + ruleCertainty10) / 3
+            this.hasilCfP5 = finalCertainty
+
+            return if (finalCertainty > 0.0) {
+                "P5"
+            } else {
+                "Tidak Diketahui"
+            }
+        }
+        else if (isG19Selected && isG20Selected && isG21Selected && isG22Selected && isG23Selected) {
+
+            val ruleCertainty11 =
+                calculateRuleCertainty(selectedSymptoms, listOf("G19", "G22", "G23")) * cfPakar11
+            val ruleCertainty12 =
+                calculateRuleCertainty(selectedSymptoms, listOf("G20", "G21")) * cfPakar12
+            val finalCertainty = (ruleCertainty11 + ruleCertainty12) / 2
+            this.hasilCfP6 = finalCertainty
+
+            return if (finalCertainty > 0.0) {
+                "P6"
             } else {
                 "Tidak Diketahui"
             }
@@ -90,7 +197,8 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListDiagnosaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListDiagnosaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -104,7 +212,8 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     ): Double {
         val relevantSymptoms = selectedSymptoms.filter { it.kodeGejala in gejalaCodes }
         return if (relevantSymptoms.isNotEmpty()) {
-            val averageTingkatKepastian = relevantSymptoms.map { it.selectedTingkatKepastian }.average()
+            val averageTingkatKepastian =
+                relevantSymptoms.map { it.selectedTingkatKepastian }.average()
             val certaintyWeight = getCertaintyWeight(averageTingkatKepastian)
             averageTingkatKepastian * certaintyWeight
         } else {
@@ -120,7 +229,8 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
         }
     }
 
-    inner class ViewHolder(private val binding: ListDiagnosaBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ListDiagnosaBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(data: GejalaResponse) {
             binding.apply {
                 cbFw.setOnCheckedChangeListener(null)
@@ -156,7 +266,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
                         "Hampir Pasti Tidak" -> -0.4
                         "Kemungkinan Besar Tidak" -> -0.6
                         "Mungkin Tidak" -> -0.8
-                        "Tidak Tahu" -> 0.0
+                        "Tidak Tahu" -> 0.2
                         "Mungkin Iya" -> 0.4
                         "Kemungkinan Besar Iya" -> 0.6
                         "Hampir Pasti Iya" -> 0.8
@@ -171,12 +281,18 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     companion object {
         val DIFF_CALLBACK: DiffUtil.ItemCallback<GejalaResponse> =
             object : DiffUtil.ItemCallback<GejalaResponse>() {
-                override fun areItemsTheSame(oldItem: GejalaResponse, newItem: GejalaResponse): Boolean {
+                override fun areItemsTheSame(
+                    oldItem: GejalaResponse,
+                    newItem: GejalaResponse
+                ): Boolean {
                     return oldItem.idGejala == newItem.idGejala
                 }
 
                 @SuppressLint("DiffUtilEquals")
-                override fun areContentsTheSame(oldItem: GejalaResponse, newItem: GejalaResponse): Boolean {
+                override fun areContentsTheSame(
+                    oldItem: GejalaResponse,
+                    newItem: GejalaResponse
+                ): Boolean {
                     return oldItem == newItem
                 }
             }

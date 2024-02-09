@@ -63,11 +63,29 @@ class FragmentDiagnosa : Fragment() {
                     // Memeriksa apakah hasil diagnosa adalah P1 atau P2
                     val formattedCertainty = when (hasilDiagnosa) {
                         "P1" -> {
-                            "%.4f".format(mAdapter.rule1Certainty)
+                            "%.4f".format(mAdapter.hasilCfP1)
                         }
+
                         "P2" -> {
-                            "%.4f".format(mAdapter.rule4Certainty) // Menggunakan nilai kepastian untuk P2
+                            "%.4f".format(mAdapter.hasilCfP2)
                         }
+
+                        "P3" -> {
+                            "%.4f".format(mAdapter.hasilCfP3)
+                        }
+
+                        "P4" -> {
+                            "%.4f".format(mAdapter.hasilCfP4)
+                        }
+
+                        "P5" -> {
+                            "%.4f".format(mAdapter.hasilCfP5)
+                        }
+
+                        "P6" -> {
+                            "%.4f".format(mAdapter.hasilCfP6)
+                        }
+
                         else -> {
                             ""
                         }
@@ -81,7 +99,6 @@ class FragmentDiagnosa : Fragment() {
                     .show()
             }
         }
-
 
 
     }
