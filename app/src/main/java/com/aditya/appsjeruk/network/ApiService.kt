@@ -10,6 +10,7 @@ import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
 import com.aditya.appsjeruk.data.remote.response.RegisterResponse
 import com.aditya.appsjeruk.user.ui.history.Riwayat
+import com.aditya.appsjeruk.user.ui.history.RiwayatRequest
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -52,6 +53,11 @@ interface ApiService {
         @Body body: RequestBody
     ): AddPenyakitResponse
 
+
+    @POST("input_riwayat.php")
+    suspend fun insertRiwayat(
+        @Body request: RiwayatRequest
+    ): Login
 
     @GET("delete_penyakit.php")
     suspend fun deletePenyakit(

@@ -14,6 +14,7 @@ import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
 import com.aditya.appsjeruk.databinding.FragmentDiagnosaBinding
 import com.aditya.appsjeruk.user.ui.hasil.ActivityHasil
+import com.aditya.appsjeruk.user.ui.history.RiwayatRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -41,6 +42,8 @@ class FragmentDiagnosa : Fragment() {
         setupRecyclerView()
 
         binding?.btnDiagnosa?.setOnClickListener {
+
+
             val selectedSymptoms = mAdapter.getSelectedSymptoms()
 
             if (selectedSymptoms.isNotEmpty()) {
@@ -59,6 +62,8 @@ class FragmentDiagnosa : Fragment() {
                 var namaPenyakit = ""
                 var nilaiCf = ""
 
+
+
                 if (hasilDiagnosa != "Tidak Diketahui") {
                     when (hasilDiagnosa) {
                         "P1", "P2", "P3", "P4", "P5", "P6" -> {
@@ -73,15 +78,51 @@ class FragmentDiagnosa : Fragment() {
                 val intent = Intent(requireContext(), ActivityHasil::class.java).apply {
                     putExtra("nama_penyakit", namaPenyakit)
                     putExtra("nilai_cf", nilaiCf.toFloat())
+                    inputRiwayat(namaPenyakit, nilaiCf)
                 }
                 startActivity(intent)
             } else {
                 Toast.makeText(requireContext(), "Pilih gejala terlebih dahulu", Toast.LENGTH_SHORT)
                     .show()
             }
+
         }
 
 
+    }
+
+    private fun inputRiwayat(namaPenyakit: String, nilaiCf: String) {
+        Log.d("Data Riwayat", "Hasil Diagnosa: $namaPenyakit, Kode Penyakit: $nilaiCf")
+
+
+        val request = RiwayatRequest(
+            hasil_diagnosa = namaPenyakit,
+            kode_penyakit = nilaiCf
+        )
+
+
+
+        viewModel.insertRiwayat(request).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+
+                    if (result.data.status) {
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            result.data.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
 
     }
 

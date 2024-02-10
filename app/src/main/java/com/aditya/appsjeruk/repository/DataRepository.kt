@@ -7,6 +7,8 @@ import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
 import com.aditya.appsjeruk.data.remote.request.DiagnosaRequest
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.data.remote.request.RegisterRequest
+import com.aditya.appsjeruk.user.ui.history.Riwayat
+import com.aditya.appsjeruk.user.ui.history.RiwayatRequest
 import okhttp3.RequestBody
 import javax.inject.Inject
 
@@ -21,6 +23,7 @@ class DataRepository @Inject constructor(
 
     fun isertData(requestBody: RequestBody) = remoteData.insertData(requestBody)
     fun insertGejala(requestBody: RequestBody) = remoteData.insertGejala(requestBody)
+    fun insertRiwayat(request: RiwayatRequest) = remoteData.insertRiwayat(request)
     fun getUser() = localData.getUser()
     suspend fun saveUser(userLocal: UserLocal) = localData.saveUser(userLocal)
 

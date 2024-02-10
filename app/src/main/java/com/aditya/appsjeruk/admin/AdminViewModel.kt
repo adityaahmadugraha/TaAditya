@@ -8,6 +8,8 @@ import com.aditya.appsjeruk.data.remote.request.AddPenyakitRequest
 import com.aditya.appsjeruk.data.remote.request.DiagnosaRequest
 import com.aditya.appsjeruk.data.remote.request.DiagnosaResponse
 import com.aditya.appsjeruk.repository.DataRepository
+import com.aditya.appsjeruk.user.ui.history.Riwayat
+import com.aditya.appsjeruk.user.ui.history.RiwayatRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -36,16 +38,18 @@ class AdminViewModel @Inject constructor(
     ) = repository.insertGejala(requestBody).asLiveData()
 
 
+    fun insertRiwayat(
+        request: RiwayatRequest
+    ) = repository.insertRiwayat(request).asLiveData()
+
     fun getItem() = repository.getItem().asLiveData()
     fun getPenyakit() = repository.getPenyakit().asLiveData()
 
 
     fun deletePenyakit(id: String) = repository.deletePenyakit(id).asLiveData()
 
-    //    fun diagnosaPenyakit(request: DiagnosaRequest):
-//            Flow<Resource<DiagnosaResponse>> {
-//        return repository.diagnosaPenyakit(request)
-    fun diagnosaPenyakit(request: DiagnosaRequest) = repository.diagnosaPenyakit(request).asLiveData()
+    fun diagnosaPenyakit(request: DiagnosaRequest) =
+        repository.diagnosaPenyakit(request).asLiveData()
 
 //    }
 

@@ -6,6 +6,8 @@ import com.aditya.appsjeruk.data.remote.request.Login
 import com.aditya.appsjeruk.data.remote.request.LoginRequest
 import com.aditya.appsjeruk.data.remote.request.RegisterRequest
 import com.aditya.appsjeruk.network.ApiService
+import com.aditya.appsjeruk.user.ui.history.Riwayat
+import com.aditya.appsjeruk.user.ui.history.RiwayatRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -99,6 +101,17 @@ class RemoteDataSource @Inject constructor(
     ) = flow {
         emit(Resource.Loading())
         val response = apiService.insertGejala(request)
+        emit(Resource.Success(response))
+    }.catch {
+        emit(Resource.Error(it.message ?: ""))
+    }.flowOn(Dispatchers.IO)
+
+
+    fun insertRiwayat(
+        request: RiwayatRequest
+    ) = flow {
+        emit(Resource.Loading())
+        val response = apiService.insertRiwayat(request)
         emit(Resource.Success(response))
     }.catch {
         emit(Resource.Error(it.message ?: ""))
