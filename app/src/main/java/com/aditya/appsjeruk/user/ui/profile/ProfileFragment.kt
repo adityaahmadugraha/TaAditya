@@ -36,7 +36,7 @@ class ProfileFragment : Fragment() {
         getDataUser()
 
         if (activity != null) {
-            checkUserLogin()
+//            checkUserLogin()
             binding?.apply {
                 btnLogout.setOnClickListener {
                     showAlertLogout()
@@ -61,7 +61,12 @@ class ProfileFragment : Fragment() {
             .setMessage(getString(R.string.logoutMessage))
             .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                 viewModel.deleteUser()
-                checkUserLogin()
+                Intent(requireContext(), LoginActivity::class.java).also { i ->
+                    i.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(i)
+                }
+
             }
             .setNegativeButton(getString(R.string.no)) { dialog, _ ->
                 dialog.dismiss()
@@ -70,16 +75,6 @@ class ProfileFragment : Fragment() {
 
     }
 
-    private fun checkUserLogin() {
-        viewModel.getUser().observe(viewLifecycleOwner) {
-            if (it.username.isEmpty()) {
-                Intent(requireActivity(), LoginActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(this)
-                }
-            }
-        }
-    }
 
     private fun setupButtonBackClicked() {
 

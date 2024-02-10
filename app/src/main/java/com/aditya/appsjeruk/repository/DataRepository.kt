@@ -31,7 +31,7 @@ class DataRepository @Inject constructor(
 
     fun getItem() = remoteData.getItem()
     fun getPenyakit() = remoteData.getPenyakit()
-    fun getRiwayatPengguna() = remoteData.getRiwayatPengguna()
+    fun getRiwayatPengguna(id : String) = remoteData.getRiwayatPengguna(id)
 
     fun deletePenyakit(id: String) = remoteData.deletepenyakit(id)
     fun updateUser(id: String) = remoteData.updateUser(id)

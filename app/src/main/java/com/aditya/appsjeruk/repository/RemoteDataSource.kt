@@ -53,9 +53,11 @@ class RemoteDataSource @Inject constructor(
         emit(Resource.Error(it.message ?: ""))
     }.flowOn(Dispatchers.IO)
 
-    fun getRiwayatPengguna() = flow {
+    fun getRiwayatPengguna(
+        id : String
+    ) = flow {
         emit(Resource.Loading())
-        val response = apiService.getRiwayatPengguna()
+        val response = apiService.getRiwayatPengguna(id)
         emit(Resource.Success(response))
     }.catch {
         emit(Resource.Error(it.message ?: ""))

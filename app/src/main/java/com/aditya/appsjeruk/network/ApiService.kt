@@ -38,8 +38,7 @@ interface ApiService {
     suspend fun getItemPenyakit(): List<PenyakitResponse>
 
 
-    @GET("get_riwayat_pengguna.php")
-    suspend fun getRiwayatPengguna(): List<Riwayat>
+
 
 //    @POST("create_penyakit.php")
 //    suspend fun insertData(@Body body: RequestBody): AddPenyakitResponse
@@ -74,6 +73,16 @@ interface ApiService {
     suspend fun diagnosaPenyakit(
         @Body request: DiagnosaRequest
     ): DiagnosaResponse
+
+
+    @GET("get_riwayat_pengguna.php")
+    suspend fun getRiwayatPengguna(
+        @Query("id") id: String
+    ): List<Riwayat>
+
+
+//    @GET("get_riwayat_pengguna.php")
+//    suspend fun getRiwayatPengguna(): List<Riwayat>
 
 
 }

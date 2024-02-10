@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
+import com.aditya.appsjeruk.data.local.UserLocal
 import com.aditya.appsjeruk.databinding.FragmentDiagnosaBinding
 import com.aditya.appsjeruk.user.ui.hasil.ActivityHasil
 import com.aditya.appsjeruk.user.ui.history.RiwayatRequest
@@ -22,8 +22,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class FragmentDiagnosa : Fragment() {
 
     private var binding: FragmentDiagnosaBinding? = null
-    private val viewModel: AdminViewModel by viewModels()
+    private val viewModel: ViewModelDiagnosa by viewModels()
     private lateinit var mAdapter: AdapterDiagnosa
+    private var user: UserLocal? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,10 @@ class FragmentDiagnosa : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.getUser {
+            user = it
+        }
 
         getData()
 
@@ -59,7 +64,6 @@ class FragmentDiagnosa : Fragment() {
 
                 val hasilDiagnosa = mAdapter.diagnosaPenyakit()
                 var namaPenyakit = ""
-//                var hasilDiagnosa = ""
                 var nilaiCf = ""
 
 
@@ -88,7 +92,6 @@ class FragmentDiagnosa : Fragment() {
 
         }
 
-
     }
 
     private fun inputRiwayat(namaPenyakit: String, nilaiCf: String) {
@@ -97,33 +100,39 @@ class FragmentDiagnosa : Fragment() {
 
         val request = RiwayatRequest(
             hasil_diagnosa = "$namaPenyakit $nilaiCf",
-            kode_penyakit = nilaiCf
+            kode_penyakit = nilaiCf,
+            id = user?.id ?: ""
         )
 
 
-
-        viewModel.insertRiwayat(request).observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Resource.Loading -> {}
-                is Resource.Success -> {
-
-                    if (result.data.status) {
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            result.data.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
+        request.let { riwayatRequest ->
+            viewModel.insertRiwayat(riwayatRequest).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        // Tangani kasus loading jika diperlukan
                     }
-                }
 
-                is Resource.Error -> {
-                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT)
-                        .show()
+                    is Resource.Success -> {
+                        if (result.data.status) {
+                            // Tangani kasus berhasil jika diperlukan
+                        } else {
+                            // Tangani kasus tidak berhasil jika diperlukan
+                            Toast.makeText(
+                                requireContext(),
+                                result.data.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+
+                    is Resource.Error -> {
+                        // Tangani kasus error jika diperlukan
+                        Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
             }
         }
-
     }
 
     private fun getData() {
