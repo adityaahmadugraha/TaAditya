@@ -9,6 +9,7 @@ import com.aditya.appsjeruk.data.remote.response.AddPenyakitResponse
 import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
 import com.aditya.appsjeruk.data.remote.response.RegisterResponse
+import com.aditya.appsjeruk.user.ui.history.Riwayat
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -34,6 +35,10 @@ interface ApiService {
 
     @GET("get_penyakit.php")
     suspend fun getItemPenyakit(): List<PenyakitResponse>
+
+
+    @GET("get_riwayat_pengguna.php")
+    suspend fun getRiwayatPengguna(): List<Riwayat>
 
 //    @POST("create_penyakit.php")
 //    suspend fun insertData(@Body body: RequestBody): AddPenyakitResponse

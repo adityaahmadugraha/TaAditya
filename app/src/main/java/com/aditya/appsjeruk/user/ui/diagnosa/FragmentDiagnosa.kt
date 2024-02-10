@@ -72,7 +72,7 @@ class FragmentDiagnosa : Fragment() {
 
                 val intent = Intent(requireContext(), ActivityHasil::class.java).apply {
                     putExtra("nama_penyakit", namaPenyakit)
-                    putExtra("nilai_cf", nilaiCf)
+                    putExtra("nilai_cf", nilaiCf.toFloat())
                 }
                 startActivity(intent)
             } else {

@@ -13,4 +13,5 @@ class HistoryViewModel @Inject constructor(
 
     fun getUser() = repository.getUser().asLiveData()
 
+    fun getRiwayatPengguna() = repository.getRiwayatPengguna().asLiveData()
 }

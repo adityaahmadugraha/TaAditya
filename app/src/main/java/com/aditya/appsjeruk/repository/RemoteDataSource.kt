@@ -51,6 +51,14 @@ class RemoteDataSource @Inject constructor(
         emit(Resource.Error(it.message ?: ""))
     }.flowOn(Dispatchers.IO)
 
+    fun getRiwayatPengguna() = flow {
+        emit(Resource.Loading())
+        val response = apiService.getRiwayatPengguna()
+        emit(Resource.Success(response))
+    }.catch {
+        emit(Resource.Error(it.message ?: ""))
+    }.flowOn(Dispatchers.IO)
+
 
     fun deletepenyakit(id: String) = flow<Resource<Login>> {
         emit(Resource.Loading())
@@ -73,7 +81,6 @@ class RemoteDataSource @Inject constructor(
     }.catch {
         emit(Resource.Error(it.message.toString()))
     }.flowOn(Dispatchers.IO)
-
 
 
     fun insertData(
@@ -99,7 +106,8 @@ class RemoteDataSource @Inject constructor(
 
 
     fun diagnosaPenyakit(
-        request: DiagnosaRequest) = flow {
+        request: DiagnosaRequest
+    ) = flow {
         emit(Resource.Loading())
         val response = apiService.diagnosaPenyakit(request)
         emit(Resource.Success(response))

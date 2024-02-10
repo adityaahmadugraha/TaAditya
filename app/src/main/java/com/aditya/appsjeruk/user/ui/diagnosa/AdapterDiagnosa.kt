@@ -26,7 +26,6 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     private val cfPakar10 = 0.8
     private val cfPakar11 = 0.8
     private val cfPakar12 = 0.8
-
     var hasilPerhitunganCf: Double = 0.0
         private set
 

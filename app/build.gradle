@@ -20,8 +20,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 //        buildConfigField ("String", "BASE_URL", '"http://192.168.18.12/api_service/"')
 //        buildConfigField ("String", "BASE_URL", '"http://192.168.152.28/api_service/"')
-        buildConfigField ("String", "BASE_URL", '"http://192.168.152.28/api_service/"')
-        buildConfigField ("String", "IMAGE_URL", '"http://192.168.152.28/api_service/assets/img/penyakit/"')
+        buildConfigField("String", "BASE_URL", '"http://192.168.152.28/api_service/"')
+        buildConfigField("String", "IMAGE_URL", '"http://192.168.152.28/api_service/assets/img/penyakit/"')
 //        buildConfigField ("String", "IMAGE_URL", '"http://22.8.23.6/api_service/assets/img/penyakit/"')
 //        buildConfigField ("String", "BASE_URL", '"http://22.8.23.6/api_service/"')
 //        buildConfigField ("String", "BASE_URL", '"http://192.168.0.163/api_service/"')
@@ -90,7 +90,7 @@ dependencies {
     //Data store
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
-    
+
     //camera
     def camerax_version = "1.2.2"
     implementation "androidx.camera:camera-camera2:${camerax_version}"
@@ -98,6 +98,9 @@ dependencies {
     implementation "androidx.camera:camera-view:${camerax_version}"
 
     implementation 'com.squareup.picasso:picasso:2.8'
+
+
+    implementation 'com.airbnb.android:lottie:3.4.0'
 
 
 }

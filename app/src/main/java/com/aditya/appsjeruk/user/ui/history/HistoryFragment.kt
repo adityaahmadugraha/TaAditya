@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.aditya.appsjeruk.adapter.AdapterPenyakit
 import com.aditya.appsjeruk.databinding.FragmentHistoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,9 +16,8 @@ class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
     private val viewModel: HistoryViewModel by viewModels()
+    private lateinit var mAdapter: AdapterRiwayat
     private val binding get() = _binding!!
-
-//    private lateinit var mAdapter: AdapterHistoryLaporan
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,34 +30,38 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getRiwayat()
+        mAdapter = AdapterRiwayat ()
+        setupRecyclerView()
 
-//        setupRecyclerView()
-//        getDataUser()
     }
 
+    private fun setupRecyclerView() {
+        binding.rvRiwayatPenggua.apply {
+            adapter = mAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+        }
+    }
 
+    private fun getRiwayat() {
+        viewModel.getRiwayatPengguna().observe(
+            viewLifecycleOwner
+        ) { result ->
+            when (result) {
+                is com.aditya.appsjeruk.data.Resource.Loading -> {}
 
+                is com.aditya.appsjeruk.data.Resource.Success -> {
 
-//    private fun setupRecyclerView() {
-//        mAdapter = AdapterHistoryLaporan {
-//            goToDetailScreen(it)
-//        }
-//    }
+                    mAdapter.submitList(result.data)
+                }
 
-//    private fun goToDetailScreen(itemLaporaneResponse: ItemLaporaneResponse) {
-//
-//        val bundle = Bundle().apply {
-//            putString(DetailStatusLaporanActivity.TAG_TIPE, itemLaporaneResponse.type)
-//            putString(DetailStatusLaporanActivity.TAG_TANGGAL, itemLaporaneResponse.tanggal)
-//            putString(DetailStatusLaporanActivity.TAG_LOKASI, itemLaporaneResponse.lokasi)
-//
-//
-//        }
-//        Intent(requireActivity(), DetailStatusLaporanActivity::class.java).apply {
-//            putExtra(DetailStatusLaporanActivity.TAG_BUNDLE, bundle)
-//            startActivity(this)
-//        }
-//    }
+                is com.aditya.appsjeruk.data.Resource.Error -> {}
+
+                else -> {}
+            }
+        }
+    }
 
 
     override fun onDestroyView() {

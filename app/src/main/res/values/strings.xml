@@ -77,6 +77,7 @@
     <string name="kembali">Kembali</string>
     <string name="galery">Galery</string>
     <string name="camera">Camera</string>
+    <string name="no_data">Tidak ada data</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type">Type :</string>
