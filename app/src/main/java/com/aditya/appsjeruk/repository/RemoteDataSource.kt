@@ -63,6 +63,18 @@ class RemoteDataSource @Inject constructor(
         emit(Resource.Error(it.message.toString()))
     }.flowOn(Dispatchers.IO)
 
+    fun updateUser(id: String) = flow<Resource<Login>> {
+        emit(Resource.Loading())
+        val response = apiService.updateUser(id)
+        response.let {
+            if (it.status) emit(Resource.Success(it))
+            else emit(Resource.Error(it.message))
+        }
+    }.catch {
+        emit(Resource.Error(it.message.toString()))
+    }.flowOn(Dispatchers.IO)
+
+
 
     fun insertData(
         request: RequestBody

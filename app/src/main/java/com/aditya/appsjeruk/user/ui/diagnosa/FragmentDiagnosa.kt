@@ -1,5 +1,6 @@
 package com.aditya.appsjeruk.user.ui.diagnosa
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
 import com.aditya.appsjeruk.databinding.FragmentDiagnosaBinding
+import com.aditya.appsjeruk.user.ui.hasil.ActivityHasil
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -26,7 +28,7 @@ class FragmentDiagnosa : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDiagnosaBinding.inflate(layoutInflater, container, false)
+        binding = FragmentDiagnosaBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
@@ -54,48 +56,31 @@ class FragmentDiagnosa : Fragment() {
                 }
 
                 val hasilDiagnosa = mAdapter.diagnosaPenyakit()
+                var namaPenyakit = ""
+                var nilaiCf = ""
 
-                val toastMessage = if (hasilDiagnosa == "Tidak Diketahui") {
-                    "Tidak diketahui penyakit"
-                } else {
-                    val formattedCertainty = when (hasilDiagnosa) {
-                        "P1" -> {
-                            "%.4f".format(mAdapter.hasilPerhitunganCf)
-                        }
-
-                        "P2" -> {
-                            "%.4f".format(mAdapter.hasilPerhitunganCf)
-                        }
-
-                        "P3" -> {
-                            "%.4f".format(mAdapter.hasilPerhitunganCf)
-                        }
-
-                        "P4" -> {
-                            "%.4f".format(mAdapter.hasilPerhitunganCf)
-                        }
-
-                        "P5" -> {
-                            "%.4f".format(mAdapter.hasilPerhitunganCf)
-                        }
-
-                        "P6" -> {
-                            "%.4f".format(mAdapter.hasilPerhitunganCf)
-                        }
-
-                        else -> {
-                            ""
+                if (hasilDiagnosa != "Tidak Diketahui") {
+                    when (hasilDiagnosa) {
+                        "P1", "P2", "P3", "P4", "P5", "P6" -> {
+                            nilaiCf = "%.4f".format(mAdapter.hasilPerhitunganCf)
+                            namaPenyakit = "Tanaman Anda didiagnosa penyakit $hasilDiagnosa"
                         }
                     }
-                    "Tanaman Anda didiagnosa penyakit $hasilDiagnosa $formattedCertainty"
+                } else {
+                    namaPenyakit = "Tidak diketahui penyakit"
                 }
 
-                Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
+                val intent = Intent(requireContext(), ActivityHasil::class.java).apply {
+                    putExtra("nama_penyakit", namaPenyakit)
+                    putExtra("nilai_cf", nilaiCf)
+                }
+                startActivity(intent)
             } else {
                 Toast.makeText(requireContext(), "Pilih gejala terlebih dahulu", Toast.LENGTH_SHORT)
                     .show()
             }
         }
+
 
 
     }
@@ -109,7 +94,6 @@ class FragmentDiagnosa : Fragment() {
 
                 is Resource.Success -> {
                     mAdapter.submitList(it.data)
-
                 }
 
                 is Resource.Error -> {}
@@ -132,5 +116,3 @@ class FragmentDiagnosa : Fragment() {
         binding = null
     }
 }
-
-

@@ -30,8 +30,8 @@ class DataRepository @Inject constructor(
     fun getPenyakit() = remoteData.getPenyakit()
 
     fun deletePenyakit(id: String) = remoteData.deletepenyakit(id)
+    fun updateUser(id: String) = remoteData.updateUser(id)
 
     fun diagnosaPenyakit(request: DiagnosaRequest) = remoteData.diagnosaPenyakit(request)
 
-//    fun insertGejala(requestBody: RequestBody) = remoteData.insertGejala(requestBody)
 }

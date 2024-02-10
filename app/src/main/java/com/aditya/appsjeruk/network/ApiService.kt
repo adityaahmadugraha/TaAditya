@@ -42,10 +42,10 @@ interface ApiService {
     suspend fun insertData(@Body body: RequestBody): AddPenyakitResponse
 
 
-
     @POST("input_gejala.php")
     suspend fun insertGejala(
-        @Body body: RequestBody): AddPenyakitResponse
+        @Body body: RequestBody
+    ): AddPenyakitResponse
 
 
     @GET("delete_penyakit.php")
@@ -53,10 +53,16 @@ interface ApiService {
         @Query("id") id: String
     ): Login
 
+    @POST("update_user.php")
+    suspend fun updateUser(
+        @Query("id_user") id: String
+    ): Login
+
 
     @POST("rule.php")
     suspend fun diagnosaPenyakit(
         @Body request: DiagnosaRequest
     ): DiagnosaResponse
+
 
 }
