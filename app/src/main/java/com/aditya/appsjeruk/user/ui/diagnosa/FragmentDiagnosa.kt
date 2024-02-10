@@ -43,7 +43,6 @@ class FragmentDiagnosa : Fragment() {
 
         binding?.btnDiagnosa?.setOnClickListener {
 
-
             val selectedSymptoms = mAdapter.getSelectedSymptoms()
 
             if (selectedSymptoms.isNotEmpty()) {
@@ -60,6 +59,7 @@ class FragmentDiagnosa : Fragment() {
 
                 val hasilDiagnosa = mAdapter.diagnosaPenyakit()
                 var namaPenyakit = ""
+//                var hasilDiagnosa = ""
                 var nilaiCf = ""
 
 
@@ -68,7 +68,7 @@ class FragmentDiagnosa : Fragment() {
                     when (hasilDiagnosa) {
                         "P1", "P2", "P3", "P4", "P5", "P6" -> {
                             nilaiCf = "%.4f".format(mAdapter.hasilPerhitunganCf)
-                            namaPenyakit = "Tanaman Anda didiagnosa penyakit $hasilDiagnosa"
+                            namaPenyakit = "Tanaman Jeruk Anda Didiagnosa Terserang Penyakit $hasilDiagnosa Dengan Tingkat Kemungkinan"
                         }
                     }
                 } else {
@@ -96,7 +96,7 @@ class FragmentDiagnosa : Fragment() {
 
 
         val request = RiwayatRequest(
-            hasil_diagnosa = namaPenyakit,
+            hasil_diagnosa = "$namaPenyakit $nilaiCf",
             kode_penyakit = nilaiCf
         )
 

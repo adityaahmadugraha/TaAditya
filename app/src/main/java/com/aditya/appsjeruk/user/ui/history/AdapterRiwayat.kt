@@ -36,7 +36,7 @@ class AdapterRiwayat
         fun bind(data: Riwayat) {
             binding.apply {
                 tvTanggal.text = data.tgl_diagnosa
-                tvHasil.text = data.nama_penyakit
+                tvHasil.text = data.hasil_diagnosa
 
             }
         }
