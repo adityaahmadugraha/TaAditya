@@ -8,5 +8,6 @@ data class Riwayat(
     val pencegahan: String?,
     val hasil_diagnosa: String?,
     val nama_penyakit: String?,
-    val tgl_diagnosa: String?
+    val tgl_diagnosa: String?,
+    val nama_user: String?
 )

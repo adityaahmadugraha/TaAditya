@@ -43,6 +43,7 @@ class AdminViewModel @Inject constructor(
     ) = repository.insertRiwayat(request).asLiveData()
 
     fun getItem() = repository.getItem().asLiveData()
+    fun getRiwayatAll() = repository.getRiwayatAll().asLiveData()
     fun getPenyakit() = repository.getPenyakit().asLiveData()
 
 

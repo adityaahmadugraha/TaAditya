@@ -30,6 +30,7 @@ class DataRepository @Inject constructor(
     suspend fun deleteUser() = localData.deleteUser()
 
     fun getItem() = remoteData.getItem()
+    fun getRiwayatAll() = remoteData.getRiwayatAll()
     fun getPenyakit() = remoteData.getPenyakit()
     fun getRiwayatPengguna(id : String) = remoteData.getRiwayatPengguna(id)
 

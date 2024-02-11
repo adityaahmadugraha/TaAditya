@@ -26,10 +26,6 @@ interface ApiService {
     suspend fun register(@Body request: RegisterRequest): RegisterResponse
 
 
-//    @GET("get_penyakit.php")
-//    suspend fun getItem(): List<PenyakitResponse>
-
-
     @GET("get_gejala.php")
     suspend fun getItem(): List<GejalaResponse>
 
@@ -81,8 +77,8 @@ interface ApiService {
     ): List<Riwayat>
 
 
-//    @GET("get_riwayat_pengguna.php")
-//    suspend fun getRiwayatPengguna(): List<Riwayat>
+    @GET("get_riwayat_admin.php")
+    suspend fun getRiwayatAdmin(): List<Riwayat>
 
 
 }
