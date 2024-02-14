@@ -136,7 +136,7 @@ class FragmentDiagnosa : Fragment() {
     }
 
     private fun getData() {
-        viewModel.getItem().observe(
+        viewModel.getDiagnosa().observe(
             viewLifecycleOwner
         ) {
             when (it) {

@@ -6,14 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".user.ui.detail.ActivityDetail">
 
+    <!--    <ImageView-->
+    <!--        android:id="@+id/img_detail"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="200dp"-->
+    <!--        android:src="@color/yellow"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
     <ImageView
         android:id="@+id/img_detail"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@color/yellow"
+        android:layout_height="350dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_cm"
+        app:layout_collapseMode="parallax"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_back_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/tv_name"
@@ -21,9 +44,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppinssembiold"
         android:text="title"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_detail" />
 
@@ -33,25 +57,26 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppinslight"
         android:justificationMode="inter_word"
         android:text="Deskripsi"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_pencegahan"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:justificationMode="inter_word"-->
-<!--        android:text="Pencegahan"-->
-<!--        android:textSize="16sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi" />-->
+        <TextView
+            android:id="@+id/tv_pencegahan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:justificationMode="inter_word"
+            android:text="Pencegahan"
+            android:fontFamily="@font/poppinslight"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_deskripsi" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

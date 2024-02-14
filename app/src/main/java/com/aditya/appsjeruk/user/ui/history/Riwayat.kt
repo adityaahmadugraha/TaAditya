@@ -1,7 +1,7 @@
 package com.aditya.appsjeruk.user.ui.history
 
 data class Riwayat(
-    val id_riwayat: Int,
+    val id_riwayat: String,
     val id_user: Int?,
     val id_penyakit: Int?,
     val kode_penyakit: String?,

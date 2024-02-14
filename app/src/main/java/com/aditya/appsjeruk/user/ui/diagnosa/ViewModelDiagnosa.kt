@@ -32,7 +32,8 @@ class ViewModelDiagnosa @Inject constructor(
         request: RiwayatRequest
     ) = repository.insertRiwayat(request).asLiveData()
 
-    fun getItem() = repository.getItem().asLiveData()
+    //    fun getItem() = repository.getItem().asLiveData()
+    fun getDiagnosa() = repository.getDiagnosa().asLiveData()
 
 
 }

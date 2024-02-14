@@ -48,6 +48,7 @@ class AdminViewModel @Inject constructor(
 
 
     fun deletePenyakit(id: String) = repository.deletePenyakit(id).asLiveData()
+//    fun deleteRiwayat(id_riwayat: String) = repository.deleteRiwayat(id_riwayat).asLiveData()
 
     fun diagnosaPenyakit(request: DiagnosaRequest) =
         repository.diagnosaPenyakit(request).asLiveData()

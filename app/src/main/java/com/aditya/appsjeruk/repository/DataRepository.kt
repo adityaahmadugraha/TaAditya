@@ -30,12 +30,14 @@ class DataRepository @Inject constructor(
     suspend fun deleteUser() = localData.deleteUser()
 
     fun getItem() = remoteData.getItem()
+    fun getDiagnosa() = remoteData.getDiagnosa()
     fun getRiwayatAll() = remoteData.getRiwayatAll()
     fun getPenyakit() = remoteData.getPenyakit()
     fun getRiwayatPengguna(id : String) = remoteData.getRiwayatPengguna(id)
 
     fun deletePenyakit(id: String) = remoteData.deletepenyakit(id)
-    fun updateUser(id: String) = remoteData.updateUser(id)
+    fun deleteRiwayat(id_riwayat: String) = remoteData.deleteRiwayat(id_riwayat)
+//    fun updateUser(id_riwayat: String) = remoteData.updateUser(id_riwayat)
 
     fun diagnosaPenyakit(request: DiagnosaRequest) = remoteData.diagnosaPenyakit(request)
 

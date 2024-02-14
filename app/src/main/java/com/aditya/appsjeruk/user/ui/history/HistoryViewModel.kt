@@ -27,4 +27,7 @@ class HistoryViewModel @Inject constructor(
     fun getRiwayatPengguna(
         id : String
     ) = repository.getRiwayatPengguna(id).asLiveData()
+
+
+    fun deleteRiwayat(id_riwayat: String) = repository.deleteRiwayat(id_riwayat).asLiveData()
 }

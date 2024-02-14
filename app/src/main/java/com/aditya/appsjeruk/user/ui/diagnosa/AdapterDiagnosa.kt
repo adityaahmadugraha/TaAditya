@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aditya.appsjeruk.R
+import com.aditya.appsjeruk.data.remote.request.DiagnosaResponse
 import com.aditya.appsjeruk.databinding.ListDiagnosaBinding
 
-class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(DIFF_CALLBACK) {
+class AdapterDiagnosa : ListAdapter<DiagnosaResponse, AdapterDiagnosa.ViewHolder>(DIFF_CALLBACK) {
 
     private val cfPakar1 = 1.0
     private val cfPakar2 = 0.8
@@ -169,11 +170,11 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     }
 
 
-    fun getSelectedSymptoms(): List<GejalaResponse> {
+    fun getSelectedSymptoms(): List<DiagnosaResponse> {
         return currentList.filter { it.isSelected }
     }
 
-    fun getSelectedTingkatKepastian(): List<GejalaResponse> {
+    fun getSelectedTingkatKepastian(): List<DiagnosaResponse> {
         return currentList.filter { it.isSelected }
     }
 
@@ -188,7 +189,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     }
 
     private fun calculateRuleCertainty(
-        selectedSymptoms: List<GejalaResponse>,
+        selectedSymptoms: List<DiagnosaResponse>,
         gejalaCodes: List<String>
     ): Double {
         val relevantSymptoms = selectedSymptoms.filter { it.kodeGejala in gejalaCodes }
@@ -213,7 +214,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
 
     inner class ViewHolder(private val binding: ListDiagnosaBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: GejalaResponse) {
+        fun bind(data: DiagnosaResponse) {
             binding.apply {
                 cbFw.setOnCheckedChangeListener(null)
                 cbFw.isChecked = data.isSelected
@@ -228,7 +229,7 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
                         Log.d("SymptomSelected", "Selected symptom: ${data.namaGejala}")
                     }
                 }
-                tvTitle.text = data.namaGejala
+                tvTitle.text = data.pertanyaan
                 val options = listOf(
                     "Pasti Tidak",
                     "Hampir Pasti Tidak",
@@ -267,19 +268,19 @@ class AdapterDiagnosa : ListAdapter<GejalaResponse, AdapterDiagnosa.ViewHolder>(
     }
 
     companion object {
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<GejalaResponse> =
-            object : DiffUtil.ItemCallback<GejalaResponse>() {
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<DiagnosaResponse> =
+            object : DiffUtil.ItemCallback<DiagnosaResponse>() {
                 override fun areItemsTheSame(
-                    oldItem: GejalaResponse,
-                    newItem: GejalaResponse
+                    oldItem: DiagnosaResponse,
+                    newItem: DiagnosaResponse
                 ): Boolean {
                     return oldItem.idGejala == newItem.idGejala
                 }
 
                 @SuppressLint("DiffUtilEquals")
                 override fun areContentsTheSame(
-                    oldItem: GejalaResponse,
-                    newItem: GejalaResponse
+                    oldItem: DiagnosaResponse,
+                    newItem: DiagnosaResponse
                 ): Boolean {
                     return oldItem == newItem
                 }

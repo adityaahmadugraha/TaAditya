@@ -35,7 +35,7 @@ class AdapterGejala
                 tvNama.text = data.namaGejala
                 tvDeskripsi.text = data.deskripsiGejala
                 Glide.with(itemView.context)
-                    .load(BuildConfig.IMAGE_URL + data.fotoGejala)
+                    .load(BuildConfig.IMAGE_URL_GEJALA + data.fotoGejala)
                     .error(R.drawable.error)
                     .into(foto)
                 itemView.setOnClickListener {

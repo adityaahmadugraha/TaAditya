@@ -25,6 +25,7 @@ class ActivityDetailPengguna : AppCompatActivity() {
 
         getDetail()
     }
+
     private fun getDetail() {
         val title = intent.getStringExtra("title").toString()
         val foto = intent.getStringExtra("foto").toString()
@@ -33,16 +34,16 @@ class ActivityDetailPengguna : AppCompatActivity() {
         val pencegahan = intent.getStringExtra("pencegahan").toString()
 
         val etPencegahan = binding.etPencegahan
-        etPencegahan.setText(pencegahan)
+        etPencegahan.text = pencegahan
 
         val etNama = binding.etNama
-        etNama.setText(title)
+        etNama.text = title
 
         val etDeskripsi = binding.etDeskripsi
-        etDeskripsi.setText(deskripsi)
+        etDeskripsi.text = deskripsi
 
-        val kodeToolbar = binding.kode
-        kodeToolbar.title = kodeValue
+//        val kodeToolbar = binding.kode
+//        kodeToolbar.title = kodeValue
 
         Glide.with(this)
             .load(BuildConfig.IMAGE_URL + foto)

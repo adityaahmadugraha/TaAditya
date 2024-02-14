@@ -40,10 +40,10 @@ class ActivityDetailGejala : AppCompatActivity() {
 //        etPencegahan.setText(pencegahan)
 
         val etNama = binding.etNama
-        etNama.setText(title)
+        etNama.text = title
 
         val etDeskripsi = binding.etDeskripsi
-        etDeskripsi.setText(deskripsi)
+        etDeskripsi.text = deskripsi
 
 //        val tvDeskripsi = binding.tvName
 //        tvDeskripsi.text = title
@@ -51,13 +51,13 @@ class ActivityDetailGejala : AppCompatActivity() {
 //        val tvName = binding.tvDeskripsi
 //        tvName.text = deskripsi
 
-        val kodeToolbar = binding.kode
-        kodeToolbar.title = kodeValue
+//        val kodeToolbar = binding.kode
+//        kodeToolbar.title = kodeValue
 
 
 
         Glide.with(this)
-            .load(BuildConfig.IMAGE_URL + foto)
+            .load(BuildConfig.IMAGE_URL_GEJALA + foto)
             .error(R.drawable.error)
             .into(binding.imgDetail)
     }

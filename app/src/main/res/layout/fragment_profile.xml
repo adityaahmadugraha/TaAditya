@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppinssembiold"
-                android:text="Nomor WhatsApp"
+                android:text="Nomor Telp"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/txt_email"

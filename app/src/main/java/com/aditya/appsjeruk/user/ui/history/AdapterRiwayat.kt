@@ -15,9 +15,7 @@ import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.bumptech.glide.Glide
 
 class AdapterRiwayat
-//    (
-//    private val onItemClick: (GejalaResponse) -> Unit
-//)
+
     : ListAdapter<Riwayat, AdapterRiwayat.ViewHolder>(DIFF_CALLBACK) {
 
 
@@ -33,14 +31,36 @@ class AdapterRiwayat
 
     inner class ViewHolder(private val binding: ListRiwayatBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.icDelete.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val riwayat = getItem(position)
+                    onDeleteClickListener?.onDeleteClick(riwayat)
+                }
+            }
+        }
+
         fun bind(data: Riwayat) {
             binding.apply {
                 tvTanggal.text = data.tgl_diagnosa
                 tvHasil.text = data.hasil_diagnosa
-
             }
         }
     }
+
+
+    interface OnDeleteClickListener {
+        fun onDeleteClick(riwayat: Riwayat)
+    }
+
+    private var onDeleteClickListener: OnDeleteClickListener? = null
+
+    fun setOnDeleteClickListener(listener: OnDeleteClickListener) {
+        onDeleteClickListener = listener
+    }
+
 
     companion object {
         val DIFF_CALLBACK: DiffUtil.ItemCallback<Riwayat> =

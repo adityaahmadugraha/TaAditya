@@ -1,10 +1,14 @@
 package com.aditya.appsjeruk.user.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.aditya.appsjeruk.BuildConfig
+import com.aditya.appsjeruk.R
+import com.aditya.appsjeruk.admin.ActivityAdmin
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
 import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
@@ -25,28 +29,38 @@ class ActivityDetail : AppCompatActivity() {
         setContentView(binding.root)
 
         getDetail()
-
+        binding.icBack.setOnClickListener {
+            intent = Intent(this@ActivityDetail, ActivityAdmin::class.java)
+            startActivity(intent)
+        }
         binding.fabDelete.setOnClickListener {
             showDeleteConfirmationDialog()
+
         }
     }
 
     private fun getDetail() {
         val title = intent.getStringExtra("title").toString()
-        val image = intent.getStringExtra("image").toString()
         val deskripsi = intent.getStringExtra("deskripsi").toString()
 //        val pencegahan = intent.getStringExtra("pencegahan").toString()
+        val image = intent.getStringExtra("image").toString()
 
-        val tvDeskripsi = binding.tvName
-        tvDeskripsi.text = title
+
+        val tvName = binding.tvName
+        tvName.text = title
 
 //        val tvPencegahan = binding.tvPencegahan
-//        tvPencegahan.text = title
+//        tvPencegahan.text = pencegahan
 
-        val tvName = binding.tvDeskripsi
-        tvName.text = deskripsi
+        val tvDeskripsi = binding.tvDeskripsi
+        tvDeskripsi.text = deskripsi
+
+
+
+
         Glide.with(this)
-            .load(image)
+            .load(BuildConfig.IMAGE_URL_GEJALA + image)
+            .error(R.drawable.error)
             .into(binding.imgDetail)
     }
 

@@ -29,15 +29,12 @@ interface ApiService {
     @GET("get_gejala.php")
     suspend fun getItem(): List<GejalaResponse>
 
+    @GET("get_diagnosa.php")
+    suspend fun getDiagnosa(): List<DiagnosaResponse>
 
     @GET("get_penyakit.php")
     suspend fun getItemPenyakit(): List<PenyakitResponse>
 
-
-
-
-//    @POST("create_penyakit.php")
-//    suspend fun insertData(@Body body: RequestBody): AddPenyakitResponse
 
     @POST("input_penyakit.php")
     suspend fun insertData(@Body body: RequestBody): AddPenyakitResponse
@@ -79,6 +76,12 @@ interface ApiService {
 
     @GET("get_riwayat_admin.php")
     suspend fun getRiwayatAdmin(): List<Riwayat>
+
+
+    @GET("delete_riwayat.php")
+    suspend fun deleteRiwayat(
+        @Query("id_riwayat") idRiwayat: String
+    ): Login
 
 
 }

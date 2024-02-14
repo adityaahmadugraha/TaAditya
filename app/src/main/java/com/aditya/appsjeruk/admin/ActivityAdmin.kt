@@ -53,7 +53,8 @@ class ActivityAdmin : AppCompatActivity() {
             intent = Intent(this@ActivityAdmin, ActivityDetail::class.java).apply {
                 putExtra("title", it.namaGejala)
                 putExtra("deskripsi", it.deskripsiGejala)
-                putExtra("foto", it.fotoGejala)
+//                putExtra("pencegahan", it.pencegahan)
+                putExtra("image", it.fotoGejala)
                 putExtra("id", it.idGejala)
 //                it.putExtra("id", store.id)
             }
