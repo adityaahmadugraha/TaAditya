@@ -30,7 +30,7 @@ class ActivityDetailPengguna : AppCompatActivity() {
         val title = intent.getStringExtra("title").toString()
         val foto = intent.getStringExtra("foto").toString()
         val deskripsi = intent.getStringExtra("deskripsi").toString()
-        val kodeValue = intent.getStringExtra("kode").toString()
+//        val kodeValue = intent.getStringExtra("kode").toString()
         val pencegahan = intent.getStringExtra("pencegahan").toString()
 
         val etPencegahan = binding.etPencegahan

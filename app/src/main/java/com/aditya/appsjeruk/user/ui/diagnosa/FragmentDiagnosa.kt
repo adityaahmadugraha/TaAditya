@@ -70,9 +70,10 @@ class FragmentDiagnosa : Fragment() {
 
                 if (hasilDiagnosa != "Tidak Diketahui") {
                     when (hasilDiagnosa) {
-                        "P1", "P2", "P3", "P4", "P5", "P6" -> {
+                        "Embun Jelaga (Capnodium citri)", "Penyakit Busuk Buah (Phytophthora spp)", "Penyakit Busuk Pangkal Batang (Phytophthora spp)", "Penyakit kanker oleh bakteri Xanthomonas campestris cv citri", "Penyakit kudis oleh jamur Sphaceloma fawcetti", "Busuk diplodia (Botryodiplodia theobromae Pat)" -> {
                             nilaiCf = "%.4f".format(mAdapter.hasilPerhitunganCf)
-                            namaPenyakit = "Tanaman Jeruk Anda Didiagnosa Terserang Penyakit $hasilDiagnosa Dengan Tingkat Kemungkinan"
+                            namaPenyakit =
+                                "Tanaman Jeruk Anda Didiagnosa Terserang Penyakit $hasilDiagnosa Dengan Tingkat Kemungkinan"
                         }
                     }
                 } else {
@@ -109,7 +110,6 @@ class FragmentDiagnosa : Fragment() {
             viewModel.insertRiwayat(riwayatRequest).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Resource.Loading -> {
-                        // Tangani kasus loading jika diperlukan
                     }
 
                     is Resource.Success -> {
@@ -126,7 +126,6 @@ class FragmentDiagnosa : Fragment() {
                     }
 
                     is Resource.Error -> {
-                        // Tangani kasus error jika diperlukan
                         Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT)
                             .show()
                     }

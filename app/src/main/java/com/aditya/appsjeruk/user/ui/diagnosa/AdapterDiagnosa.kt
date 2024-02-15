@@ -80,7 +80,7 @@ class AdapterDiagnosa : ListAdapter<DiagnosaResponse, AdapterDiagnosa.ViewHolder
             this.hasilPerhitunganCf = finalCertainty
             Log.d("Diagnosa", "Hasil CF P1: ${this.hasilPerhitunganCf}")
             return if (finalCertainty > 0.0) {
-                "P1"
+                "Embun Jelaga (Capnodium citri)"
             } else {
                 "Tidak Diketahui"
             }
@@ -93,7 +93,7 @@ class AdapterDiagnosa : ListAdapter<DiagnosaResponse, AdapterDiagnosa.ViewHolder
             this.hasilPerhitunganCf = ruleCertainty3
             Log.d("Diagnosa", "Hasil CF P1: ${this.hasilPerhitunganCf}")
             return if (ruleCertainty3 > 0.0) {
-                "P2"
+                "Penyakit Busuk Buah (Phytophthora spp)"
             } else {
                 "Tidak Diketahui"
             }
@@ -107,7 +107,7 @@ class AdapterDiagnosa : ListAdapter<DiagnosaResponse, AdapterDiagnosa.ViewHolder
             this.hasilPerhitunganCf = finalCertainty
 
             return if (finalCertainty > 0.0) {
-                "P3"
+                "Penyakit Busuk Pangkal Batang (Phytophthora spp)"
             } else {
                 "Tidak Diketahui"
             }
@@ -123,7 +123,7 @@ class AdapterDiagnosa : ListAdapter<DiagnosaResponse, AdapterDiagnosa.ViewHolder
             this.hasilPerhitunganCf = finalCertainty
 
             return if (finalCertainty > 0.0) {
-                "P4"
+                "Penyakit kanker oleh bakteri Xanthomonas campestris cv citri"
             } else {
                 "Tidak Diketahui"
             }
@@ -144,7 +144,7 @@ class AdapterDiagnosa : ListAdapter<DiagnosaResponse, AdapterDiagnosa.ViewHolder
             this.hasilPerhitunganCf = finalCertainty
 
             return if (finalCertainty > 0.0) {
-                "P5"
+                "Penyakit kudis oleh jamur Sphaceloma fawcetti"
             } else {
                 "Tidak Diketahui"
             }
@@ -160,7 +160,7 @@ class AdapterDiagnosa : ListAdapter<DiagnosaResponse, AdapterDiagnosa.ViewHolder
             this.hasilPerhitunganCf = finalCertainty
 
             return if (finalCertainty > 0.0) {
-                "P6"
+                "Busuk diplodia (Botryodiplodia theobromae Pat)"
             } else {
                 "Tidak Diketahui"
             }

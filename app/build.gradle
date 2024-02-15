@@ -24,7 +24,7 @@ android {
         buildConfigField("String", "IMAGE_URL", '"http://192.168.101.28/api_service/assets/img/penyakit/"')
         buildConfigField("String", "IMAGE_URL_GEJALA", '"http://192.168.101.28/api_service/assets/img/gejala/"')
 //        buildConfigField ("String", "IMAGE_URL", '"http://22.8.23.6/api_service/assets/img/penyakit/"')
-//        buildConfigField ("String", "BASE_URL", '"http://22.8.23.6/api_service/"')
+//        buildConfigField ("String", "BASE_URL", '"http://22.8.23.38/api_service/"')
 //        buildConfigField ("String", "BASE_URL", '"http://192.168.0.163/api_service/"')
     }
 

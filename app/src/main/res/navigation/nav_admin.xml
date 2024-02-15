@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_admin"
+    app:startDestination="@id/fragmentAdminGejala">
+
+    <fragment
+        android:id="@+id/fragmentAdminGejala"
+        android:name="com.aditya.appsjeruk.admin.fragment.FragmentAdminGejala"
+        android:label="fragment_admin_gejala"
+        tools:layout="@layout/fragment_admin_gejala" />
+    <fragment
+        android:id="@+id/fragmentAdminPenyakit"
+        android:name="com.aditya.appsjeruk.admin.fragment.FragmentAdminPenyakit"
+        android:label="fragment_admin_penyakit"
+        tools:layout="@layout/fragment_admin_penyakit" />
+</navigation>

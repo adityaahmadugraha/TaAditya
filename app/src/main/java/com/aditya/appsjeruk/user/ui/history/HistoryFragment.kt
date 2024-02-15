@@ -10,7 +10,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aditya.appsjeruk.adapter.AdapterPenyakit
 import com.aditya.appsjeruk.data.local.UserLocal
 import com.aditya.appsjeruk.databinding.FragmentHistoryBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +34,8 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         mAdapter = AdapterRiwayat()
         mAdapter.setOnDeleteClickListener(object : AdapterRiwayat.OnDeleteClickListener {
             override fun onDeleteClick(riwayat: Riwayat) {
@@ -50,21 +51,19 @@ class HistoryFragment : Fragment() {
                         when (result) {
                             is com.aditya.appsjeruk.data.Resource.Success -> {
                                 Log.d("HistoryFragment", "Riwayat berhasil dihapus")
+                                mAdapter.currentList.toMutableList().removeAll { it.id_riwayat == idRiwayat }
                                 mAdapter.notifyDataSetChanged()
-                                dialog.dismiss() // Tutup dialog sebelum menampilkan toast
                                 showToast("Riwayat berhasil dihapus")
                             }
-
+                            // Penanganan Error
                             is com.aditya.appsjeruk.data.Resource.Error -> {
                                 Log.e("HistoryFragment", "Gagal menghapus riwayat: ${result.error}")
                                 showToast("Gagal menghapus riwayat: ${result.error}")
                             }
-
-                            else -> {
-
-                            }
+                            else -> { }
                         }
                     }
+
                 }
 
                 builder.setNegativeButton("Tidak") { dialog, _ ->
@@ -73,6 +72,7 @@ class HistoryFragment : Fragment() {
                 val dialog = builder.create()
                 dialog.show()
             }
+
 
             private fun showToast(message: String) {
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
@@ -95,8 +95,6 @@ class HistoryFragment : Fragment() {
             setHasFixedSize(true)
         }
     }
-
-
 
     private fun getRiwayat() {
         user?.let { currentUser ->

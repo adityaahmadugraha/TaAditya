@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppinssembiold"
+        android:fontFamily="@font/lorabold"
         android:text="Riwayat Diagnosa"
         android:textColor="@color/black"
         android:textSize="16sp"
