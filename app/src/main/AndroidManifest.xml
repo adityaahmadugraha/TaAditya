@@ -36,6 +36,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".admin.addrule.ActivityAddRule"
+            android:exported="false" />
+        <activity
             android:name=".admin.ActivityDetailGejalaAdmin"
             android:exported="false" />
         <activity

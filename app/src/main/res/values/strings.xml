@@ -100,8 +100,12 @@
     <string name="hampir_pasti_iya">Hampir Pasti Iya</string>
     <string name="pasti_iya">Pasti Iya</string>
     <string name="mulai_diagnosa">Mulai Diagnosa</string>
+    <string name="attention">Perhatian</string>
+    <string name="alert_logout">Apakah anda yakin ingin keluar?</string>
+    <string name="cancel">Batal</string>
 
-
+    <string name="logout">Logout</string>
+    <string name="profie">Profile</string>
     <string name="gejala">Gejala</string>
     <string name="penyakit">Penyakit</string>
     <string name="enter_password">Enter Password</string>

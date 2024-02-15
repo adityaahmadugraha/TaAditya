@@ -1,9 +1,13 @@
 package com.aditya.appsjeruk.admin
 
+import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -11,7 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.adapter.AdapterGejala
 import com.aditya.appsjeruk.admin.adddata.ActivityAddPenyakit
+import com.aditya.appsjeruk.admin.addrule.ActivityAddRule
 import com.aditya.appsjeruk.admin.addrule.AddGejalaActivity
+import com.aditya.appsjeruk.admin.profile_amin.ActivityProfile
 import com.aditya.appsjeruk.admin.riwayat_admin.ActivityRiwayatAdmin
 import com.aditya.appsjeruk.databinding.ActivityAdminBinding
 import com.aditya.appsjeruk.user.ui.detail.ActivityDetail
@@ -43,20 +49,24 @@ class ActivityAdmin : AppCompatActivity() {
                 R.id.fragmentAdminGejala, R.id.fragmentAdminPenyakit
             )
         )
-   navView.setupWithNavController(navController)
+        navView.setupWithNavController(navController)
 
         binding.apply {
-            cardData.setOnClickListener {
+            cardPenyakit.setOnClickListener {
                 intent = Intent(this@ActivityAdmin, ActivityAddPenyakit::class.java)
                 startActivity(intent)
 
             }
-            cardRule.setOnClickListener {
+            cardGejala.setOnClickListener {
                 intent = Intent(this@ActivityAdmin, AddGejalaActivity::class.java)
                 startActivity(intent)
             }
             cardRiwayat.setOnClickListener {
                 intent = Intent(this@ActivityAdmin, ActivityRiwayatAdmin::class.java)
+                startActivity(intent)
+            }
+            cardRule.setOnClickListener {
+                intent = Intent(this@ActivityAdmin, ActivityAddRule::class.java)
                 startActivity(intent)
             }
         }
@@ -82,10 +92,46 @@ class ActivityAdmin : AppCompatActivity() {
 
 
         checkUserLogin()
-        binding.apply {
-            icMenu.setOnClickListener {
-                showAlertLogout()
+
+        binding.icMenu.setOnClickListener {
+            showPopupMenu()
+        }
+    }
+
+    private fun showPopupMenu() {
+        PopupMenu(this@ActivityAdmin, binding.icMenu).run {
+            menuInflater.inflate(R.menu.popup_menu, menu)
+
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.menu_logout -> {
+                        AlertDialog.Builder(this@ActivityAdmin)
+                            .setTitle(R.string.attention)
+                            .setMessage(R.string.alert_logout)
+                            .setPositiveButton(R.string.yes) { _, _ ->
+                                viewModel.deleteUser()
+                                Intent(this@ActivityAdmin, LoginActivity::class.java).also { i ->
+                                    i.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    startActivity(i)
+                                }
+                            }
+                            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+
+                    R.id.menu_profile -> {
+                        startActivity(Intent(this@ActivityAdmin, ActivityProfile::class.java))
+                    }
+                }
+                true
             }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                gravity = Gravity.END
+            }
+            show()
         }
     }
 

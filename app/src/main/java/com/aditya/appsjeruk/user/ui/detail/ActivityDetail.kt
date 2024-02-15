@@ -11,6 +11,7 @@ import com.aditya.appsjeruk.R
 import com.aditya.appsjeruk.admin.ActivityAdmin
 import com.aditya.appsjeruk.admin.AdminViewModel
 import com.aditya.appsjeruk.data.Resource
+import com.aditya.appsjeruk.data.remote.response.PenyakitResponse
 import com.aditya.appsjeruk.user.ui.diagnosa.GejalaResponse
 import com.aditya.appsjeruk.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
@@ -43,7 +44,8 @@ class ActivityDetail : AppCompatActivity() {
         val title = intent.getStringExtra("title").toString()
         val deskripsi = intent.getStringExtra("deskripsi").toString()
 //        val pencegahan = intent.getStringExtra("pencegahan").toString()
-        val image = intent.getStringExtra("image").toString()
+        val image = intent.getStringExtra("foto").toString()
+        val id = intent.getStringExtra("id_penyakit").toString()
 
 
         val tvName = binding.tvName
@@ -70,28 +72,28 @@ class ActivityDetail : AppCompatActivity() {
             .setMessage("Apakah Anda yakin menghapus data ini?")
             .setPositiveButton("Ya") { _, _ ->
 
-//                deletePenyakit()
+                deletePenyakit()
             }
             .setNegativeButton("Tidak", null)
             .show()
     }
 
-//    private fun deletePenyakit() {
-//        val itemRequest = GejalaResponse(
-//            idGejala = intent.getStringExtra("id_gejala").toString()
-//        )
-//        viewModel.deletePenyakit(itemRequest.idGejala.toString()).observe(this) { result ->
-//            when (result) {
-//                is Resource.Loading -> {}
-//                is Resource.Success -> {
-//                    Toast.makeText(this, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show()
-//                    finish()
-//                }
-//
-//                is Resource.Error -> {
-//                    Toast.makeText(this, "Gagal menghapus penyakit", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
+    private fun deletePenyakit() {
+        val itemRequest = PenyakitResponse(
+            idPenyakit = intent.getStringExtra("id_penyakit").toString()
+        )
+        viewModel.deletePenyakit(itemRequest.idPenyakit.toString()).observe(this) { result ->
+            when (result) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    Toast.makeText(this, "Data Berhasil Dihapus", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(this, "Gagal menghapus penyakit", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 }
